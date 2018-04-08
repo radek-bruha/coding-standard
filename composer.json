@@ -1,0 +1,47 @@
+{
+    "name": "radek-bruha/coding-standard",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Bruha\\CodingStandard\\": [
+                "src/"
+            ]
+        }
+    },
+    "require": {
+        "consistence/coding-standard": "^3.0",
+        "cweagans/composer-patches": "^1.6",
+        "phpstan/phpstan": "^0.9",
+        "phpstan/phpstan-nette": "^0.9",
+        "phpstan/phpstan-strict-rules": "^0.9",
+        "phpunit/phpunit": "^7.1",
+        "slevomat/coding-standard": "^4.5",
+        "squizlabs/php_codesniffer": "^3.2",
+        "stesie/phpcs-doctrine-annotation-rules": "^1.2"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "patches": {
+            "phpstan/phpstan": {
+                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPStanOne.patch",
+                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPStanTwo.patch"
+            },
+            "phpunit/phpunit": {
+                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPUnitOne.patch",
+                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPUnitTwo.patch"
+            },
+            "squizlabs/php_codesniffer": {
+                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPCodeSnifferOne.patch",
+                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPCodeSnifferTwo.patch"
+            },
+            "stesie/phpcs-doctrine-annotation-rules": {
+                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/DoctrineAnnotationOne.patch",
+                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/DoctrineAnnotationTwo.patch"
+            }
+        }
+    }
+}

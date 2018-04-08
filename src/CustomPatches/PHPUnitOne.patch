@@ -1,0 +1,47 @@
+--- project/vendor/phpunit/phpunit/src/TextUI/TestRunner.php	(date 1286705410000)
++++ project/vendor/phpunit/phpunit/src/TextUI/TestRunner.php	(date 1286705410000)
+@@ -291,10 +291,6 @@
+             }
+         }
+
+-        $this->printer->write(
+-            Version::getVersionString() . "\n"
+-        );
+-
+         self::$versionStringPrinted = true;
+
+         if ($arguments['verbose']) {
+@@ -520,8 +516,6 @@
+             }
+         }
+
+-        $this->printer->write("\n");
+-
+         if (isset($codeCoverage)) {
+             $result->setCodeCoverage($codeCoverage);
+
+@@ -590,10 +584,6 @@
+             }
+
+             if (isset($arguments['coverageHtml'])) {
+-                $this->printer->write(
+-                    "\nGenerating code coverage report in HTML format ..."
+-                );
+-
+                 try {
+                     $writer = new HtmlReport(
+                         $arguments['reportLowUpperBound'],
+@@ -605,13 +595,9 @@
+                     );
+
+                     $writer->process($codeCoverage, $arguments['coverageHtml']);
+-
+-                    $this->printer->write(" done\n");
+                     unset($writer);
+                 } catch (CodeCoverageException $e) {
+-                    $this->printer->write(
+-                        " failed\n" . $e->getMessage() . "\n"
+-                    );
++
+                 }
+             }

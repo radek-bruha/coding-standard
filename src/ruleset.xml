@@ -1,0 +1,140 @@
+<?xml version='1.0'?>
+<ruleset name='Bruha Coding Standard'>
+    <rule ref='vendor/radek-bruha/coding-standard/src/CustomRules/ruleset.xml'/>
+
+    <rule ref='Generic'>
+        <exclude name='Generic.Arrays.DisallowShortArraySyntax.Found'/>
+        <exclude name='Generic.Classes.OpeningBraceSameLine.BraceOnNewLine'/>
+        <exclude name='Generic.Commenting.DocComment.ContentAfterOpen'/>
+        <exclude name='Generic.Commenting.DocComment.ContentBeforeClose'/>
+        <exclude name='Generic.Commenting.DocComment.Empty'/>
+        <exclude name='Generic.Commenting.DocComment.MissingShort'/>
+        <exclude name='Generic.Files.LineEndings.InvalidEOLChar'/>
+        <exclude name='Generic.Files.LineLength.MaxExceeded'/>
+        <exclude name='Generic.Files.LineLength.TooLong'/>
+        <exclude name='Generic.Files.LowercasedFilename.NotFound'/>
+        <exclude name='Generic.Files.EndFileNewline.NotFound'/>
+        <exclude name='Generic.Formatting.NoSpaceAfterCast.SpaceFound'/>
+        <exclude name='Generic.Formatting.SpaceAfterNot.Incorrect'/>
+        <exclude name='Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine'/>
+        <exclude name='Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine'/>
+        <exclude name='Generic.PHP.ClosingPHPTag.NotFound'/>
+        <exclude name='Generic.PHP.LowerCaseConstant.Found'/>
+        <exclude name='Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed'/>
+    </rule>
+
+    <rule ref='PEAR'>
+        <exclude name='PEAR.Commenting.ClassComment.MissingAuthorTag'/>
+        <exclude name='PEAR.Commenting.ClassComment.MissingCategoryTag'/>
+        <exclude name='PEAR.Commenting.ClassComment.MissingLicenseTag'/>
+        <exclude name='PEAR.Commenting.ClassComment.MissingLinkTag'/>
+        <exclude name='PEAR.Commenting.FileComment.Missing'/>
+        <exclude name='PEAR.Commenting.FunctionComment.MissingParamComment'/>
+        <exclude name='PEAR.Commenting.FunctionComment.MissingReturn'/>
+        <exclude name='PEAR.Files.IncludingFile.UseInclude'/>
+        <exclude name='PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore'/>
+        <exclude name='PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore'/>
+        <exclude name='PEAR.WhiteSpace.ScopeIndent.IncorrectExact'/>
+    </rule>
+
+    <rule ref='PSR1'/>
+
+    <rule ref='PSR2'>
+        <exclude name='PSR2.Classes.ClassDeclaration.CloseBraceAfterBody'/>
+        <exclude name='PSR2.Files.EndFileNewline.NoneFound'/>
+    </rule>
+
+    <rule ref='Squiz'>
+        <exclude name='Squiz.Commenting.BlockComment.NoEmptyLineBefore'/>
+        <exclude name='Squiz.Commenting.BlockComment.NoEmptyLineAfter'/>
+        <exclude name='Squiz.Commenting.BlockComment.WrongStart'/>
+        <exclude name='Squiz.Commenting.ClassComment.TagNotAllowed'/>
+        <exclude name='Squiz.Commenting.ClosingDeclarationComment.Missing'/>
+        <exclude name='Squiz.Commenting.FileComment.Missing'/>
+        <exclude name='Squiz.Commenting.InlineComment.DocBlock'/>
+        <exclude name='Squiz.Commenting.LongConditionClosingComment.Missing'/>
+        <exclude name='Squiz.Commenting.VariableComment.TagNotAllowed'/>
+        <exclude name='Squiz.Commenting.VariableComment.IncorrectVarType'/>
+        <exclude name='Squiz.ControlStructures.ElseIfDeclaration.NotAllowed'/>
+        <exclude name='Squiz.ControlStructures.InlineIfDeclaration.NoBrackets'/>
+        <exclude name='Squiz.ControlStructures.SwitchDeclaration.BreakIndent'/>
+        <exclude name='Squiz.Files.FileExtension.ClassFound'/>
+        <exclude name='Squiz.Formatting.OperatorBracket.MissingBrackets'/>
+        <exclude name='Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore'/>
+        <exclude name='Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore'/>
+        <exclude name='Squiz.Objects.ObjectInstantiation.NotAssigned'/>
+        <exclude name='Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue'/>
+        <exclude name='Squiz.Operators.ComparisonOperatorUsage.NotAllowed'/>
+        <exclude name='Squiz.PHP.DisallowBooleanStatement.Found'/>
+        <exclude name='Squiz.PHP.DisallowComparisonAssignment.AssignedBool'/>
+        <exclude name='Squiz.PHP.DisallowComparisonAssignment.AssignedComparison'/>
+        <exclude name='Squiz.PHP.DisallowInlineIf.Found'/>
+        <exclude name='Squiz.Strings.ConcatenationSpacing.PaddingFound'/>
+        <exclude name='Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose'/>
+        <exclude name='Squiz.WhiteSpace.ObjectOperatorSpacing.Before'/>
+    </rule>
+
+    <rule ref='vendor/consistence/coding-standard/Consistence/ruleset.xml'>
+        <exclude name='Consistence.Exceptions.ExceptionDeclaration.IncorrectExceptionDirectory'/>
+    </rule>
+
+    <rule ref='vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml'>
+        <exclude name='SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix'/>
+        <exclude name='SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix'/>
+        <exclude name='SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix'/>
+        <exclude name='SlevomatCodingStandard.Commenting.DocCommentSpacing.IncorrectLinesCountBetweenDifferentAnnotationsTypes'/>
+        <exclude name='SlevomatCodingStandard.Commenting.EmptyComment.EmptyComment'/>
+        <exclude name='SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment.MultiLinePropertyComment'/>
+        <exclude name='SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed'/>
+        <exclude name='SlevomatCodingStandard.ControlStructures.LanguageConstructWithParentheses.UsedWithParentheses'/>
+        <exclude name='SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison'/>
+        <exclude name='SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly.ReferencedGeneralException'/>
+        <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedExtends'/>
+        <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedImplements'/>
+        <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedUse'/>
+        <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName'/>
+        <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions'/>
+        <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants'/>
+        <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions'/>
+        <exclude name='SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment'/>
+    </rule>
+
+    <rule ref='vendor/stesie/phpcs-doctrine-annotation-rules/src/DoctrineAnnotationCodingStandard/ruleset.xml'/>
+
+    <rule ref='Generic.Metrics.CyclomaticComplexity'>
+        <properties>
+            <property name='complexity' value='15'/>
+            <property name='absoluteComplexity ' value='15'/>
+        </properties>
+    </rule>
+
+    <rule ref='Generic.Metrics.NestingLevel'>
+        <properties>
+            <property name='nestingLevel' value='15'/>
+            <property name='absoluteNestingLevel' value='15'/>
+        </properties>
+    </rule>
+
+    <rule ref='SlevomatCodingStandard.Namespaces.UnusedUses'>
+        <properties>
+            <property name='searchAnnotations' type='boolean' value='true'/>
+        </properties>
+    </rule>
+
+    <rule ref='SlevomatCodingStandard.TypeHints.DeclareStrictTypes'>
+        <properties>
+            <property name='newlinesCountBetweenOpenTagAndDeclare' value='0'/>
+            <property name='spacesCountAroundEqualsSign' value='0'/>
+        </properties>
+    </rule>
+
+    <rule ref='Squiz.WhiteSpace.FunctionSpacing'>
+        <properties>
+            <property name='spacing' value='1'/>
+        </properties>
+    </rule>
+</ruleset>

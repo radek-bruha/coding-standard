@@ -1,0 +1,67 @@
+--- project/vendor/phpstan/phpstan/src/Command/ErrorsConsoleStyle.php	(date 1286705410000)
++++ project/vendor/phpstan/phpstan/src/Command/ErrorsConsoleStyle.php	(date 1286705410000)
+@@ -20,6 +20,9 @@
+ 	/** @var \Symfony\Component\Console\Helper\ProgressBar */
+ 	private $progressBar;
+ 
++	/** @var int */
++	private $counter = 1;
++
+ 	public function __construct(InputInterface $input, OutputInterface $output)
+ 	{
+ 		parent::__construct($input, $output);
+@@ -77,7 +80,8 @@
+ 		if (!$this->showProgress) {
+ 			return;
+ 		}
+-		parent::progressStart($max);
++
++        $this->progressBar = $this->createProgressBar($max);
+ 	}
+ 
+ 	/**
+@@ -86,19 +90,24 @@
+ 	 */
+ 	public function progressAdvance($step = 1)
+ 	{
+-		if (!$this->showProgress) {
+-			return;
+-		}
+-		if ($this->output->isDecorated() && $step > 0) {
+-			$stepTime = (time() - $this->progressBar->getStartTime()) / $step;
+-			if ($stepTime > 0 && $stepTime < 1) {
+-				$this->progressBar->setRedrawFrequency(1 / $stepTime);
+-			} else {
+-				$this->progressBar->setRedrawFrequency(1);
+-			}
+-		}
++        $numberLength = strlen((string) $this->progressBar->getMaxSteps());
++        $maximumWidth = 50;
++
++        $message = sprintf(
++            ' %' . $numberLength . 'd / %' . $numberLength . 'd (%3s%%)',
++            $this->counter,
++            $this->progressBar->getMaxSteps(),
++            round(($this->counter / $this->progressBar->getMaxSteps()) * 100)
++        );
++
++        $this->write('.');
++        $this->write($this->counter % $maximumWidth === 0 ? $message . PHP_EOL : '');
++
++        if ($this->progressBar->getMaxSteps() == $this->counter) {
++            $this->write(str_repeat(' ', $maximumWidth - $this->counter % $maximumWidth) . $message . PHP_EOL);
++        }
+ 
+-		$this->progressBar->setProgress($this->progressBar->getProgress() + $step);
++        $this->counter++;
+ 	}
+ 
+ 	public function progressFinish()
+@@ -106,7 +115,6 @@
+ 		if (!$this->showProgress) {
+ 			return;
+ 		}
+-		parent::progressFinish();
+ 	}
+ 
+ }

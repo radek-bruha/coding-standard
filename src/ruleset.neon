@@ -1,0 +1,13 @@
+includes:
+    - ../../../phpstan/phpstan-nette/extension.neon
+    - ../../../phpstan/phpstan-nette/rules.neon
+
+services:
+    -
+        class: PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
+        tags:
+            - phpstan.rules.rule

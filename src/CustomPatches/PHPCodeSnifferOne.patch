@@ -1,0 +1,54 @@
+--- project/vendor/squizlabs/php_codesniffer/src/Runner.php	(date 1286705410000)
++++ project/vendor/squizlabs/php_codesniffer/src/Runner.php	(date 1286705410000)
+@@ -123,9 +123,8 @@
+             // print the timer info.
+             if ($this->config->interactive === false
+                 && ($toScreen === false
+-                || (($this->reporter->totalErrors + $this->reporter->totalWarnings) === 0 && $this->config->showProgress === true))
++                    || (($this->reporter->totalErrors + $this->reporter->totalWarnings) === 0 && $this->config->showProgress === true))
+             ) {
+-                Util\Timing::printRunTime();
+             }
+         } catch (DeepExitException $e) {
+             echo $e->getMessage();
+@@ -193,8 +192,6 @@
+             $this->run();
+             $this->reporter->printReports();
+
+-            echo PHP_EOL;
+-            Util\Timing::printRunTime();
+         } catch (DeepExitException $e) {
+             echo $e->getMessage();
+             return $e->getCode();
+@@ -508,7 +505,7 @@
+             && $this->config->interactive === false
+             && $this->config->showProgress === true
+         ) {
+-            echo PHP_EOL.PHP_EOL;
++            echo PHP_EOL;
+         }
+
+         if ($this->config->cache === true) {
+@@ -810,18 +807,18 @@
+             }//end if
+         }//end if
+
+-        $numPerLine = 60;
++        $numPerLine = 50;
+         if ($numProcessed !== $numFiles && ($numProcessed % $numPerLine) !== 0) {
+             return;
+         }
+
+-        $percent = round(($numProcessed / $numFiles) * 100);
+-        $padding = (strlen($numFiles) - strlen($numProcessed));
+-        if ($numProcessed === $numFiles && $numFiles > $numPerLine) {
++        $percent = str_pad(round($numProcessed / $numFiles * 100), 3, ' ', STR_PAD_LEFT);
++        $padding = strlen($numFiles) - strlen($numProcessed);
++        if ($numProcessed === $numFiles) {
+             $padding += ($numPerLine - ($numFiles - (floor($numFiles / $numPerLine) * $numPerLine)));
+         }
+
+-        echo str_repeat(' ', $padding)." $numProcessed / $numFiles ($percent%)".PHP_EOL;
++        echo str_repeat(' ', $padding) . " $numProcessed / $numFiles ($percent%)" . ($numProcessed === $numFiles ? '' : PHP_EOL);
+
+     }//end printProgress()

@@ -1,0 +1,25 @@
+--- project/vendor/squizlabs/php_codesniffer/src/Reports/Full.php	(date 1286705410000)
++++ project/vendor/squizlabs/php_codesniffer/src/Reports/Full.php	(date 1286705410000)
+@@ -164,12 +164,7 @@
+         }//end foreach
+ 
+         echo str_repeat('-', $width).PHP_EOL;
+-        if ($report['fixable'] > 0) {
+-            echo "\033[1m".'PHPCBF CAN FIX THE '.$report['fixable'].' MARKED SNIFF VIOLATIONS AUTOMATICALLY'."\033[0m".PHP_EOL;
+-            echo str_repeat('-', $width).PHP_EOL;
+-        }
+ 
+-        echo PHP_EOL;
+         return true;
+ 
+     }//end generateFileReport()
+@@ -207,11 +202,6 @@
+         }
+ 
+         echo $cachedData;
+-
+-        if ($toScreen === true && $interactive === false) {
+-            Util\Timing::printRunTime();
+-        }
+-
+     }//end generate()
