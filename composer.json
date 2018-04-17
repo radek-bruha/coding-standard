@@ -11,6 +11,7 @@
     "require": {
         "consistence/coding-standard": "^3.0",
         "cweagans/composer-patches": "^1.6",
+        "php-mock/php-mock-phpunit": "^2.1",
         "phpstan/phpstan": "^0.9",
         "phpstan/phpstan-nette": "^0.9",
         "phpstan/phpstan-strict-rules": "^0.9",
