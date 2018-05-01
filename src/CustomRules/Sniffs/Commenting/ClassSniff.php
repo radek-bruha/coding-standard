@@ -28,7 +28,8 @@ final class ClassSniff extends AbstractSniff
      */
     public function process(File $file, $position)
     {
-        $tokens   = $file->getTokens();
+        $tokens = $file->getTokens();
+        /** @var int $position */
         $position = $file->findNext([T_STRING], $position);
 
         $comments         = $this->getDocumentComment($file, $position);

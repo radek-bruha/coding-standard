@@ -1,4 +1,10 @@
 .idea/*
+code-coverage/*
 docker/*
 vendor/*
+build.ps1
+clean.ps1
 composer.lock
+fast.ps1
+full.ps1
+start.ps1
