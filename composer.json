@@ -1,6 +1,6 @@
 {
     "name": "radek-bruha/coding-standard",
-    "license": "proprietary",
+    "license": "unlicense",
     "autoload": {
         "psr-4": {
             "Bruha\\CodingStandard\\": "src/"
