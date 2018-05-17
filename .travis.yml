@@ -1,21 +1,21 @@
 language: php
 
 php:
-  - 7.1
-  - 7.2
-  - nightly
+    - 7.1
+    - 7.2
+    - nightly
 
 before_script:
-  - composer install -o --no-ansi --no-suggest
-  - composer update -o --no-ansi --no-suggest
+    - composer install -o --no-ansi --no-suggest
+    - composer update -o --no-ansi --no-suggest
 
 script:
-  - vendor/bin/phpcs src tests -p --ignore=tests/Integration/CustomRules/Sniffs/Commenting/Data --extensions=php --standard=ruleset.xml
-  - vendor/bin/phpstan analyse src tests -c ruleset.neon -l 7
-  - vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml --whitelist src
+    - vendor/bin/phpcs src tests -p --ignore=tests/Integration/CustomRules/Sniffs/Commenting/Data --extensions=php --standard=ruleset.xml
+    - vendor/bin/phpstan analyse src tests -c ruleset.neon -l 7
+    - vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml --whitelist src
 
 after_success:
-  - vendor/bin/php-coveralls
+    - vendor/bin/php-coveralls
 
 notifications:
-  email: false
+    email: false
