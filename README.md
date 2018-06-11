@@ -1,8 +1,8 @@
 # Creates clean unified output
-[![Downloads](https://img.shields.io/packagist/dt/radek-bruha/coding-standard.svg)](https://packagist.org/packages/radek-bruha/coding-standard)
-[![Build Status](https://travis-ci.org/radek-bruha/coding-standard.svg?branch=master)](https://travis-ci.org/radek-bruha/coding-standard)
-[![Coverage Status](https://coveralls.io/repos/github/radek-bruha/coding-standard/badge.svg?branch=master)](https://coveralls.io/github/radek-bruha/coding-standard?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/radek-bruha/coding-standard/v/stable)](https://github.com/radek-bruha/coding-standard/releases)
+[![Downloads](https://img.shields.io/packagist/dt/radek-bruha/coding-standard.svg?style=flat-square)](https://packagist.org/packages/radek-bruha/coding-standard)
+[![Build Status](https://img.shields.io/travis/radek-bruha/coding-standard.svg?style=flat-square)](https://travis-ci.org/radek-bruha/coding-standard)
+[![Coverage Status](https://img.shields.io/coveralls/github/radek-bruha/coding-standard.svg?style=flat-square)](https://coveralls.io/github/radek-bruha/coding-standard)
+[![Latest Stable Version](https://img.shields.io/github/release/radek-bruha/coding-standard.svg?style=flat-square)](https://github.com/radek-bruha/coding-standard/releases)
 
 **Used tools:**
 - [**PHPCodeSniffer**](https://github.com/squizlabs/PHP_CodeSniffer)
