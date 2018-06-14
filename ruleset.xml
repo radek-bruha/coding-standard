@@ -9,6 +9,8 @@
         <exclude name='Generic.Commenting.DocComment.ContentBeforeClose'/>
         <exclude name='Generic.Commenting.DocComment.Empty'/>
         <exclude name='Generic.Commenting.DocComment.MissingShort'/>
+        <exclude name='Generic.Commenting.DocComment.SpacingBeforeTags'/>
+        <exclude name='Generic.Commenting.DocComment.TagValueIndent'/>
         <exclude name='Generic.Files.LineEndings.InvalidEOLChar'/>
         <exclude name='Generic.Files.LineLength.MaxExceeded'/>
         <exclude name='Generic.Files.LineLength.TooLong'/>
