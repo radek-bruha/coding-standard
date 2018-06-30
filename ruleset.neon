@@ -1,18 +1,10 @@
 includes:
     - vendor/phpstan/phpstan-nette/extension.neon
     - vendor/phpstan/phpstan-nette/rules.neon
-
-services:
-    -
-        class: PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
-        tags:
-            - phpstan.rules.rule
-    -
-        class: PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
-        tags:
-            - phpstan.rules.rule
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
     ignoreErrors:
         - '#Constant T_DOC_COMMENT_OPEN_TAG not found#'
         - '#Constant T_DOC_COMMENT_CLOSE_TAG not found#'
+        - '#Dynamic call to static method PHPUnit\\Framework\\Assert::assert#'

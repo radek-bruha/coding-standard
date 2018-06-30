@@ -1,15 +1,9 @@
 --- project/vendor/phpstan/phpstan/src/Command/ErrorFormatter/TableErrorFormatter.php	(date 1286705410000)
 +++ project/vendor/phpstan/phpstan/src/Command/ErrorFormatter/TableErrorFormatter.php	(date 1286705410000)
-@@ -8,62 +8,62 @@
- class TableErrorFormatter implements ErrorFormatter
- {
-
--	public function formatErrors(
--		AnalysisResult $analysisResult,
--		\Symfony\Component\Console\Style\OutputStyle $style
--	): int
--	{
--		if (!$analysisResult->hasErrors()) {
+@@ -15,14 +15,6 @@
+ 	): int
+	{
+ 		if (!$analysisResult->hasErrors()) {
 -			$style->success('No errors');
 -			if ($analysisResult->isDefaultLevelUsed()) {
 -				$style->note(sprintf(
@@ -18,97 +12,36 @@
 -					AnalyseCommand::DEFAULT_LEVEL
 -				));
 -			}
--			return 0;
--		}
-+    public function formatErrors(
-+        AnalysisResult $analysisResult,
-+        \Symfony\Component\Console\Style\OutputStyle $style
-+    ): int
-+    {
-+        if (!$analysisResult->hasErrors()) {
-+            if ($analysisResult->isDefaultLevelUsed()) {
-+                $style->note(sprintf(
-+                    'PHPStan is performing only the most basic checks. You can pass a higher rule level through the --%s option (the default and current level is %d) to analyse code more thoroughly.',
-+                    AnalyseCommand::OPTION_LEVEL,
-+                    AnalyseCommand::DEFAULT_LEVEL
-+                ));
-+            }
-+            return 0;
-+        }
+ 			return 0;
+ 		}
 
--		$currentDirectory = $analysisResult->getCurrentDirectory();
--		$cropFilename = function (string $filename) use ($currentDirectory): string {
--			if ($currentDirectory !== '' && strpos($filename, $currentDirectory) === 0) {
--				return substr($filename, strlen($currentDirectory) + 1);
--			}
-+        $currentDirectory = $analysisResult->getCurrentDirectory();
-+        $cropFilename = function (string $filename) use ($currentDirectory): string {
-+            if ($currentDirectory !== '' && strpos($filename, $currentDirectory) === 0) {
-+                return substr($filename, strlen($currentDirectory) + 1);
-+            }
+@@ -36,6 +28,7 @@
+ 			$fileErrors[$fileSpecificError->getFile()][] = $fileSpecificError;
+ 		}
 
--			return $filename;
--		};
-+            return $filename;
-+        };
++		$style->write(PHP_EOL);
+ 		foreach ($fileErrors as $file => $errors) {
+ 			$rows = [];
+ 			foreach ($errors as $error) {
+@@ -45,12 +38,7 @@
+ 				];
+ 			}
 
--		/** @var \PHPStan\Analyser\Error[][] $fileErrors */
--		$fileErrors = [];
--		foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
--			if (!isset($fileErrors[$fileSpecificError->getFile()])) {
--				$fileErrors[$fileSpecificError->getFile()] = [];
--			}
-+        /** @var \PHPStan\Analyser\Error[][] $fileErrors */
-+        $fileErrors = [];
-+        foreach ($analysisResult->getFileSpecificErrors() as $fileSpecificError) {
-+            if (!isset($fileErrors[$fileSpecificError->getFile()])) {
-+                $fileErrors[$fileSpecificError->getFile()] = [];
-+            }
+-			$relativeFilePath = RelativePathHelper::getRelativePath(
+-				$analysisResult->getCurrentDirectory(),
+-				$file
+-			);
+-
+-			$style->table(['Line', $relativeFilePath], $rows);
++			$style->table(['Line', $file], $rows);
+ 		}
 
--			$fileErrors[$fileSpecificError->getFile()][] = $fileSpecificError;
--		}
-+            $fileErrors[$fileSpecificError->getFile()][] = $fileSpecificError;
-+        }
-
--		foreach ($fileErrors as $file => $errors) {
--			$rows = [];
--			foreach ($errors as $error) {
--				$rows[] = [
--					(string) $error->getLine(),
--					$error->getMessage(),
--				];
--			}
-+        $style->write(PHP_EOL);
-+        foreach ($fileErrors as $file => $errors) {
-+            $rows = [];
-+            foreach ($errors as $error) {
-+                $rows[] = [
-+                    (string) $error->getLine(),
-+                    $error->getMessage(),
-+                ];
-+            }
-
--			$style->table(['Line', $cropFilename($file)], $rows);
--		}
-+            $style->table(['Line', $cropFilename($file)], $rows);
-+        }
-
--		if (count($analysisResult->getNotFileSpecificErrors()) > 0) {
--			$style->table(['Error'], array_map(function (string $error): array {
--				return [$error];
--			}, $analysisResult->getNotFileSpecificErrors()));
--		}
-+        if (count($analysisResult->getNotFileSpecificErrors()) > 0) {
-+            $style->table(['Error'], array_map(function (string $error): array {
-+                return [$error];
-+            }, $analysisResult->getNotFileSpecificErrors()));
-+        }
-+        $style->write("\033[1A");
+ 		if (count($analysisResult->getNotFileSpecificErrors()) > 0) {
+@@ -59,7 +47,7 @@
+ 			}, $analysisResult->getNotFileSpecificErrors()));
+ 		}
 
 -		$style->error(sprintf($analysisResult->getTotalErrorsCount() === 1 ? 'Found %d error' : 'Found %d errors', $analysisResult->getTotalErrorsCount()));
--		return 1;
--	}
-+        return 1;
-+    }
-
- }
++        $style->write("\033[1A");
+ 		return 1;
+ 	}

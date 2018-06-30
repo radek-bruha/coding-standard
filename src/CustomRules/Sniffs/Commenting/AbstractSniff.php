@@ -20,12 +20,11 @@ abstract class AbstractSniff
      */
     protected function getDocumentComment(File $file, int $position): array
     {
-        $result = [];
-        $tokens = $file->getTokens();
-        /** @var int $startPosition */
+        $result        = [];
+        $tokens        = $file->getTokens();
         $startPosition = $file->findPrevious([T_DOC_COMMENT_OPEN_TAG], $position);
 
-        if ($startPosition) {
+        if (is_int($startPosition)) {
             $closePosition = $file->findNext([T_DOC_COMMENT_CLOSE_TAG], $startPosition);
 
             for (; $startPosition < $closePosition; $startPosition++) {
@@ -46,13 +45,12 @@ abstract class AbstractSniff
      */
     protected function getClassName(File $file, int $position): string
     {
-        /** @var int $position */
         $position = $file->findPrevious([T_CLASS], $position);
 
-        if ($position) {
+        if (is_int($position)) {
             $position = $file->findNext([T_STRING], $position);
 
-            if ($position) {
+            if (is_int($position)) {
                 return $file->getTokens()[$position]['content'];
             }
         }
@@ -72,14 +70,12 @@ abstract class AbstractSniff
         $tokens     = $file->getTokens();
         $namespaces = [];
 
-        /** @var int $position */
         $position = $file->findPrevious([T_NAMESPACE], $position);
 
-        if ($position) {
-            /** @var int $position */
+        if (is_int($position)) {
             $position = $file->findNext([T_STRING], $position);
 
-            if ($position) {
+            if (is_int($position)) {
                 $closePosition = $file->findEndOfStatement($position);
 
                 for (; $position < $closePosition; $position++) {
