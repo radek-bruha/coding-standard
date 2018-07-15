@@ -3,7 +3,6 @@ language: php
 php:
     - 7.1
     - 7.2
-    - nightly
 
 before_script:
     - composer install -o --no-ansi --no-suggest
