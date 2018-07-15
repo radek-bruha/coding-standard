@@ -14,6 +14,7 @@
     },
     "require": {
         "php": "^7.1",
+        "brianium/paratest": "^2.0",
         "consistence/coding-standard": "^3.4",
         "cweagans/composer-patches": "^1.6",
         "php-mock/php-mock-phpunit": "^2.1",
@@ -35,6 +36,9 @@
     },
     "extra": {
         "patches": {
+            "brianium/paratest": {
+                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPParaTest.patch"
+            },
             "phpstan/phpstan": {
                 "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPStanOne.patch",
                 "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPStanTwo.patch"

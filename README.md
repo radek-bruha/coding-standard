@@ -8,6 +8,7 @@
 - [**PHPCodeSniffer**](https://github.com/squizlabs/PHP_CodeSniffer)
 - [**PHPStan**](https://github.com/phpstan/phpstan)
 - [**PHPUnit**](https://github.com/sebastianbergmann/phpunit)
+- [**PHPParaTest**](https://github.com/paratestphp/paratest)
 
 ```
 ==================================================
