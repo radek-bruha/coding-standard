@@ -23,7 +23,7 @@ abstract class AbstractTestCase extends TestCase
     /**
      * AbstractTestCase constructor
      *
-     * @param null|string $name
+     * @param string|NULL $name
      * @param array       $data
      * @param string      $dataName
      */

@@ -11,11 +11,11 @@
         <exclude name='Generic.Commenting.DocComment.MissingShort'/>
         <exclude name='Generic.Commenting.DocComment.SpacingBeforeTags'/>
         <exclude name='Generic.Commenting.DocComment.TagValueIndent'/>
+        <exclude name='Generic.Files.EndFileNewline.NotFound'/>
         <exclude name='Generic.Files.LineEndings.InvalidEOLChar'/>
         <exclude name='Generic.Files.LineLength.MaxExceeded'/>
         <exclude name='Generic.Files.LineLength.TooLong'/>
         <exclude name='Generic.Files.LowercasedFilename.NotFound'/>
-        <exclude name='Generic.Files.EndFileNewline.NotFound'/>
         <exclude name='Generic.Formatting.NoSpaceAfterCast.SpaceFound'/>
         <exclude name='Generic.Formatting.SpaceAfterNot.Incorrect'/>
         <exclude name='Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine'/>
@@ -47,16 +47,16 @@
     </rule>
 
     <rule ref='Squiz'>
-        <exclude name='Squiz.Commenting.BlockComment.NoEmptyLineBefore'/>
         <exclude name='Squiz.Commenting.BlockComment.NoEmptyLineAfter'/>
+        <exclude name='Squiz.Commenting.BlockComment.NoEmptyLineBefore'/>
         <exclude name='Squiz.Commenting.BlockComment.WrongStart'/>
         <exclude name='Squiz.Commenting.ClassComment.TagNotAllowed'/>
         <exclude name='Squiz.Commenting.ClosingDeclarationComment.Missing'/>
         <exclude name='Squiz.Commenting.FileComment.Missing'/>
         <exclude name='Squiz.Commenting.InlineComment.DocBlock'/>
         <exclude name='Squiz.Commenting.LongConditionClosingComment.Missing'/>
-        <exclude name='Squiz.Commenting.VariableComment.TagNotAllowed'/>
         <exclude name='Squiz.Commenting.VariableComment.IncorrectVarType'/>
+        <exclude name='Squiz.Commenting.VariableComment.TagNotAllowed'/>
         <exclude name='Squiz.ControlStructures.ElseIfDeclaration.NotAllowed'/>
         <exclude name='Squiz.ControlStructures.InlineIfDeclaration.NoBrackets'/>
         <exclude name='Squiz.ControlStructures.SwitchDeclaration.BreakIndent'/>
@@ -90,8 +90,10 @@
         <exclude name='SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.LanguageConstructWithParentheses.UsedWithParentheses'/>
+        <exclude name='SlevomatCodingStandard.ControlStructures.NewWithoutParentheses.UselessParentheses'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison'/>
         <exclude name='SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly.ReferencedGeneralException'/>
+        <exclude name='SlevomatCodingStandard.Functions.StaticClosure.ClosureNotStatic'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedExtends'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedImplements'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedUse'/>
