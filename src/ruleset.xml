@@ -81,6 +81,7 @@
     </rule>
 
     <rule ref='vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml'>
+        <exclude name='SlevomatCodingStandard.Classes.DisallowLateStaticBindingForContants'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix'/>
@@ -123,6 +124,35 @@
         <properties>
             <property name='nestingLevel' value='15'/>
             <property name='absoluteNestingLevel' value='15'/>
+        </properties>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing">
+        <properties>
+            <property name="tokensToCheck" type="array">
+                <element value="T_DO"/>
+                <element value="T_FOR"/>
+                <element value="T_GOTO"/>
+                <element value="T_IF"/>
+                <element value="T_SWITCH"/>
+                <element value="T_THROW"/>
+                <element value="T_TRY"/>
+                <element value="T_WHILE"/>
+                <element value="T_YIELD"/>
+                <element value="T_YIELD_FROM"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref='SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator'>
+        <properties>
+            <property name='lineLengthLimit ' value='120'/>
+        </properties>
+    </rule>
+
+    <rule ref='SlevomatCodingStandard.ControlStructures.RequireTernaryOperator'>
+        <properties>
+            <property name='ignoreMultiLine' value='true'/>
         </properties>
     </rule>
 
