@@ -25,7 +25,7 @@ final class ConstructorSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/ConstructorSniffSuccess.php', $this->sniff);
 
-        $this->assertSuccess($result);
+        self::assertSuccess($result);
     }
 
     /**
@@ -35,7 +35,7 @@ final class ConstructorSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/ConstructorSniffMissing.php', $this->sniff);
 
-        $this->assertNotSuccess(
+        self::assertNotSuccess(
             $result,
             13,
             12,
@@ -53,7 +53,7 @@ final class ConstructorSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/ConstructorSniffMissingTrait.php', $this->sniff);
 
-        $this->assertNotSuccess(
+        self::assertNotSuccess(
             $result,
             13,
             12,

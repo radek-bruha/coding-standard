@@ -25,7 +25,7 @@ final class InterfaceSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/InterfaceSniffSuccess.php', $this->sniff);
 
-        $this->assertSuccess($result);
+        self::assertSuccess($result);
     }
 
     /**
@@ -35,7 +35,7 @@ final class InterfaceSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/InterfaceSniffMissing.php', $this->sniff);
 
-        $this->assertNotSuccess(
+        self::assertNotSuccess(
             $result,
             5,
             11,
@@ -45,7 +45,7 @@ final class InterfaceSniffTest extends AbstractTestCase
             "Interface comment must be 'Interface InterfaceSniffMissing'."
         );
 
-        $this->assertNotSuccess(
+        self::assertNotSuccess(
             $result,
             5,
             11,

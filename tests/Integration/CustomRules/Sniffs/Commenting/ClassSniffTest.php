@@ -25,7 +25,7 @@ final class ClassSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/ClassSniffSuccess.php', $this->sniff);
 
-        $this->assertSuccess($result);
+        self::assertSuccess($result);
     }
 
     /**
@@ -35,7 +35,7 @@ final class ClassSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/ClassSniffMissing.php', $this->sniff);
 
-        $this->assertNotSuccess(
+        self::assertNotSuccess(
             $result,
             5,
             13,
@@ -45,7 +45,7 @@ final class ClassSniffTest extends AbstractTestCase
             "Class comment must be 'Class ClassSniffMissing'."
         );
 
-        $this->assertNotSuccess(
+        self::assertNotSuccess(
             $result,
             5,
             13,

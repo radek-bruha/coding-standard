@@ -61,8 +61,8 @@ abstract class AbstractTestCase extends TestCase
      */
     protected function assertSuccess(LocalFile $file): void
     {
-        $this->assertEquals(0, $file->getErrorCount());
-        $this->assertEquals(0, $file->getWarningCount());
+        self::assertEquals(0, $file->getErrorCount());
+        self::assertEquals(0, $file->getWarningCount());
     }
 
     /**
@@ -85,9 +85,9 @@ abstract class AbstractTestCase extends TestCase
     ): void {
         $error = $file->getErrors()[$row][$column][$rank];
 
-        $this->assertEquals($class, $error['listener']);
-        $this->assertEquals($name, $error['source']);
-        $this->assertEquals($message, $error['message']);
+        self::assertEquals($class, $error['listener']);
+        self::assertEquals($name, $error['source']);
+        self::assertEquals($message, $error['message']);
     }
 
 }

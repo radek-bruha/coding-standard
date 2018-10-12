@@ -25,7 +25,7 @@ final class TraitSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/TraitSniffSuccess.php', $this->sniff);
 
-        $this->assertSuccess($result);
+        self::assertSuccess($result);
     }
 
     /**
@@ -35,7 +35,7 @@ final class TraitSniffTest extends AbstractTestCase
     {
         $result = $this->processFile(__DIR__ . '/Data/TraitSniffMissing.php', $this->sniff);
 
-        $this->assertNotSuccess(
+        self::assertNotSuccess(
             $result,
             5,
             7,
@@ -45,7 +45,7 @@ final class TraitSniffTest extends AbstractTestCase
             "Trait comment must be 'Trait TraitSniffMissing'."
         );
 
-        $this->assertNotSuccess(
+        self::assertNotSuccess(
             $result,
             5,
             7,
