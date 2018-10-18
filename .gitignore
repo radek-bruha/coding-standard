@@ -1,6 +1,8 @@
 .idea/*
 code-coverage/*
 docker/*
+log/*
+temp/*
 vendor/*
 build.ps1
 clean.ps1

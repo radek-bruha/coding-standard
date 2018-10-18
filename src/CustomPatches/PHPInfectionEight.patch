@@ -1,0 +1,13 @@
+--- backend/vendor/infection/infection/src/Process/Listener/MutationTestingResultsLoggerSubscriber.php	(date 1286705410000)
++++ backend/vendor/infection/infection/src/Process/Listener/MutationTestingResultsLoggerSubscriber.php	(date 1286705410000)
+@@ -77,9 +77,7 @@
+ 
+     public function getSubscribedEvents(): array
+     {
+-        return [
+-            MutationTestingFinished::class => [$this, 'onMutationTestingFinished'],
+-        ];
++        return [];
+     }
+ 
+     public function onMutationTestingFinished(MutationTestingFinished $event): void

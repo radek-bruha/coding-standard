@@ -1,0 +1,45 @@
+--- backend/vendor/infection/infection/src/Console/OutputFormatter/DotFormatter.php	(date 1286705410000)
++++ backend/vendor/infection/infection/src/Console/OutputFormatter/DotFormatter.php	(date 1286705410000)
+@@ -30,21 +30,6 @@
+         $this->output = $output;
+     }
+ 
+-    public function start(int $mutationCount): void
+-    {
+-        parent::start($mutationCount);
+-
+-        $this->output->writeln([
+-            '',
+-            '<killed>.</killed>: killed, '
+-            . '<escaped>M</escaped>: escaped, '
+-            . '<uncovered>S</uncovered>: uncovered, '
+-            . '<with-error>E</with-error>: fatal error, '
+-            . '<timeout>T</timeout>: timed out',
+-            '',
+-        ]);
+-    }
+-
+     public function advance(MutantProcessInterface $mutantProcess, int $mutationCount): void
+     {
+         parent::advance($mutantProcess, $mutationCount);
+@@ -59,7 +44,7 @@
+ 
+                 break;
+             case MutantProcess::CODE_ESCAPED:
+-                $this->output->write('<escaped>M</escaped>');
++                $this->output->write('<escaped>F</escaped>');
+ 
+                 break;
+             case MutantProcess::CODE_TIMED_OUT:
+@@ -82,9 +67,9 @@
+ 
+         if ($lastDot || $endOfRow) {
+             $length = \strlen((string) $mutationCount);
+-            $format = sprintf('   (%%%dd / %%%dd)', $length, $length);
++            $format = sprintf(' %%%dd / %%%dd (%%3d%%%%)', $length, $length);
+ 
+-            $this->output->write(sprintf($format, $this->callsCount, $mutationCount));
++            $this->output->write(sprintf($format, $this->callsCount, $mutationCount, ($this->callsCount / $mutationCount) * 100));
+ 
+             if ($this->callsCount !== $mutationCount) {
+                 $this->output->writeln('');

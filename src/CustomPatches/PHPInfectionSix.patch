@@ -1,0 +1,15 @@
+--- backend/vendor/infection/infection/src/Process/Listener/MutationGeneratingConsoleLoggerSubscriber.php	(date 1286705410000)
++++ backend/vendor/infection/infection/src/Process/Listener/MutationGeneratingConsoleLoggerSubscriber.php	(date 1286705410000)
+@@ -41,11 +41,7 @@
+ 
+     public function getSubscribedEvents(): array
+     {
+-        return [
+-            MutationGeneratingStarted::class => [$this, 'onMutationGeneratingStarted'],
+-            MutableFileProcessed::class => [$this, 'onMutableFileProcessed'],
+-            MutationGeneratingFinished::class => [$this, 'onMutationGeneratingFinished'],
+-        ];
++        return [];
+     }
+ 
+     public function onMutationGeneratingStarted(MutationGeneratingStarted $event): void

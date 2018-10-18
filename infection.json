@@ -1,0 +1,12 @@
+{
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "logs": {
+        "text": "log/infection.log"
+    },
+    "timeout": 60,
+    "tmpDir": "temp/cache/Tests"
+}

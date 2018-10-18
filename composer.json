@@ -17,6 +17,7 @@
         "brianium/paratest": "^2.1",
         "consistence/coding-standard": "^3.5",
         "cweagans/composer-patches": "^1.6",
+        "infection/infection": "^0.10",
         "php-mock/php-mock-phpunit": "^2.1",
         "phpstan/phpstan": "^0.10",
         "phpstan/phpstan-nette": "^0.10",
@@ -38,6 +39,17 @@
         "patches": {
             "brianium/paratest": {
                 "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPParaTest.patch"
+            },
+            "infection/infection": {
+                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionOne.patch",
+                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionTwo.patch",
+                "Cleaning III": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionThree.patch",
+                "Cleaning IV": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionFour.patch",
+                "Cleaning V": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionFive.patch",
+                "Cleaning VI": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionSix.patch",
+                "Cleaning VII": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionSeven.patch",
+                "Cleaning VIII": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionEight.patch",
+                "Cleaning IX": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionNine.patch"
             },
             "phpstan/phpstan": {
                 "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPStanOne.patch",

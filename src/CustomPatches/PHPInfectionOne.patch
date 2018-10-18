@@ -1,0 +1,19 @@
+--- backend/vendor/infection/infection/src/Console/Application.php	(date 1286705410000)
++++ backend/vendor/infection/infection/src/Console/Application.php	(date 1286705410000)
+@@ -75,8 +75,6 @@
+             $output->setVerbosity(OutputInterface::VERBOSITY_QUIET);
+         }
+ 
+-        $this->logRunningWithDebugger();
+-
+         if (!$this->isAutoExitEnabled()) {
+             // When we're not in control of exit codes, that means it's the caller
+             // responsibility to disable xdebug if it isn't needed. As of writing
+@@ -113,8 +111,6 @@
+     {
+         $this->getContainer()->buildDynamicDependencies($input);
+ 
+-        $output->writeln(self::LOGO);
+-
+         return parent::doRun($input, $output);
+     }

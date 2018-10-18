@@ -1,0 +1,15 @@
+--- backend/vendor/infection/infection/src/Process/Listener/InitialTestsConsoleLoggerSubscriber.php	(date 1286705410000)
++++ backend/vendor/infection/infection/src/Process/Listener/InitialTestsConsoleLoggerSubscriber.php	(date 1286705410000)
+@@ -48,11 +48,7 @@
+ 
+     public function getSubscribedEvents(): array
+     {
+-        return [
+-            InitialTestSuiteStarted::class => [$this, 'onInitialTestSuiteStarted'],
+-            InitialTestSuiteFinished::class => [$this, 'onInitialTestSuiteFinished'],
+-            InitialTestCaseCompleted::class => [$this, 'onInitialTestCaseCompleted'],
+-        ];
++        return [];
+     }
+ 
+     public function onInitialTestSuiteStarted(InitialTestSuiteStarted $event): void
