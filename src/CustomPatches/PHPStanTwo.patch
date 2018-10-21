@@ -1,8 +1,8 @@
 --- project/vendor/phpstan/phpstan/src/Command/ErrorFormatter/TableErrorFormatter.php	(date 1286705410000)
 +++ project/vendor/phpstan/phpstan/src/Command/ErrorFormatter/TableErrorFormatter.php	(date 1286705410000)
-@@ -15,14 +15,6 @@
+@@ -24,14 +24,6 @@
  	): int
-	{
+ 	{
  		if (!$analysisResult->hasErrors()) {
 -			$style->success('No errors');
 -			if ($analysisResult->isDefaultLevelUsed()) {
@@ -15,29 +15,26 @@
  			return 0;
  		}
 
-@@ -36,6 +28,7 @@
+@@ -45,6 +37,7 @@
  			$fileErrors[$fileSpecificError->getFile()][] = $fileSpecificError;
  		}
 
-+		$style->write(PHP_EOL);
++        $style->write(PHP_EOL);
  		foreach ($fileErrors as $file => $errors) {
  			$rows = [];
  			foreach ($errors as $error) {
-@@ -45,12 +38,7 @@
+@@ -54,9 +47,7 @@
  				];
  			}
 
--			$relativeFilePath = RelativePathHelper::getRelativePath(
--				$analysisResult->getCurrentDirectory(),
--				$file
--			);
+-			$relativeFilePath = $this->relativePathHelper->getRelativePath($file);
 -
 -			$style->table(['Line', $relativeFilePath], $rows);
 +			$style->table(['Line', $file], $rows);
  		}
 
  		if (count($analysisResult->getNotFileSpecificErrors()) > 0) {
-@@ -59,7 +47,7 @@
+@@ -65,7 +56,7 @@
  			}, $analysisResult->getNotFileSpecificErrors()));
  		}
 

@@ -35,8 +35,8 @@ final class InterfaceSniff extends AbstractSniff
         $comments         = $this->getDocumentComment($file, $position);
         $interfaceComment = sprintf('Interface %s', $tokens[$position]['content']);
         $namespaceComment = $this->getNamespaceName($file, $position);
+        $hasComment       = FALSE;
 
-        $hasComment = FALSE;
         foreach ($comments as $comment) {
             if ($comment === $interfaceComment) {
                 $hasComment = TRUE;
@@ -52,6 +52,7 @@ final class InterfaceSniff extends AbstractSniff
         }
 
         $hasComment = FALSE;
+
         foreach ($comments as $comment) {
             if ($comment === $namespaceComment) {
                 $hasComment = TRUE;

@@ -35,8 +35,8 @@ final class TraitSniff extends AbstractSniff
         $comments         = $this->getDocumentComment($file, $position);
         $traitComment     = sprintf('Trait %s', $tokens[$position]['content']);
         $namespaceComment = $this->getNamespaceName($file, $position);
+        $hasComment       = FALSE;
 
-        $hasComment = FALSE;
         foreach ($comments as $comment) {
             if ($comment === $traitComment) {
                 $hasComment = TRUE;
@@ -52,6 +52,7 @@ final class TraitSniff extends AbstractSniff
         }
 
         $hasComment = FALSE;
+
         foreach ($comments as $comment) {
             if ($comment === $namespaceComment) {
                 $hasComment = TRUE;

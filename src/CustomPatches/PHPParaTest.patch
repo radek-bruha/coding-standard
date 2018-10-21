@@ -34,7 +34,19 @@
      }
 
      /**
-@@ -428,13 +415,7 @@
+@@ -411,6 +398,11 @@
+             echo $this->getProgress();
+             $this->println();
+         }
++
++        if ($this->casesProcessed === $this->totalCases) {
++            echo str_repeat(' ', $this->maxColumn - $this->column);
++            echo $this->getProgress();
++        }
+     }
+
+     /**
+@@ -428,13 +420,7 @@
          if ($count === 0) {
              return '';
          }

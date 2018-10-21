@@ -35,8 +35,8 @@ final class ClassSniff extends AbstractSniff
         $comments         = $this->getDocumentComment($file, $position);
         $classComment     = sprintf('Class %s', $tokens[$position]['content']);
         $namespaceComment = $this->getNamespaceName($file, $position);
+        $hasComment       = FALSE;
 
-        $hasComment = FALSE;
         foreach ($comments as $comment) {
             if ($comment === $classComment) {
                 $hasComment = TRUE;
@@ -52,6 +52,7 @@ final class ClassSniff extends AbstractSniff
         }
 
         $hasComment = FALSE;
+
         foreach ($comments as $comment) {
             if ($comment === $namespaceComment) {
                 $hasComment = TRUE;

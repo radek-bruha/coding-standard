@@ -60,6 +60,7 @@
         <exclude name='Squiz.ControlStructures.ElseIfDeclaration.NotAllowed'/>
         <exclude name='Squiz.ControlStructures.InlineIfDeclaration.NoBrackets'/>
         <exclude name='Squiz.ControlStructures.SwitchDeclaration.BreakIndent'/>
+        <exclude name='Squiz.ControlStructures.SwitchDeclaration.SpacingBeforeBreak'/>
         <exclude name='Squiz.Files.FileExtension.ClassFound'/>
         <exclude name='Squiz.Formatting.OperatorBracket.MissingBrackets'/>
         <exclude name='Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore'/>
@@ -106,8 +107,9 @@
         <exclude name='SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified'/>
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostDecrementOperator'/>
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator'/>
+        <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPreDecrementOperator'/>
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPreIncrementOperator'/>
-        <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPreIncrementOperator'/>
+        <exclude name='SlevomatCodingStandard.Operators.RequireOnlyStandaloneIncrementAndDecrementOperators.PostIncrementOperatorNotUsedStandalone'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification'/>
@@ -135,6 +137,7 @@
             <property name="tokensToCheck" type="array">
                 <element value="T_DO"/>
                 <element value="T_FOR"/>
+                <element value="T_FOREACH"/>
                 <element value="T_GOTO"/>
                 <element value="T_IF"/>
                 <element value="T_SWITCH"/>
