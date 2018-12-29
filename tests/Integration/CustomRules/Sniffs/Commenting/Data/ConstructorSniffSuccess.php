@@ -3,7 +3,7 @@
 namespace Tests\Integration\CustomRules\Sniffs\Commenting\Data;
 
 /**
- * Class ClassSniffSuccess
+ * Class ConstructorSniffSuccess
  *
  * @package Tests\Integration\CustomRules\Sniffs\Commenting\Data
  */

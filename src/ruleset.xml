@@ -18,6 +18,7 @@
         <exclude name='Generic.Files.LowercasedFilename.NotFound'/>
         <exclude name='Generic.Formatting.NoSpaceAfterCast.SpaceFound'/>
         <exclude name='Generic.Formatting.SpaceAfterNot.Incorrect'/>
+        <exclude name='Generic.Formatting.SpaceBeforeCast.NoSpace'/>
         <exclude name='Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine'/>
         <exclude name='Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine'/>
         <exclude name='Generic.PHP.ClosingPHPTag.NotFound'/>
