@@ -14,7 +14,7 @@ final class ConstructorSniff extends AbstractSniff implements Sniff
 {
 
     /**
-     * @return array
+     * @return int[]
      */
     public function register(): array
     {

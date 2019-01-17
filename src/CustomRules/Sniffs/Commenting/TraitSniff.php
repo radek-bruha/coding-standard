@@ -13,7 +13,7 @@ final class TraitSniff extends AbstractSniff
 {
 
     /**
-     * @return array
+     * @return int[]
      */
     public function register(): array
     {
