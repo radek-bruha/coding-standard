@@ -1,32 +1,33 @@
 --- project/vendor/phpstan/phpstan/src/Command/ErrorsConsoleStyle.php	(date 1286705410000)
 +++ project/vendor/phpstan/phpstan/src/Command/ErrorsConsoleStyle.php	(date 1286705410000)
-@@ -20,6 +20,9 @@
+@@ -17,6 +17,9 @@
  	/** @var \Symfony\Component\Console\Helper\ProgressBar */
  	private $progressBar;
- 
+
 +	/** @var int */
 +	private $counter = 1;
 +
  	public function __construct(InputInterface $input, OutputInterface $output)
  	{
  		parent::__construct($input, $output);
-@@ -84,7 +87,7 @@
+@@ -81,7 +84,8 @@
  		if (!$this->showProgress) {
  			return;
  		}
 -		parent::progressStart($max);
++
 +		$this->createProgressBar($max);
  	}
- 
+
  	/**
-@@ -93,19 +96,28 @@
+@@ -90,19 +94,28 @@
  	 */
  	public function progressAdvance($step = 1): void
  	{
 -		if (!$this->showProgress) {
 -			return;
 -		}
--		if ($this->output->isDecorated() && $step > 0) {
+-		if ($step > 0) {
 -			$stepTime = (time() - $this->progressBar->getStartTime()) / $step;
 -			if ($stepTime > 0 && $stepTime < 1) {
 -				$this->progressBar->setRedrawFrequency((int) (1 / $stepTime));
@@ -54,17 +55,17 @@
 +        if ($this->progressBar->getMaxSteps() == $this->counter) {
 +            $this->write(str_repeat(' ', $maximumWidth - $this->counter % $maximumWidth) . $message . PHP_EOL);
 +        }
- 
+
 -		$this->progressBar->setProgress($this->progressBar->getProgress() + $step);
-+        $this->counter++;
++       $this->counter++;
  	}
- 
- 	public function progressFinish()
-@@ -106,7 +115,6 @@
+
+ 	public function progressFinish(): void
+@@ -110,7 +123,6 @@
  		if (!$this->showProgress) {
  			return;
  		}
 -		parent::progressFinish();
  	}
- 
+
  }
