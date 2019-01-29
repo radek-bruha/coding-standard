@@ -14,10 +14,10 @@
     },
     "require": {
         "php": "^7.1",
-        "brianium/paratest": "^2.1",
+        "brianium/paratest": "^2.2",
         "consistence/coding-standard": "^3.7",
         "cweagans/composer-patches": "^1.6",
-        "infection/infection": "^0.11",
+        "infection/infection": "^0.12",
         "php-mock/php-mock-phpunit": "^2.1",
         "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-nette": "^0.11",
