@@ -84,10 +84,10 @@
 
     <rule ref='vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml'>
         <exclude name='SlevomatCodingStandard.Classes.DisallowLateStaticBindingForConstants'/>
-        <exclude name='SlevomatCodingStandard.Classes.DisallowLateStaticBindingForContants'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix'/>
+        <exclude name='SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Commenting.DocCommentSpacing.IncorrectLinesCountBetweenDifferentAnnotationsTypes'/>
         <exclude name='SlevomatCodingStandard.Commenting.EmptyComment.EmptyComment'/>
         <exclude name='SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment.MultiLinePropertyComment'/>
@@ -98,6 +98,7 @@
         <exclude name='SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison'/>
         <exclude name='SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly.ReferencedGeneralException'/>
         <exclude name='SlevomatCodingStandard.Functions.StaticClosure.ClosureNotStatic'/>
+        <exclude name='SlevomatCodingStandard.Functions.TrailingCommaInCall.MissingTrailingComma'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedExtends'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedImplements'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword.NonFullyQualifiedUse'/>
@@ -111,6 +112,8 @@
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPreDecrementOperator'/>
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPreIncrementOperator'/>
         <exclude name='SlevomatCodingStandard.Operators.RequireOnlyStandaloneIncrementAndDecrementOperators.PostIncrementOperatorNotUsedStandalone'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.DisallowArrayTypeHintSyntax.DisallowedArrayTypeHintSyntax'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification'/>

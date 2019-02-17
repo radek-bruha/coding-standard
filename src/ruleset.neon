@@ -1,4 +1,9 @@
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
+    - ../../../phpstan/phpstan-phpunit/extension.neon
+    - ../../../phpstan/phpstan-doctrine/extension.neon
     - ../../../phpstan/phpstan-nette/rules.neon
+    - ../../../phpstan/phpstan-phpunit/rules.neon
+    - ../../../phpstan/phpstan-doctrine/rules.neon
     - ../../../phpstan/phpstan-strict-rules/rules.neon
+    - ../../../phpstan/phpstan-deprecation-rules/rules.neon
