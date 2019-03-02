@@ -3,14 +3,13 @@
 namespace Bruha\CodingStandard\CustomRules\Sniffs\Commenting;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
  * Class FunctionSniff
  *
  * @package Bruha\CodingStandard\CustomRules\Sniffs\Commenting
  */
-final class FunctionSniff extends AbstractSniff implements Sniff
+final class FunctionSniff extends AbstractSniff
 {
 
     /**
@@ -37,7 +36,7 @@ final class FunctionSniff extends AbstractSniff implements Sniff
 
             if (preg_match('#(\|null|null\||NULL\|)#', $content) === 1) {
                 $file->addError(
-                    'Parameters must have NULL type as last one.',
+                    'Parameter must have NULL type hint on last position.',
                     $position,
                     'Comment'
                 );

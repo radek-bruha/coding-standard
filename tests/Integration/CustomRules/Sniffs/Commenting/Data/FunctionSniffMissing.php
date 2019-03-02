@@ -7,7 +7,7 @@ namespace Tests\Integration\CustomRules\Sniffs\Commenting\Data;
  *
  * @package Tests\Integration\CustomRules\Sniffs\Commenting\Data
  */
-class FunctionSniffMissing
+final class FunctionSniffMissing
 {
 
     /**

@@ -3,13 +3,14 @@
 namespace Bruha\CodingStandard\CustomRules\Sniffs\Commenting;
 
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
  * Class AbstractSniff
  *
  * @package Bruha\CodingStandard\CustomRules\Sniffs\Commenting
  */
-abstract class AbstractSniff
+abstract class AbstractSniff implements Sniff
 {
 
     /**

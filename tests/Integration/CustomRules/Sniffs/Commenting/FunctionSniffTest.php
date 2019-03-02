@@ -42,7 +42,7 @@ final class FunctionSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Function.Comment',
-            'Parameters must have NULL type as last one.'
+            'Parameter must have NULL type hint on last position.'
         );
 
         self::assertNotSuccess(
@@ -52,7 +52,7 @@ final class FunctionSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Function.Comment',
-            'Parameters must have NULL type as last one.'
+            'Parameter must have NULL type hint on last position.'
         );
 
         self::assertNotSuccess(
@@ -62,7 +62,7 @@ final class FunctionSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Function.Comment',
-            'Parameters must have NULL type as last one.'
+            'Parameter must have NULL type hint on last position.'
         );
     }
 

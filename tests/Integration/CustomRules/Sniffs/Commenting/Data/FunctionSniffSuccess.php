@@ -7,7 +7,7 @@ namespace Tests\Integration\CustomRules\Sniffs\Commenting\Data;
  *
  * @package Tests\Integration\CustomRules\Sniffs\Commenting\Data
  */
-class FunctionSniffSuccess
+final class FunctionSniffSuccess
 {
 
     /**

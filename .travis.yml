@@ -10,7 +10,7 @@ before_script:
     - composer update -o --no-ansi --no-suggest
 
 script:
-    - vendor/bin/phpcs src tests -p --ignore=tests/Integration/CustomRules/Sniffs/Commenting/Data --extensions=php --standard=ruleset.xml
+    - vendor/bin/phpcs src tests -p --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml
     - vendor/bin/phpstan analyse src tests -c ruleset.neon -l 7
     - vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml --whitelist src
 
