@@ -31,21 +31,17 @@ final class ParentSniff implements Sniff
     {
         $tokens        = $file->getTokens();
         $startPosition = $file->findNext(T_SEMICOLON, $position);
-        $closePosition = $file->findNext(T_CLOSE_CURLY_BRACKET, $position);
+        $closePosition = $file->findEndOfStatement(is_int($startPosition) ? $startPosition : 0);
 
-        if (is_int($startPosition) && is_int($closePosition)) {
+        if (is_int($startPosition)) {
             $semicolonPosition = $file->findNext(T_SEMICOLON, $startPosition + 1);
 
-            if (is_int($semicolonPosition) && $semicolonPosition < $closePosition) {
+            if (is_int($semicolonPosition) && $semicolonPosition === $closePosition) {
                 for ($iterator = 1; $iterator < 3; $iterator++) {
                     $token = $tokens[$startPosition + $iterator];
 
                     if ($token['type'] !== 'T_WHITESPACE' || preg_match('/\r\n|\r|\n/', $token['content']) === 0) {
-                        $file->addError(
-                            'Parent call must be followed by single blank line.',
-                            $position,
-                            'NewLine'
-                        );
+                        $file->addError('Parent call must be followed by single blank line.', $position, 'NewLine');
                     }
                 }
             }

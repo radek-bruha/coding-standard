@@ -28,44 +28,7 @@ final class ClassSniff extends AbstractSniff
      */
     public function process(File $file, $position)
     {
-        $tokens = $file->getTokens();
-        /** @var int $position */
-        $position = $file->findNext([T_STRING], $position);
-
-        $comments         = $this->getDocumentComment($file, $position);
-        $classComment     = sprintf('Class %s', $tokens[$position]['content']);
-        $namespaceComment = $this->getNamespaceName($file, $position);
-        $hasComment       = FALSE;
-
-        foreach ($comments as $comment) {
-            if ($comment === $classComment) {
-                $hasComment = TRUE;
-            }
-        }
-
-        if (!$hasComment) {
-            $file->addError(
-                sprintf("Class comment must be '%s'.", $classComment),
-                $position,
-                'Comment'
-            );
-        }
-
-        $hasComment = FALSE;
-
-        foreach ($comments as $comment) {
-            if ($comment === $namespaceComment) {
-                $hasComment = TRUE;
-            }
-        }
-
-        if (!$hasComment) {
-            $file->addError(
-                sprintf("Class comment must be '@package %s'.", $namespaceComment),
-                $position,
-                'Comment'
-            );
-        }
+        $this->processCommenting($file, $position, self::TYPE_CLASS);
     }
 
 }

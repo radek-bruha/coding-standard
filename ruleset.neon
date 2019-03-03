@@ -10,7 +10,6 @@ includes:
 
 parameters:
     ignoreErrors:
-        - '#Constant T_CLOSE_CURLY_BRACKET not found#'
         - '#Constant T_DOC_COMMENT_CLOSE_TAG not found#'
         - '#Constant T_DOC_COMMENT_OPEN_TAG not found#'
         - '#Constant T_DOC_COMMENT_STRING not found#'

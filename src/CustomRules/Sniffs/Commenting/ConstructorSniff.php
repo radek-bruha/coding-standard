@@ -30,9 +30,9 @@ final class ConstructorSniff extends AbstractSniff
     {
         $tokens = $file->getTokens();
 
-        if ($tokens[$file->findNext([T_STRING], $position)]['content'] === '__construct') {
+        if ($tokens[$file->findNext(T_STRING, $position)]['content'] === '__construct') {
             $comments           = $this->getDocumentComment($file, $position);
-            $constructorComment = sprintf('%s constructor', $this->getClassName($file, $position));
+            $constructorComment = sprintf('%s constructor', $this->getTypeName($file, $position));
             $hasComment         = FALSE;
 
             foreach ($comments as $comment) {

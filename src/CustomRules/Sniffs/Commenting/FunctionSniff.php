@@ -17,7 +17,7 @@ final class FunctionSniff extends AbstractSniff
      */
     public function register(): array
     {
-        return [T_OPEN_TAG];
+        return [T_DOC_COMMENT_STRING];
     }
 
     /**
@@ -28,21 +28,11 @@ final class FunctionSniff extends AbstractSniff
      */
     public function process(File $file, $position)
     {
-        $tokens   = $file->getTokens();
-        $position = $file->findNext([T_DOC_COMMENT_STRING], $position);
+        $tokens  = $file->getTokens();
+        $content = $tokens[$position]['content'];
 
-        while (is_int($position)) {
-            $content = $tokens[$position]['content'];
-
-            if (preg_match('#(\|null|null\||NULL\|)#', $content) === 1) {
-                $file->addError(
-                    'Parameter must have NULL type hint on last position.',
-                    $position,
-                    'Comment'
-                );
-            }
-
-            $position = $file->findNext([T_DOC_COMMENT_STRING], $position + 1);
+        if (preg_match('#(\|null|null\||NULL\|)#', $content) === 1) {
+            $file->addError('Parameter must have NULL type hint on last position.', $position, 'Comment');
         }
     }
 
