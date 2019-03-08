@@ -1,4 +1,4 @@
-<phpunit>
+<phpunit cacheResult="false">
     <testsuites>
         <testsuite name="Tests">
             <directory>tests</directory>
