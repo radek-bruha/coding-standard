@@ -12,7 +12,21 @@ final class ConstructorSniffMissing
 
     public function __construct()
     {
+        new class()
+        {
 
+            public function __construct()
+            {
+                new class()
+                {
+
+                    public function __construct()
+                    {
+
+                    }
+                };
+            }
+        };
     }
 
 }

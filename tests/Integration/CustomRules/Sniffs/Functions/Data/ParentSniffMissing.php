@@ -27,4 +27,15 @@ final class ParentSniffMissing extends AbstractParentSniffSuccess
         $this->stringTwo = $stringTwo;
     }
 
+    /**
+     * @param string $stringOne
+     *
+     * @return AbstractParentSniffSuccess
+     */
+    public function setStringOne(string $stringOne): AbstractParentSniffSuccess
+    {
+        $stringOne = parent::setStringOne($stringOne);
+        return $stringOne;
+    }
+
 }

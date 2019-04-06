@@ -13,30 +13,28 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 abstract class AbstractSniff implements Sniff
 {
 
-    protected const TYPE_CLASS     = 'Class';
-    protected const TYPE_INTERFACE = 'Interface';
-    protected const TYPE_TRAIT     = 'Trait';
+    protected const TYPE_CLASS       = 'Class';
+    protected const TYPE_INTERFACE   = 'Interface';
+    protected const TYPE_TRAIT       = 'Trait';
+    protected const TYPE_CONSTRUCTOR = 'Constructor';
+
+    protected const CODE    = 'code';
+    protected const CONTENT = 'content';
+
+    private const PATTERN = '#\r\n|\r|\n#';
+    private const REPLACE = [
+        '{NAMESPACE}',
+        '{NAME}',
+        '{TYPE}',
+    ];
 
     /**
-     * @param File $file
-     * @param int  $position
-     *
-     * @return string
+     * @var array
      */
-    protected function getTypeName(File $file, int $position): string
-    {
-        $position = $file->findPrevious(T_CLASS, $position);
-
-        if (is_int($position)) {
-            $position = $file->findNext(T_STRING, $position);
-
-            if (is_int($position)) {
-                return $file->getTokens()[$position]['content'];
-            }
-        }
-
-        return 'Unknown';
-    }
+    public $comments = [
+        '{TYPE} {NAME}',
+        '@package {NAMESPACE}',
+    ];
 
     /**
      * @param File $file
@@ -59,7 +57,7 @@ abstract class AbstractSniff implements Sniff
                 $closePosition = $file->findEndOfStatement($position);
 
                 for (; $position < $closePosition; $position++) {
-                    $namespaces[] = $tokens[$position]['content'];
+                    $namespaces[] = $tokens[$position][self::CONTENT];
                 }
 
                 $result = implode('', $namespaces);
@@ -82,62 +80,82 @@ abstract class AbstractSniff implements Sniff
         $startPosition = $file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $position);
 
         if (is_int($startPosition)) {
-            $closePosition = $file->findNext(T_DOC_COMMENT_CLOSE_TAG, $startPosition);
+            $iterator      = 0;
+            $closePosition = $file->findNext(T_DOC_COMMENT_CLOSE_TAG, $startPosition + 1);
 
             for (; $startPosition < $closePosition; $startPosition++) {
-                if ($tokens[$startPosition]['type'] === 'T_DOC_COMMENT_STRING') {
-                    $result[] = $tokens[$startPosition]['content'];
+                $token                  = $tokens[$startPosition];
+                $isWhiteSpace           = $token[self::CODE] === T_DOC_COMMENT_WHITESPACE;
+                $isWhiteSpaceNewLine    = preg_match(self::PATTERN, $token[self::CONTENT]) === 1;
+                $isStringOrTagCharacter = in_array($token[self::CODE], [T_DOC_COMMENT_STRING, T_DOC_COMMENT_TAG], TRUE);
+
+                if ($isStringOrTagCharacter || $isWhiteSpace && !$isWhiteSpaceNewLine) {
+                    $result[$iterator] = sprintf('%s%s', $result[$iterator] ?? '', $token[self::CONTENT]);
+                }
+
+                if ($isWhiteSpace && $isWhiteSpaceNewLine) {
+                    $iterator++;
                 }
             }
         }
 
-        return $result;
+        return array_filter(array_map('trim', $result), 'strlen');
     }
 
     /**
-     * @param File   $file
-     * @param int    $position
-     * @param string $type
+     * @param File        $file
+     * @param int         $position
+     * @param string      $type
+     * @param string|NULL $customName
      *
      * @return int|void
      */
-    protected function processCommenting(File $file, int $position, string $type)
+    protected function processCommenting(File $file, int $position, string $type, ?string $customName = NULL)
     {
-        $tokens   = $file->getTokens();
         $position = $file->findNext(T_STRING, $position);
 
         if (is_int($position)) {
-            $comments         = $this->getDocumentComment($file, $position);
-            $typeComment      = sprintf('%s %s', $type, $tokens[$position]['content']);
-            $namespaceComment = $this->getNamespaceName($file, $position);
-            $hasComment       = FALSE;
+            $comments = $this->getDocumentComment($file, $position);
 
-            foreach ($comments as $comment) {
-                if ($comment === $typeComment) {
-                    $hasComment = TRUE;
+            foreach ($this->comments as $comment) {
+                $comment = $this->replacePlaceholders($file, $position, $type, $comment, $customName);
+
+                if (!in_array($comment, $comments, TRUE)) {
+                    $file->addError(
+                        sprintf("Usage of %s comment without '%s' is not allowed.", lcfirst($type), $comment),
+                        $position,
+                        'Comment'
+                    );
                 }
-            }
-
-            if (!$hasComment) {
-                $file->addError(sprintf("%s comment must be '%s'.", $type, $typeComment), $position, 'Comment');
-            }
-
-            $hasComment = FALSE;
-
-            foreach ($comments as $comment) {
-                if ($comment === $namespaceComment) {
-                    $hasComment = TRUE;
-                }
-            }
-
-            if (!$hasComment) {
-                $file->addError(
-                    sprintf("%s comment must be '@package %s'.", $type, $namespaceComment),
-                    $position,
-                    'Comment'
-                );
             }
         }
+    }
+
+    /**
+     * @param File        $file
+     * @param int         $position
+     * @param string      $type
+     * @param string      $string
+     * @param string|NULL $customName
+     *
+     * @return string
+     */
+    protected function replacePlaceholders(
+        File $file,
+        int $position,
+        string $type,
+        string $string,
+        ?string $customName = NULL
+    ): string {
+        return str_replace(
+            self::REPLACE,
+            [
+                $this->getNamespaceName($file, $position),
+                $customName ?: $file->getTokens()[$position][self::CONTENT],
+                $type,
+            ],
+            $string
+        );
     }
 
 }

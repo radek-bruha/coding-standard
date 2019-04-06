@@ -1,17 +1,20 @@
 includes:
-    - vendor/phpstan/phpstan-nette/extension.neon
-    - vendor/phpstan/phpstan-phpunit/extension.neon
-    - vendor/phpstan/phpstan-doctrine/extension.neon
-    - vendor/phpstan/phpstan-nette/rules.neon
-    - vendor/phpstan/phpstan-phpunit/rules.neon
-    - vendor/phpstan/phpstan-doctrine/rules.neon
-    - vendor/phpstan/phpstan-strict-rules/rules.neon
-    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - ./vendor/phpstan/phpstan-nette/extension.neon
+    - ./vendor/phpstan/phpstan-phpunit/extension.neon
+    - ./vendor/phpstan/phpstan-doctrine/extension.neon
+    - ./vendor/phpstan/phpstan-nette/rules.neon
+    - ./vendor/phpstan/phpstan-phpunit/rules.neon
+    - ./vendor/phpstan/phpstan-doctrine/rules.neon
+    - ./vendor/phpstan/phpstan-strict-rules/rules.neon
+    - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
 
 parameters:
     ignoreErrors:
+        - '#Constant T_ANON_CLASS not found#'
         - '#Constant T_DOC_COMMENT_CLOSE_TAG not found#'
         - '#Constant T_DOC_COMMENT_OPEN_TAG not found#'
         - '#Constant T_DOC_COMMENT_STRING not found#'
+        - '#Constant T_DOC_COMMENT_TAG not found#'
+        - '#Constant T_DOC_COMMENT_WHITESPACE not found#'
         - '#Constant T_PARENT not found#'
         - '#Constant T_SEMICOLON not found#'

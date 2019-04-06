@@ -42,7 +42,17 @@ final class ParentSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Functions.Parent.NewLine',
-            'Parent call must be followed by single blank line.'
+            'Usage of parent call without single blank line is not allowed.'
+        );
+
+        self::assertNotSuccess(
+            $result,
+            37,
+            22,
+            0,
+            $this->sniff,
+            'CustomRules.Functions.Parent.NewLine',
+            'Usage of parent call without single blank line is not allowed.'
         );
     }
 

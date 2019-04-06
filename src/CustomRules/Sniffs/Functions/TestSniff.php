@@ -13,6 +13,9 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class TestSniff implements Sniff
 {
 
+    private const CODE    = 'code';
+    private const CONTENT = 'content';
+
     /**
      * @return int[]
      */
@@ -32,13 +35,13 @@ final class TestSniff implements Sniff
         $tokens        = $file->getTokens();
         $startPosition = (int) $position;
 
-        if (substr($tokens[$position + 2]['content'], -4) === 'Test') {
+        if (substr($tokens[$position + 2][self::CONTENT], -4) === 'Test') {
             $position = $file->findNext(T_FUNCTION, $position + 1);
             $hasTests = TRUE;
 
             while (is_int($position)) {
-                if ($tokens[$position - 2]['type'] === 'T_PUBLIC') {
-                    if (substr($tokens[$position + 2]['content'], 0, 4) !== 'test') {
+                if ($tokens[$position - 2][self::CODE] === T_PUBLIC) {
+                    if (substr($tokens[$position + 2][self::CONTENT], 0, 4) !== 'test') {
                         $hasTests = FALSE;
                     }
                 }
@@ -47,7 +50,7 @@ final class TestSniff implements Sniff
             }
 
             if ($hasTests && !is_int($file->findPrevious(T_FINAL, $startPosition))) {
-                $file->addError('Test class must be final.', $startPosition, 'Final');
+                $file->addError('Usage of abstract or normal test class is not allowed.', $startPosition, 'Final');
             }
         }
     }

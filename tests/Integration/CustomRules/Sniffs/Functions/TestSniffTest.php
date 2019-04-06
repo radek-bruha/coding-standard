@@ -42,7 +42,7 @@ final class TestSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Functions.Test.Final',
-            'Test class must be final.'
+            'Usage of abstract or normal test class is not allowed.'
         );
     }
 

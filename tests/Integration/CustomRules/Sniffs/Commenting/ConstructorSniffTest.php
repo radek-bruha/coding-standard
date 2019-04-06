@@ -38,29 +38,31 @@ final class ConstructorSniffTest extends AbstractTestCase
         self::assertNotSuccess(
             $result,
             13,
-            12,
+            21,
             0,
             $this->sniff,
             'CustomRules.Commenting.Constructor.Comment',
-            "Constructor comment must be 'ConstructorSniffMissing constructor'."
+            "Usage of constructor comment without 'ConstructorSniffMissing constructor' is not allowed."
         );
-    }
-
-    /**
-     *
-     */
-    public function testMissingTrait(): void
-    {
-        $result = $this->processFile(__DIR__ . '/Data/ConstructorSniffMissingTrait.php', $this->sniff);
 
         self::assertNotSuccess(
             $result,
-            13,
-            12,
+            18,
+            29,
             0,
             $this->sniff,
             'CustomRules.Commenting.Constructor.Comment',
-            "Constructor comment must be 'Unknown constructor'."
+            "Usage of constructor comment without 'Anonymous constructor' is not allowed."
+        );
+
+        self::assertNotSuccess(
+            $result,
+            23,
+            37,
+            0,
+            $this->sniff,
+            'CustomRules.Commenting.Constructor.Comment',
+            "Usage of constructor comment without 'Anonymous constructor' is not allowed."
         );
     }
 

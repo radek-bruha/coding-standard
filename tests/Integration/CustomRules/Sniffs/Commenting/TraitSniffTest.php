@@ -42,7 +42,7 @@ final class TraitSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Trait.Comment',
-            "Trait comment must be 'Trait TraitSniffMissing'."
+            "Usage of trait comment without 'Trait TraitSniffMissing' is not allowed."
         );
 
         self::assertNotSuccess(
@@ -52,7 +52,7 @@ final class TraitSniffTest extends AbstractTestCase
             1,
             $this->sniff,
             'CustomRules.Commenting.Trait.Comment',
-            "Trait comment must be '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data'."
+            "Usage of trait comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed."
         );
     }
 

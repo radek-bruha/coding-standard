@@ -42,7 +42,7 @@ final class InterfaceSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Interface.Comment',
-            "Interface comment must be 'Interface InterfaceSniffMissing'."
+            "Usage of interface comment without 'Interface InterfaceSniffMissing' is not allowed."
         );
 
         self::assertNotSuccess(
@@ -52,7 +52,7 @@ final class InterfaceSniffTest extends AbstractTestCase
             1,
             $this->sniff,
             'CustomRules.Commenting.Interface.Comment',
-            "Interface comment must be '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data'."
+            "Usage of interface comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed."
         );
     }
 

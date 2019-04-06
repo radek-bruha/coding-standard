@@ -15,7 +15,27 @@ final class ConstructorSniffSuccess
      */
     public function __construct()
     {
+        new class()
+        {
 
+            /**
+             *  Anonymous constructor
+             */
+            public function __construct()
+            {
+                new class()
+                {
+
+                    /**
+                     * Anonymous constructor
+                     */
+                    public function __construct()
+                    {
+
+                    }
+                };
+            }
+        };
     }
 
 }

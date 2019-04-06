@@ -13,6 +13,13 @@ final class FunctionSniff extends AbstractSniff
 {
 
     /**
+     * @var array
+     */
+    public $rules = [
+        '#(\|null|null\||NULL\|)#' => 'Usage of non-rightmost NULL type hint is not allowed.',
+    ];
+
+    /**
      * @return int[]
      */
     public function register(): array
@@ -28,11 +35,10 @@ final class FunctionSniff extends AbstractSniff
      */
     public function process(File $file, $position)
     {
-        $tokens  = $file->getTokens();
-        $content = $tokens[$position]['content'];
-
-        if (preg_match('#(\|null|null\||NULL\|)#', $content) === 1) {
-            $file->addError('Parameter must have NULL type hint on last position.', $position, 'Comment');
+        foreach ($this->rules as $pattern => $message) {
+            if (preg_match($pattern, $file->getTokens()[$position][self::CONTENT]) === 1) {
+                $file->addError($message, $position, 'Comment');
+            }
         }
     }
 

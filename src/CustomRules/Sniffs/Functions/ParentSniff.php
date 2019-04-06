@@ -13,6 +13,10 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 final class ParentSniff implements Sniff
 {
 
+    private const CODE    = 'code';
+    private const CONTENT = 'content';
+    private const PATTERN = '#\r\n|\r|\n#';
+
     /**
      * @return int[]
      */
@@ -29,20 +33,15 @@ final class ParentSniff implements Sniff
      */
     public function process(File $file, $position)
     {
-        $tokens        = $file->getTokens();
-        $startPosition = $file->findNext(T_SEMICOLON, $position);
-        $closePosition = $file->findEndOfStatement(is_int($startPosition) ? $startPosition : 0);
+        $startPosition = (int) $file->findNext(T_SEMICOLON, $position);
+        $closePosition = $file->findNext(T_SEMICOLON, $startPosition + 1);
 
-        if (is_int($startPosition)) {
-            $semicolonPosition = $file->findNext(T_SEMICOLON, $startPosition + 1);
+        if (is_int($closePosition) && $closePosition === $file->findEndOfStatement($startPosition)) {
+            for ($iterator = 1; $iterator < 3; $iterator++) {
+                $token = $file->getTokens()[$startPosition + $iterator];
 
-            if (is_int($semicolonPosition) && $semicolonPosition === $closePosition) {
-                for ($iterator = 1; $iterator < 3; $iterator++) {
-                    $token = $tokens[$startPosition + $iterator];
-
-                    if ($token['type'] !== 'T_WHITESPACE' || preg_match('/\r\n|\r|\n/', $token['content']) === 0) {
-                        $file->addError('Parent call must be followed by single blank line.', $position, 'NewLine');
-                    }
+                if ($token[self::CODE] !== T_WHITESPACE || preg_match(self::PATTERN, $token[self::CONTENT]) === 0) {
+                    $file->addError('Usage of parent call without single blank line is not allowed.', $position, 'NewLine');
                 }
             }
         }

@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
-<ruleset name='Bruha Coding Standard'>
-    <rule ref='vendor/radek-bruha/coding-standard/src/CustomRules/ruleset.xml'/>
+<ruleset xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='./../vendor/squizlabs/php_codesniffer/phpcs.xsd' name='Bruha Coding Standard'>
+    <rule ref='./vendor/radek-bruha/coding-standard/src/CustomRules/ruleset.xml'/>
 
     <rule ref='Generic'>
         <exclude name='Generic.Arrays.DisallowShortArraySyntax.Found'/>
@@ -78,11 +78,11 @@
         <exclude name='Squiz.WhiteSpace.ObjectOperatorSpacing.Before'/>
     </rule>
 
-    <rule ref='vendor/consistence/coding-standard/Consistence/ruleset.xml'>
+    <rule ref='./vendor/consistence/coding-standard/Consistence/ruleset.xml'>
         <exclude name='Consistence.Exceptions.ExceptionDeclaration.IncorrectExceptionDirectory'/>
     </rule>
 
-    <rule ref='vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml'>
+    <rule ref='./vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml'>
         <exclude name='SlevomatCodingStandard.Classes.DisallowLateStaticBindingForConstants'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix'/>
@@ -120,7 +120,7 @@
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment'/>
     </rule>
 
-    <rule ref='vendor/stesie/phpcs-doctrine-annotation-rules/src/DoctrineAnnotationCodingStandard/ruleset.xml'/>
+    <rule ref='./vendor/stesie/phpcs-doctrine-annotation-rules/src/DoctrineAnnotationCodingStandard/ruleset.xml'/>
 
     <rule ref='Generic.Metrics.CyclomaticComplexity'>
         <properties>
@@ -136,20 +136,20 @@
         </properties>
     </rule>
 
-    <rule ref="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing">
+    <rule ref='SlevomatCodingStandard.ControlStructures.ControlStructureSpacing'>
         <properties>
-            <property name="tokensToCheck" type="array">
-                <element value="T_DO"/>
-                <element value="T_FOR"/>
-                <element value="T_FOREACH"/>
-                <element value="T_GOTO"/>
-                <element value="T_IF"/>
-                <element value="T_SWITCH"/>
-                <element value="T_THROW"/>
-                <element value="T_TRY"/>
-                <element value="T_WHILE"/>
-                <element value="T_YIELD"/>
-                <element value="T_YIELD_FROM"/>
+            <property name='tokensToCheck' type='array'>
+                <element value='T_DO'/>
+                <element value='T_FOR'/>
+                <element value='T_FOREACH'/>
+                <element value='T_GOTO'/>
+                <element value='T_IF'/>
+                <element value='T_SWITCH'/>
+                <element value='T_THROW'/>
+                <element value='T_TRY'/>
+                <element value='T_WHILE'/>
+                <element value='T_YIELD'/>
+                <element value='T_YIELD_FROM'/>
             </property>
         </properties>
     </rule>
@@ -166,9 +166,15 @@
         </properties>
     </rule>
 
+    <rule ref='SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly'>
+        <properties>
+            <property name='searchAnnotations' value='true'/>
+        </properties>
+    </rule>
+
     <rule ref='SlevomatCodingStandard.Namespaces.UnusedUses'>
         <properties>
-            <property name='searchAnnotations' type='boolean' value='true'/>
+            <property name='searchAnnotations' value='true'/>
         </properties>
     </rule>
 

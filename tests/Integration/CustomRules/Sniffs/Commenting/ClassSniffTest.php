@@ -42,7 +42,7 @@ final class ClassSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Class.Comment',
-            "Class comment must be 'Class ClassSniffMissing'."
+            "Usage of class comment without 'Class ClassSniffMissing' is not allowed."
         );
 
         self::assertNotSuccess(
@@ -52,7 +52,7 @@ final class ClassSniffTest extends AbstractTestCase
             1,
             $this->sniff,
             'CustomRules.Commenting.Class.Comment',
-            "Class comment must be '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data'."
+            "Usage of class comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed."
         );
     }
 

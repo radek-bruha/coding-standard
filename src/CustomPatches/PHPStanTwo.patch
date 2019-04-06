@@ -30,7 +30,7 @@
 -			$relativeFilePath = $this->relativePathHelper->getRelativePath($file);
 -
 -			$style->table(['Line', $relativeFilePath], $rows);
-+			$style->table(['Line', $file], $rows);
++			$style->table(['Line', str_replace(getcwd(), '', $this->relativePathHelper->getRelativePath($file))], $rows);
  		}
 
  		if (count($analysisResult->getNotFileSpecificErrors()) > 0) {
