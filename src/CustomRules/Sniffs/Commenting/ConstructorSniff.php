@@ -15,9 +15,7 @@ final class ConstructorSniff extends AbstractSniff
     /**
      * @var array
      */
-    public $comments = [
-        '{NAME} constructor',
-    ];
+    public $comments = ['{NAME} constructor'];
 
     /**
      * @var string

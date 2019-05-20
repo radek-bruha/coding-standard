@@ -15,9 +15,7 @@ final class FunctionSniff extends AbstractSniff
     /**
      * @var array
      */
-    public $rules = [
-        '#(\|null|null\||NULL\|)#' => 'Usage of non-rightmost NULL type hint is not allowed.',
-    ];
+    public $rules = ['#(\|null|null\||NULL\|)#' => 'Usage of non-rightmost NULL type hint is not allowed.'];
 
     /**
      * @return int[]

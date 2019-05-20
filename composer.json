@@ -15,10 +15,9 @@
     "require": {
         "php": "^7.1",
         "brianium/paratest": "^3.0",
-        "consistence/coding-standard": "^3.8",
         "cweagans/composer-patches": "^1.6",
         "infection/infection": "^0.12",
-        "php-mock/php-mock-phpunit": "^2.2",
+        "php-mock/php-mock-phpunit": "^2.3",
         "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-deprecation-rules": "^0.11",
         "phpstan/phpstan-doctrine": "^0.11",
