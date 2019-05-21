@@ -12,6 +12,9 @@
             "Tests\\": "tests"
         }
     },
+    "bin": [
+        "bin/phpcs-analyzer"
+    ],
     "require": {
         "php": "^7.1",
         "brianium/paratest": "^3.0",
