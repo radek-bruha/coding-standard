@@ -95,6 +95,7 @@
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions.NonFullyQualified'/>
         <exclude name='SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified'/>
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator'/>
+        <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostDecrementOperator'/>
         <exclude name='SlevomatCodingStandard.TypeHints.DisallowArrayTypeHintSyntax.DisallowedArrayTypeHintSyntax'/>
         <exclude name='SlevomatCodingStandard.TypeHints.DisallowArrayTypeHintSyntax.DisallowedArrayTypeHintSyntax'/>
         <exclude name='SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint'/>
