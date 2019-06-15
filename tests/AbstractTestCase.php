@@ -15,6 +15,8 @@ use PHPUnit\Framework\TestCase;
 abstract class AbstractTestCase extends TestCase
 {
 
+    protected const COMMAND = 'patch %s/../vendor/%s %s/../src/CustomPatches/%s%s';
+
     /**
      * @var Runner
      */
@@ -54,6 +56,30 @@ abstract class AbstractTestCase extends TestCase
         $file->process();
 
         return $file;
+    }
+
+    /**
+     * @param string $file
+     * @param string $patch
+     * @param bool   $reverse
+     */
+    protected function processPatch(string $file, string $patch, bool $reverse = FALSE): void
+    {
+        $lines = [];
+
+        exec(sprintf(self::COMMAND, __DIR__, $file, __DIR__, $patch, $reverse ? ' -R' : ''), $lines);
+
+        foreach ($lines as $line) {
+            if (strpos($line, 'Skipping patch') !== FALSE) {
+                $this->processPatch($file, $patch, TRUE);
+            }
+
+            if (strpos($line, 'FAILED') !== FALSE) {
+                self::fail(sprintf('%s: %s', $patch, $line));
+            }
+        }
+
+        self::assertTrue(TRUE);
     }
 
     /**

@@ -19,8 +19,8 @@
         "php": "^7.1",
         "brianium/paratest": "^3.0",
         "cweagans/composer-patches": "^1.6",
-        "infection/infection": "^0.12",
-        "php-mock/php-mock-phpunit": "^2.3",
+        "infection/infection": "^0.13",
+        "php-mock/php-mock-phpunit": "^2.4",
         "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-deprecation-rules": "^0.11",
         "phpstan/phpstan-doctrine": "^0.11",
@@ -66,8 +66,7 @@
             },
             "squizlabs/php_codesniffer": {
                 "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPCodeSnifferOne.patch",
-                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPCodeSnifferTwo.patch",
-                "Cleaning III": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPCodeSnifferThree.patch"
+                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPCodeSnifferTwo.patch"
             },
             "stesie/phpcs-doctrine-annotation-rules": {
                 "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/DoctrineAnnotationOne.patch",
