@@ -1,44 +1,41 @@
 --- project/vendor/phpstan/phpstan/src/Command/ErrorFormatter/TableErrorFormatter.php	(date 1286705410000)
 +++ project/vendor/phpstan/phpstan/src/Command/ErrorFormatter/TableErrorFormatter.php	(date 1286705410000)
-@@ -24,14 +24,6 @@
+@@ -41,34 +41,10 @@
  	): int
  	{
  		if (!$analysisResult->hasErrors()) {
 -			$style->success('No errors');
--			if ($analysisResult->isDefaultLevelUsed()) {
--				$style->note(sprintf(
--					'PHPStan is performing only the most basic checks. You can pass a higher rule level through the --%s option (the default and current level is %d) to analyse code more thoroughly.',
--					AnalyseCommand::OPTION_LEVEL,
--					AnalyseCommand::DEFAULT_LEVEL
--				));
+-			if ($this->showTipsOfTheDay) {
+-				if ($analysisResult->isDefaultLevelUsed()) {
+-					$style->writeln('💡 Tip of the Day:');
+-					$style->writeln(sprintf(
+-						"PHPStan is performing only the most basic checks.\nYou can pass a higher rule level through the <fg=cyan>--%s</> option\n(the default and current level is %d) to analyse code more thoroughly.",
+-						AnalyseCommand::OPTION_LEVEL,
+-						AnalyseCommand::DEFAULT_LEVEL
+-					));
+-					$style->writeln('');
+-				} elseif (
+-					!$this->checkThisOnly
+-					&& $analysisResult->hasInferrablePropertyTypesFromConstructor()
+-					&& !$this->inferPrivatePropertyTypeFromConstructor
+-				) {
+-					$projectConfigFile = 'phpstan.neon';
+-					if ($analysisResult->getProjectConfigFile() !== null) {
+-						$projectConfigFile = $this->relativePathHelper->getRelativePath($analysisResult->getProjectConfigFile());
+-					}
+-					$style->writeln('💡 Tip of the Day:');
+-					$style->writeln("One or more properties in your code do not have a phpDoc with a type\nbut it could be inferred from the constructor to find more bugs.");
+-					$style->writeln(sprintf('Use <fg=cyan>inferPrivatePropertyTypeFromConstructor: true</> in your <fg=cyan>%s</> to try it out!', $projectConfigFile));
+-					$style->writeln('');
+-				}
 -			}
- 			return 0;
- 		}
-
-@@ -45,6 +37,7 @@
- 			$fileErrors[$fileSpecificError->getFile()][] = $fileSpecificError;
- 		}
-
-+        $style->write(PHP_EOL);
- 		foreach ($fileErrors as $file => $errors) {
- 			$rows = [];
- 			foreach ($errors as $error) {
-@@ -54,9 +47,7 @@
- 				];
- 			}
-
--			$relativeFilePath = $this->relativePathHelper->getRelativePath($file);
 -
--			$style->table(['Line', $relativeFilePath], $rows);
-+			$style->table(['Line', str_replace(getcwd(), '', $this->relativePathHelper->getRelativePath($file))], $rows);
- 		}
+-			return 0;
+-		}
++			return 0;
++		}
++
++		$style->writeln('');
 
- 		if (count($analysisResult->getNotFileSpecificErrors()) > 0) {
-@@ -65,7 +56,7 @@
- 			}, $analysisResult->getNotFileSpecificErrors()));
- 		}
-
--		$style->error(sprintf($analysisResult->getTotalErrorsCount() === 1 ? 'Found %d error' : 'Found %d errors', $analysisResult->getTotalErrorsCount()));
-+        $style->write("\033[1A");
- 		return 1;
- 	}
+ 		/** @var array<string, \PHPStan\Analyser\Error[]> $fileErrors */
+ 		$fileErrors = [];

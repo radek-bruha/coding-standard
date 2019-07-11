@@ -57,7 +57,7 @@
 +        }
 
 -		$this->progressBar->setProgress($this->progressBar->getProgress() + $step);
-+       $this->counter++;
++        $this->counter++;
  	}
 
  	public function progressFinish(): void

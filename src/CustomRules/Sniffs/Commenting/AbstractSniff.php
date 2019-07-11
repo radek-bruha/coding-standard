@@ -99,7 +99,12 @@ abstract class AbstractSniff implements Sniff
             }
         }
 
-        return array_filter(array_map('trim', $result), 'strlen');
+        return array_filter(
+            array_map('trim', $result),
+            static function (string $item): bool {
+                return strlen($item) > 0;
+            }
+        );
     }
 
     /**
