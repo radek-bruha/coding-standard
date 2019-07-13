@@ -1,10 +1,7 @@
-.idea/*
-code-coverage/*
-log/*
-temp/*
-vendor/*
+.idea
+var
+vendor
 composer.lock
 docker-compose.yml
-fast.ps1
-full.ps1
 start.ps1
+test.ps1

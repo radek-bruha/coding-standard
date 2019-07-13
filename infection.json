@@ -5,8 +5,8 @@
         ]
     },
     "logs": {
-        "text": "log/infection.log"
+        "text": "var/log/infection.log"
     },
-    "timeout": 60,
-    "tmpDir": "temp/cache/Tests"
+    "timeout": 9,
+    "tmpDir": "var/cache"
 }

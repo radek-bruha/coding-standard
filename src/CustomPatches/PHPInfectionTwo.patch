@@ -1,9 +1,9 @@
 --- backend/vendor/infection/infection/src/Console/OutputFormatter/DotFormatter.php	(date 1286705410000)
 +++ backend/vendor/infection/infection/src/Console/OutputFormatter/DotFormatter.php	(date 1286705410000)
-@@ -30,21 +30,6 @@
+@@ -56,25 +56,14 @@
          $this->output = $output;
      }
- 
+
 -    public function start(int $mutationCount): void
 -    {
 -        parent::start($mutationCount);
@@ -22,16 +22,24 @@
      public function advance(MutantProcessInterface $mutantProcess, int $mutationCount): void
      {
          parent::advance($mutantProcess, $mutationCount);
-@@ -59,7 +44,7 @@
- 
+
++        if ($this->callsCount === 1) {
++            $this->output->writeln('');
++        }
++
+         switch ($mutantProcess->getResultCode()) {
+             case MutantProcess::CODE_KILLED:
+                 $this->output->write('<killed>.</killed>');
+@@ -85,7 +74,7 @@
+
                  break;
              case MutantProcess::CODE_ESCAPED:
 -                $this->output->write('<escaped>M</escaped>');
 +                $this->output->write('<escaped>F</escaped>');
- 
+
                  break;
              case MutantProcess::CODE_TIMED_OUT:
-@@ -82,9 +67,9 @@
+@@ -108,9 +97,9 @@
  
          if ($lastDot || $endOfRow) {
              $length = \strlen((string) $mutationCount);

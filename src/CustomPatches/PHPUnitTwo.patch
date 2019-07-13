@@ -1,6 +1,6 @@
 --- project/vendor/phpunit/phpunit/src/TextUI/ResultPrinter.php	(date 1286705410000)
 +++ project/vendor/phpunit/phpunit/src/TextUI/ResultPrinter.php	(date 1286705410000)
-@@ -259,7 +259,7 @@
+@@ -236,7 +236,7 @@
          if ($this->numTests == -1) {
              $this->numTests      = \count($suite);
              $this->numTestsWidth = \strlen((string) $this->numTests);
@@ -9,7 +9,7 @@
          }
      }
 
-@@ -327,18 +327,10 @@
+@@ -302,18 +302,10 @@
          }
 
          if ($this->defectListPrinted) {
@@ -30,8 +30,8 @@
 
          $i = 1;
 
-@@ -412,83 +404,12 @@
-
+@@ -390,83 +382,12 @@
+      */
      protected function printHeader(): void
      {
 -        $this->write("\n\n" . Timer::resourceUsage() . "\n\n");

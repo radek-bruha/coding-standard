@@ -74,7 +74,7 @@ abstract class AbstractTestCase extends TestCase
                 $this->processPatch($file, $patch, TRUE);
             }
 
-            if (strpos($line, 'FAILED') !== FALSE) {
+            if (strpos($line, 'FAILED') !== FALSE || strpos($line, 'fuzz') !== FALSE) {
                 self::fail(sprintf('%s: %s', $patch, $line));
             }
         }

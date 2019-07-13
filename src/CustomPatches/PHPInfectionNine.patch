@@ -1,5 +1,5 @@
---- backend/vendor/infection/infection/src/Performance/Listener/PerformanceLoggerSubscriber.php	(date 1286705410000)
-+++ backend/vendor/infection/infection/src/Performance/Listener/PerformanceLoggerSubscriber.php	(date 1286705410000)
+--- project/vendor/infection/infection/src/Performance/Listener/PerformanceLoggerSubscriber.php	(date 1286705410000)
++++ project/vendor/infection/infection/src/Performance/Listener/PerformanceLoggerSubscriber.php	(date 1286705410000)
 @@ -69,15 +69,8 @@
  
      public function onApplicationExecutionFinished(): void

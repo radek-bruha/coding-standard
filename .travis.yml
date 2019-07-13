@@ -12,7 +12,8 @@ before_script:
 script:
     - vendor/bin/phpcs src tests -p --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml
     - vendor/bin/phpstan analyse src tests -c ruleset.neon -l 7
-    - vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml --whitelist src
+    - export PARALLEL=PARALLEL; vendor/bin/paratest tests -p 8 --runner WrapperRunner --coverage-clover build/logs/clover.xml --coverage-xml=/tmp/coverage/coverage-xml --log-junit=/tmp/coverage/phpunit.junit.xml --whitelist src; export PARALLEL;
+    - export INFECTION=INFECTION; vendor/bin/infection -j8 --coverage=/tmp/coverage --only-covered --no-ansi; export INFECTION;
 
 after_success:
     - vendor/bin/php-coveralls
