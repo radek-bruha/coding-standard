@@ -24,6 +24,22 @@ vendor/bin/phpcs bin src tests -pvvv --extensions=php --standard=ruleset.xml | v
 001.000s (006.666%): SniffName
 ```
 
+**[**PHPUnit**](https://github.com/sebastianbergmann/phpunit) Analyzer Usage**
+
+```
+vendor/bin/phpunit tests --log-junit=/tmp/log.xml && clear && cat /tmp/log.xml | vendor/bin/phpunit-analyzer
+vendor/bin/paratest tests -p 8 --runner WrapperRunner --log-junit=/tmp/log.xml && clear && cat /tmp/log.xml | vendor/bin/phpunit-analyzer
+```
+
+```
+015.000s (100.000%): Analyzed 100 000 rows of logs in 010.000s with 100.000MB RAM usage
+005.000s (033.333%): TestClass::testMethod
+004.000s (026.666%): TestClass::testMethod
+003.000s (020.000%): TestClass::testMethod
+002.000s (013.333%): TestClass::testMethod
+001.000s (006.666%): TestClass::testMethod
+```
+
 **[**PHPCodeSniffer**](https://github.com/squizlabs/PHP_CodeSniffer) & [**PHPStan**](https://github.com/phpstan/phpstan) & [**PHPUnit**](https://github.com/sebastianbergmann/phpunit) & [**PHPParaTest**](https://github.com/paratestphp/paratest) & [**PHPInfection**](https://github.com/infection/infection) Clean Unified Output Usage**
 
 ```

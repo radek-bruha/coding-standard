@@ -13,10 +13,13 @@
         }
     },
     "bin": [
-        "bin/phpcs-analyzer"
+        "bin/phpcs-analyzer",
+        "bin/phpunit-analyzer"
     ],
     "require": {
         "php": "^7.1",
+        "ext-simplexml": "*",
+        "ext-tokenizer": "*",
         "brianium/paratest": "^3.0",
         "cweagans/composer-patches": "^1.6",
         "infection/infection": "^0.13",

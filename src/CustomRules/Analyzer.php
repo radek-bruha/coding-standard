@@ -2,6 +2,8 @@
 
 namespace Bruha\CodingStandard\CustomRules;
 
+use SimpleXMLElement;
+
 /**
  * Class Analyzer
  *
@@ -15,7 +17,7 @@ final class Analyzer
      *
      * @return int
      */
-    public static function analyze(string $data): int
+    public static function phpCodeSniffer(string $data): int
     {
         $timestamp = microtime(TRUE);
         $results   = [];
@@ -57,6 +59,58 @@ final class Analyzer
                     ];
                 }
             }
+        }
+
+        usort(
+            $results,
+            static function (array $one, array $two): int {
+                return $two[1] <=> $one[1];
+            }
+        );
+
+        echo sprintf(
+            '%07.3fs (100.000%%): Analyzed %s rows of logs in %07.3fs with %07.3fMB RAM usage%s',
+            $total,
+            number_format(count($logs), 0, '.', ' '),
+            microtime(TRUE) - $timestamp,
+            memory_get_peak_usage(TRUE) / 1024 ** 2,
+            PHP_EOL
+        );
+
+        foreach ($results as $result) {
+            [
+                $name,
+                $time,
+            ] = $result;
+
+            echo sprintf('%07.3fs (%07.3f%%): %s%s', $time, $time / $total * 100, $name, PHP_EOL);
+        }
+
+        return 0;
+    }
+
+    /**
+     * @param string $data
+     *
+     * @return int
+     */
+    public static function phpUnit(string $data): int
+    {
+        $timestamp = microtime(TRUE);
+        $results   = [];
+        $total     = 0;
+        $logs      = (new SimpleXMLElement($data))->xpath('//testcase') ?: [];
+
+        /** @var SimpleXMLElement $log */
+        foreach ($logs as $log) {
+            $attributes = $log->attributes();
+            $time       = (float) $attributes['time'];
+            $total     += $time;
+
+            $results[] = [
+                sprintf('%s::%s', $attributes['class'], $attributes['name']),
+                $time,
+            ];
         }
 
         usort(

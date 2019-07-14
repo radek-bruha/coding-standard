@@ -5,4 +5,4 @@ use Bruha\CodingStandard\CustomRules\Analyzer;
 
 require __DIR__ . (is_file(__DIR__ . '/../../../autoload.php') ? '/../../../autoload.php' : '/../vendor/autoload.php');
 
-exit(Analyzer::phpCodeSniffer((string) stream_get_contents(STDIN)));
+exit(Analyzer::phpUnit((string) stream_get_contents(STDIN)));
