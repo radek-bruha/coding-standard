@@ -19,7 +19,7 @@ final class ConstructorSniffTest extends AbstractTestCase
     private $sniff = ConstructorSniff::class;
 
     /**
-     *
+     * @covers
      */
     public function testSuccess(): void
     {
@@ -29,7 +29,7 @@ final class ConstructorSniffTest extends AbstractTestCase
     }
 
     /**
-     *
+     * @covers
      */
     public function testMissing(): void
     {

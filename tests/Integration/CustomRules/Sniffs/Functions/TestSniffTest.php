@@ -19,7 +19,7 @@ final class TestSniffTest extends AbstractTestCase
     private $sniff = TestSniff::class;
 
     /**
-     *
+     * @covers
      */
     public function testSuccess(): void
     {
@@ -29,7 +29,7 @@ final class TestSniffTest extends AbstractTestCase
     }
 
     /**
-     *
+     * @covers
      */
     public function testMissing(): void
     {
@@ -43,6 +43,26 @@ final class TestSniffTest extends AbstractTestCase
             $this->sniff,
             'CustomRules.Functions.Test.Final',
             'Usage of abstract or normal test class is not allowed.'
+        );
+
+        self::assertNotSuccess(
+            $result,
+            13,
+            5,
+            0,
+            $this->sniff,
+            'CustomRules.Functions.Test.Covers',
+            'Usage of test method without @covers annotation is not allowed.'
+        );
+
+        self::assertNotSuccess(
+            $result,
+            21,
+            5,
+            0,
+            $this->sniff,
+            'CustomRules.Functions.Test.Covers',
+            'Usage of @covers annotation with namespace is not allowed.'
         );
     }
 

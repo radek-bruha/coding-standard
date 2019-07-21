@@ -19,6 +19,14 @@ class TestSniffMissingTest
     }
 
     /**
+     * @covers \Tests\Integration\CustomRules\Sniffs\Functions\Data\TestSniffMissingTest::prepareData
+     */
+    public function testInt(): void
+    {
+        $this->prepareData();
+    }
+
+    /**
      * @return array
      */
     private function prepareData(): array

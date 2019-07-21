@@ -19,7 +19,7 @@ final class ConcatenationSniffTest extends AbstractTestCase
     private $sniff = ConcatenationSniff::class;
 
     /**
-     *
+     * @covers
      */
     public function testSuccess(): void
     {
@@ -29,7 +29,7 @@ final class ConcatenationSniffTest extends AbstractTestCase
     }
 
     /**
-     *
+     * @covers
      */
     public function testMissing(): void
     {

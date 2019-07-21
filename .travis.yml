@@ -3,11 +3,11 @@ language: php
 php:
     - 7.2
     - 7.3
-    - 7.4snapshot
 
 before_script:
     - composer install -o --no-ansi --no-suggest
     - composer update -o --no-ansi --no-suggest
+    - export PARALLEL=PARALLEL; vendor/bin/paratest tests -p 8 --runner WrapperRunner --coverage-clover build/logs/clover.xml --coverage-xml=/tmp/coverage/coverage-xml --log-junit=/tmp/coverage/phpunit.junit.xml --whitelist src; export PARALLEL;
 
 script:
     - vendor/bin/phpcs src tests -p --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml

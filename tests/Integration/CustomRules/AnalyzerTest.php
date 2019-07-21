@@ -14,7 +14,7 @@ final class AnalyzerTest extends AbstractTestCase
 {
 
     /**
-     *
+     * @covers Analyzer::phpCodeSniffer
      */
     public function testPhpCodeSniffer(): void
     {
@@ -36,7 +36,7 @@ final class AnalyzerTest extends AbstractTestCase
     }
 
     /**
-     *
+     * @covers Analyzer::phpUnit
      */
     public function testPhpUnit(): void
     {

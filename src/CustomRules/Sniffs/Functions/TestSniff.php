@@ -2,19 +2,16 @@
 
 namespace Bruha\CodingStandard\CustomRules\Sniffs\Functions;
 
+use Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff;
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
  * Class TestSniff
  *
  * @package Bruha\CodingStandard\CustomRules\Sniffs\Functions
  */
-final class TestSniff implements Sniff
+final class TestSniff extends AbstractSniff
 {
-
-    private const CODE    = 'code';
-    private const CONTENT = 'content';
 
     /**
      * @return int[]
@@ -33,6 +30,8 @@ final class TestSniff implements Sniff
     public function process(File $file, $position)
     {
         $tokens        = $file->getTokens();
+        $coverages     = [];
+        $annotations   = [];
         $startPosition = (int) $position;
 
         if (substr($tokens[$position + 2][self::CONTENT], -4) === 'Test') {
@@ -43,14 +42,52 @@ final class TestSniff implements Sniff
                 if ($tokens[$position - 2][self::CODE] === T_PUBLIC) {
                     if (substr($tokens[$position + 2][self::CONTENT], 0, 4) !== 'test') {
                         $hasTests = FALSE;
+                    } else {
+                        $innerPosition = $file->findPrevious(T_DOC_COMMENT_OPEN_TAG, $position);
+
+                        if (is_int($innerPosition)) {
+                            $hasCoverage = FALSE;
+
+                            foreach ($this->getDocumentComment($file, $innerPosition) as $comment) {
+                                if (strpos($comment, '@covers') !== FALSE) {
+                                    $hasCoverage = TRUE;
+
+                                    if (strpos($comment, '\\') !== FALSE) {
+                                        $annotations[] = $innerPosition;
+                                    }
+                                }
+                            }
+
+                            if (!$hasCoverage) {
+                                $coverages[] = $innerPosition;
+                            }
+                        }
                     }
                 }
 
                 $position = $file->findNext(T_FUNCTION, $position + 1);
             }
 
-            if ($hasTests && !is_int($file->findPrevious(T_FINAL, $startPosition))) {
-                $file->addError('Usage of abstract or normal test class is not allowed.', $startPosition, 'Final');
+            if ($hasTests) {
+                if (!is_int($file->findPrevious(T_FINAL, $startPosition))) {
+                    $file->addError('Usage of abstract or normal test class is not allowed.', $startPosition, 'Final');
+                }
+
+                foreach ($coverages as $coverage) {
+                    $file->addError(
+                        'Usage of test method without @covers annotation is not allowed.',
+                        $coverage,
+                        'Covers'
+                    );
+                }
+
+                foreach ($annotations as $annotation) {
+                    $file->addError(
+                        'Usage of @covers annotation with namespace is not allowed.',
+                        $annotation,
+                        'Covers'
+                    );
+                }
             }
         }
     }
