@@ -19,7 +19,10 @@ final class TraitSniffTest extends AbstractTestCase
     private $sniff = TraitSniff::class;
 
     /**
-     * @covers
+     * @covers TraitSniff::register
+     * @covers TraitSniff::process
+     * @covers TraitSniff::processCommenting
+     * @covers TraitSniff::replacePlaceholders
      */
     public function testSuccess(): void
     {
@@ -29,7 +32,10 @@ final class TraitSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers
+     * @covers TraitSniff::register
+     * @covers TraitSniff::process
+     * @covers TraitSniff::processCommenting
+     * @covers TraitSniff::replacePlaceholders
      */
     public function testMissing(): void
     {

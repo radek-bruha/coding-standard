@@ -19,7 +19,10 @@ final class InterfaceSniffTest extends AbstractTestCase
     private $sniff = InterfaceSniff::class;
 
     /**
-     * @covers
+     * @covers InterfaceSniff::register
+     * @covers InterfaceSniff::process
+     * @covers InterfaceSniff::processCommenting
+     * @covers InterfaceSniff::replacePlaceholders
      */
     public function testSuccess(): void
     {
@@ -29,7 +32,10 @@ final class InterfaceSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers
+     * @covers InterfaceSniff::register
+     * @covers InterfaceSniff::process
+     * @covers InterfaceSniff::processCommenting
+     * @covers InterfaceSniff::replacePlaceholders
      */
     public function testMissing(): void
     {

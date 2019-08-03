@@ -13,7 +13,7 @@ final class PatchesTest extends AbstractTestCase
 {
 
     /**
-     * @covers
+     * @coversNothing
      */
     public function testPhpCodeSniffer(): void
     {
@@ -22,7 +22,7 @@ final class PatchesTest extends AbstractTestCase
     }
 
     /**
-     * @covers
+     * @coversNothing
      */
     public function testPhpStan(): void
     {
@@ -31,7 +31,7 @@ final class PatchesTest extends AbstractTestCase
     }
 
     /**
-     * @covers
+     * @coversNothing
      */
     public function testPhpUnit(): void
     {
@@ -40,7 +40,7 @@ final class PatchesTest extends AbstractTestCase
     }
 
     /**
-     * @covers
+     * @coversNothing
      */
     public function testPhpParaTest(): void
     {
@@ -48,7 +48,7 @@ final class PatchesTest extends AbstractTestCase
     }
 
     /**
-     * @covers
+     * @coversNothing
      */
     public function testPhpInfection(): void
     {
@@ -91,7 +91,7 @@ final class PatchesTest extends AbstractTestCase
     }
 
     /**
-     * @covers
+     * @coversNothing
      */
     public function testDoctrineAnnotation(): void
     {

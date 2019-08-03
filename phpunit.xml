@@ -9,4 +9,7 @@
             <directory>src</directory>
         </whitelist>
     </filter>
+    <extensions>
+        <extension class="Bruha\CodingStandard\CustomHooks\PhpUnitHook"/>
+    </extensions>
 </phpunit>

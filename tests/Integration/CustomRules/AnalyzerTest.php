@@ -30,7 +30,7 @@ final class AnalyzerTest extends AbstractTestCase
             (string) array_shift($output)
         );
         self::assertRegExp(
-            '/.+ \(\d+\.\d+%\): .+Sniff/',
+            '/\d+\.\d+s \(\d+\.\d+%\): .+Sniff/',
             (string) array_shift($output)
         );
     }
@@ -52,7 +52,7 @@ final class AnalyzerTest extends AbstractTestCase
             (string) array_shift($output)
         );
         self::assertRegExp(
-            '/.+ \(\d+\.\d+%\): .+Test::test.+/',
+            '/\d+\.\d+s \(\d+\.\d+%\): .+::.+/',
             (string) array_shift($output)
         );
     }

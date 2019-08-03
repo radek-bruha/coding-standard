@@ -19,7 +19,10 @@ final class ClassSniffTest extends AbstractTestCase
     private $sniff = ClassSniff::class;
 
     /**
-     * @covers
+     * @covers ClassSniff::register
+     * @covers ClassSniff::process
+     * @covers ClassSniff::processCommenting
+     * @covers ClassSniff::replacePlaceholders
      */
     public function testSuccess(): void
     {
@@ -29,7 +32,10 @@ final class ClassSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers
+     * @covers ClassSniff::register
+     * @covers ClassSniff::process
+     * @covers ClassSniff::processCommenting
+     * @covers ClassSniff::replacePlaceholders
      */
     public function testMissing(): void
     {
@@ -38,7 +44,7 @@ final class ClassSniffTest extends AbstractTestCase
         self::assertNotSuccess(
             $result,
             5,
-            13,
+            8,
             0,
             $this->sniff,
             'CustomRules.Commenting.Class.Comment',
@@ -48,7 +54,7 @@ final class ClassSniffTest extends AbstractTestCase
         self::assertNotSuccess(
             $result,
             5,
-            13,
+            8,
             1,
             $this->sniff,
             'CustomRules.Commenting.Class.Comment',

@@ -7,12 +7,12 @@ php:
 before_script:
     - composer install -o --no-ansi --no-suggest
     - composer update -o --no-ansi --no-suggest
-    - export PARALLEL=PARALLEL; vendor/bin/paratest tests -p 8 --runner WrapperRunner --coverage-clover build/logs/clover.xml --coverage-xml=/tmp/coverage/coverage-xml --log-junit=/tmp/coverage/phpunit.junit.xml --whitelist src; export PARALLEL;
+    - export PARALLEL=PARALLEL; vendor/bin/paratest tests -p 8 --runner WrapperRunner; export PARALLEL;
 
 script:
-    - vendor/bin/phpcs src tests -p --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml
-    - vendor/bin/phpstan analyse src tests -c ruleset.neon -l 7
-    - export PARALLEL=PARALLEL; vendor/bin/paratest tests -p 8 --runner WrapperRunner --coverage-clover build/logs/clover.xml --coverage-xml=/tmp/coverage/coverage-xml --log-junit=/tmp/coverage/phpunit.junit.xml --whitelist src; export PARALLEL;
+    - vendor/bin/phpcs bin src tests -p --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml
+    - vendor/bin/phpstan analyse bin src tests -c ruleset.neon -l 7
+    - export PARALLEL=PARALLEL; vendor/bin/paratest tests -p8 --runner WrapperRunner --coverage-clover build/logs/clover.xml --coverage-xml=/tmp/coverage/coverage-xml --log-junit=/tmp/coverage/phpunit.junit.xml --whitelist src; export PARALLEL;
     - export INFECTION=INFECTION; vendor/bin/infection -j8 --coverage=/tmp/coverage --only-covered --no-ansi; export INFECTION;
 
 after_success:
