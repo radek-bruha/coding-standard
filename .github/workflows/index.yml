@@ -1,0 +1,60 @@
+name: Continuous Integration
+on: push
+
+jobs:
+    codeStyleCecker:
+        name: Code Style Checker
+        runs-on: ubuntu-latest
+        steps:
+            - name: Clone environment
+              uses: actions/checkout@v1
+            - name: Set up environment
+              uses: docker://alpine:3.10
+              with:
+                  args: /bin/sh -c "apk update && apk upgrade && apk add composer php7-curl php7-dom php7-pdo php7-simplexml php7-tokenizer php7-xml php7-xmlwriter && apk add php7-pecl-pcov --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && composer global require hirak/prestissimo && composer install -o --no-ansi --no-suggest"
+            - name: Code Style Checker
+              uses: docker://alpine:3.10
+              with:
+                   args: /bin/sh -c "apk update && apk upgrade && apk add composer php7-curl php7-dom php7-pdo php7-simplexml php7-tokenizer php7-xml php7-xmlwriter && apk add php7-pecl-pcov --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && vendor/bin/phpcs bin src tests -p --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml"
+    codeStaticAnalysis:
+        name: Code Static Analysis
+        runs-on: ubuntu-latest
+        steps:
+            - name: Clone environment
+              uses: actions/checkout@v1
+            - name: Set up environment
+              uses: docker://alpine:3.10
+              with:
+                    args: /bin/sh -c "apk update && apk upgrade && apk add composer php7-curl php7-dom php7-pdo php7-simplexml php7-tokenizer php7-xml php7-xmlwriter && apk add php7-pecl-pcov --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && composer global require hirak/prestissimo && composer install -o --no-ansi --no-suggest"
+            - name: Code Static Analysis
+              uses: docker://alpine:3.10
+              with:
+                  args: /bin/sh -c "apk update && apk upgrade && apk add composer php7-curl php7-dom php7-pdo php7-simplexml php7-tokenizer php7-xml php7-xmlwriter && apk add php7-pecl-pcov --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && vendor/bin/phpstan analyse bin src tests -c ruleset.neon -l 7"
+    integrationTest:
+        name: Integration Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Clone environment
+              uses: actions/checkout@v1
+            - name: Set up environment
+              uses: docker://alpine:3.10
+              with:
+                  args: /bin/sh -c "apk update && apk upgrade && apk add composer php7-curl php7-dom php7-pdo php7-simplexml php7-tokenizer php7-xml php7-xmlwriter && apk add php7-pecl-pcov --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && composer global require hirak/prestissimo && composer install -o --no-ansi --no-suggest"
+            - name: Integration Test
+              uses: docker://alpine:3.10
+              with:
+                  args: /bin/sh -c "apk update && apk upgrade && apk add composer php7-curl php7-dom php7-pdo php7-simplexml php7-tokenizer php7-xml php7-xmlwriter && apk add php7-pecl-pcov --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && vendor/bin/phpunit tests"
+    infectionTest:
+        name: Infection Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Clone environment
+              uses: actions/checkout@v1
+            - name: Set up environment
+              uses: docker://alpine:3.10
+              with:
+                  args: /bin/sh -c "apk update && apk upgrade && apk add composer php7-curl php7-dom php7-pdo php7-simplexml php7-tokenizer php7-xml php7-xmlwriter && apk add php7-pecl-pcov --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && composer global require hirak/prestissimo && composer install -o --no-ansi --no-suggest"
+            - name: Infection Test
+              uses: docker://alpine:3.10
+              with:
+                    args: /bin/sh -c "apk update && apk upgrade && apk add composer php7-curl php7-dom php7-pdo php7-simplexml php7-tokenizer php7-xml php7-xmlwriter && apk add php7-pecl-pcov --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing && export INFECTION=INFECTION && vendor/bin/infection -j8 --only-covered --no-ansi && export INFECTION"
