@@ -1,5 +1,5 @@
---- backend/vendor/infection/infection/src/Console/OutputFormatter/DotFormatter.php	(date 1286705410000)
-+++ backend/vendor/infection/infection/src/Console/OutputFormatter/DotFormatter.php	(date 1286705410000)
+--- project/vendor/infection/infection/src/Console/OutputFormatter/DotFormatter.php	(date 1286705410000)
++++ project/vendor/infection/infection/src/Console/OutputFormatter/DotFormatter.php	(date 1286705410000)
 @@ -56,25 +56,14 @@
          $this->output = $output;
      }
@@ -44,7 +44,7 @@
          if ($lastDot || $endOfRow) {
              $length = \strlen((string) $mutationCount);
 -            $format = sprintf('   (%%%dd / %%%dd)', $length, $length);
-+            $format = sprintf(' %%%dd / %%%dd (%%3d%%%%)', $length, $length);
++            $format = sprintf(' %%%dd / %%%dd (%%3d%%%%)', max(3, $length), max(3, $length));
  
 -            $this->output->write(sprintf($format, $this->callsCount, $mutationCount));
 +            $this->output->write(sprintf($format, $this->callsCount, $mutationCount, ($this->callsCount / $mutationCount) * 100));

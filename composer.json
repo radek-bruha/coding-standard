@@ -60,7 +60,8 @@
                 "Cleaning VI": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionSix.patch",
                 "Cleaning VII": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionSeven.patch",
                 "Cleaning VIII": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionEight.patch",
-                "Cleaning IX": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionNine.patch"
+                "Cleaning IX": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionNine.patch",
+                "Cleaning X": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionTen.patch"
             },
             "phpstan/phpstan": {
                 "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPStanOne.patch",

@@ -88,6 +88,10 @@ final class PatchesTest extends AbstractTestCase
             'infection/infection/src/Performance/Listener/PerformanceLoggerSubscriber.php',
             'PHPInfectionNine.patch'
         );
+        $this->processPatch(
+            'infection/infection/src/Process/Builder/SubscriberBuilder.php',
+            'PHPInfectionTen.patch'
+        );
     }
 
     /**
