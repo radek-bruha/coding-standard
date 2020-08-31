@@ -9,6 +9,9 @@ use Tests\AbstractTestCase;
  * Class ConstructorSniffTest
  *
  * @package Tests\Integration\CustomRules\Sniffs\Commenting
+ *
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\ConstructorSniff
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class ConstructorSniffTest extends AbstractTestCase
 {
@@ -16,13 +19,10 @@ final class ConstructorSniffTest extends AbstractTestCase
     /**
      * @var string
      */
-    private $sniff = ConstructorSniff::class;
+    private string $sniff = ConstructorSniff::class;
 
     /**
-     * @covers ConstructorSniff::register
-     * @covers ConstructorSniff::process
-     * @covers ConstructorSniff::processCommenting
-     * @covers ConstructorSniff::replacePlaceholders
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\ConstructorSniff::process
      */
     public function testSuccess(): void
     {
@@ -32,10 +32,7 @@ final class ConstructorSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers ConstructorSniff::register
-     * @covers ConstructorSniff::process
-     * @covers ConstructorSniff::processCommenting
-     * @covers ConstructorSniff::replacePlaceholders
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\ConstructorSniff::process
      */
     public function testMissing(): void
     {

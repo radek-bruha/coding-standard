@@ -8,7 +8,13 @@ includes:
     - ./vendor/phpstan/phpstan-strict-rules/rules.neon
     - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
 
+services:
+    errorFormatter.custom:
+        factory: Bruha\CodingStandard\CustomReports\PhpStanReport
+
 parameters:
+    excludes_analyse:
+        - tests/*/Data/*
     ignoreErrors:
         - '#Constant T_ANON_CLASS not found#'
         - '#Constant T_DOC_COMMENT_CLOSE_TAG not found#'
@@ -16,6 +22,5 @@ parameters:
         - '#Constant T_DOC_COMMENT_STRING not found#'
         - '#Constant T_DOC_COMMENT_TAG not found#'
         - '#Constant T_DOC_COMMENT_WHITESPACE not found#'
-        - '#Constant T_PARENT not found#'
-        - '#Constant T_SEMICOLON not found#'
         - '#Constant T_STRING_CONCAT not found#'
+        - '#Expression ".+" on a separate line does not do anything#'

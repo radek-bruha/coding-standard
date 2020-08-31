@@ -5,7 +5,7 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Bruha\\CodingStandard\\": "src/"
+            "Bruha\\CodingStandard\\": "src"
         }
     },
     "autoload-dev": {
@@ -16,69 +16,32 @@
     },
     "bin": [
         "bin/phpcs-analyzer",
-        "bin/phpunit-analyzer"
+        "bin/phpunit-analyzer",
+        "bin/phpunit-coverage-analyzer"
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.4",
         "ext-simplexml": "*",
-        "ext-tokenizer": "*",
-        "brianium/paratest": "^3.0",
-        "cweagans/composer-patches": "^1.6",
-        "dg/bypass-finals": "^1.1",
-        "infection/infection": "^0.13",
-        "php-mock/php-mock-phpunit": "^2.4",
-        "phpstan/phpstan": "^0.11",
-        "phpstan/phpstan-deprecation-rules": "^0.11",
-        "phpstan/phpstan-doctrine": "^0.11",
-        "phpstan/phpstan-nette": "^0.11",
-        "phpstan/phpstan-phpunit": "^0.11",
-        "phpstan/phpstan-strict-rules": "^0.11",
-        "phpunit/phpunit": "^8.3",
-        "slevomat/coding-standard": "^5.0",
-        "squizlabs/php_codesniffer": "^3.4",
+        "brianium/paratest": "^4.2",
+        "dg/bypass-finals": "^v1.2",
+        "infection/infection": "^0.16",
+        "php-mock/php-mock-phpunit": "^2.6",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-deprecation-rules": "^0.12",
+        "phpstan/phpstan-doctrine": "^0.12",
+        "phpstan/phpstan-nette": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12",
+        "phpunit/phpunit": "^9.3",
+        "slevomat/coding-standard": "^6.3",
+        "squizlabs/php_codesniffer": "^3.5",
         "stesie/phpcs-doctrine-annotation-rules": "^1.2"
     },
     "require-dev": {
-        "php-coveralls/php-coveralls": "^2.1"
+        "php-coveralls/php-coveralls": "^2.2"
     },
     "config": {
-        "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
-    },
-    "extra": {
-        "patches": {
-            "brianium/paratest": {
-                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPParaTest.patch"
-            },
-            "infection/infection": {
-                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionOne.patch",
-                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionTwo.patch",
-                "Cleaning III": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionThree.patch",
-                "Cleaning IV": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionFour.patch",
-                "Cleaning V": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionFive.patch",
-                "Cleaning VI": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionSix.patch",
-                "Cleaning VII": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionSeven.patch",
-                "Cleaning VIII": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionEight.patch",
-                "Cleaning IX": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionNine.patch",
-                "Cleaning X": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPInfectionTen.patch"
-            },
-            "phpstan/phpstan": {
-                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPStanOne.patch",
-                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPStanTwo.patch"
-            },
-            "phpunit/phpunit": {
-                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPUnitOne.patch",
-                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPUnitTwo.patch"
-            },
-            "squizlabs/php_codesniffer": {
-                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPCodeSnifferOne.patch",
-                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/PHPCodeSnifferTwo.patch"
-            },
-            "stesie/phpcs-doctrine-annotation-rules": {
-                "Cleaning": "vendor/radek-bruha/coding-standard/src/CustomPatches/DoctrineAnnotationOne.patch",
-                "Cleaning II": "vendor/radek-bruha/coding-standard/src/CustomPatches/DoctrineAnnotationTwo.patch"
-            }
-        }
     }
 }

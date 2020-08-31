@@ -13,14 +13,14 @@ final class ConstructorSniff extends AbstractSniff
 {
 
     /**
-     * @var array
+     * @var mixed[]
      */
-    public $comments = ['{NAME} constructor'];
+    public array $comments = ['{NAME} constructor'];
 
     /**
      * @var string
      */
-    public $anonymousName = 'Anonymous';
+    public string $anonymousName = 'Anonymous';
 
     /**
      * @return int[]
@@ -34,9 +34,9 @@ final class ConstructorSniff extends AbstractSniff
      * @param File  $file
      * @param mixed $position
      *
-     * @return int|void
+     * @return int
      */
-    public function process(File $file, $position)
+    public function process(File $file, $position): int
     {
         $tokens = $file->getTokens();
 
@@ -62,6 +62,8 @@ final class ConstructorSniff extends AbstractSniff
                 }
             }
         }
+
+        return 0;
     }
 
 }

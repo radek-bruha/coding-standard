@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+use Bruha\CodingStandard\CustomRules\Analyzer;
+
+require __DIR__ . (is_file(__DIR__ . '/../../../autoload.php') ? '/../../../autoload.php' : '/../vendor/autoload.php');
+
+exit(Analyzer::phpUnitCoverage((int) ($argv[1] ?? 0), $argv[2] ?? 'var/coverage/coverage-xml/index.xml'));

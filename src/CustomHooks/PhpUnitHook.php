@@ -16,19 +16,19 @@ final class PhpUnitHook implements BeforeTestHook, AfterTestHook, AfterLastTestH
 {
 
     /**
-     * @var array
+     * @var mixed[]
      */
-    private $tests = [];
+    private array $tests = [];
 
     /**
      * @var float
      */
-    private $time = 0.0;
+    private float $time = 0.0;
 
     /**
      * @var int
      */
-    private $count = 0;
+    private int $count = 0;
 
     /**
      * @param string $test

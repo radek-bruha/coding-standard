@@ -9,6 +9,9 @@ use Tests\AbstractTestCase;
  * Class FunctionSniffTest
  *
  * @package Tests\Integration\CustomRules\Sniffs\Commenting
+ *
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\FunctionSniff
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class FunctionSniffTest extends AbstractTestCase
 {
@@ -16,11 +19,10 @@ final class FunctionSniffTest extends AbstractTestCase
     /**
      * @var string
      */
-    private $sniff = FunctionSniff::class;
+    private string $sniff = FunctionSniff::class;
 
     /**
-     * @covers FunctionSniff::register
-     * @covers FunctionSniff::process
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\FunctionSniff::process
      */
     public function testSuccess(): void
     {
@@ -30,8 +32,7 @@ final class FunctionSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers FunctionSniff::register
-     * @covers FunctionSniff::process
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\FunctionSniff::process
      */
     public function testMissing(): void
     {
@@ -44,7 +45,7 @@ final class FunctionSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Function.Comment',
-            'Usage of non-rightmost NULL type hint is not allowed.'
+            'Usage of non-rightmost null type hint is not allowed.'
         );
 
         self::assertNotSuccess(
@@ -54,7 +55,7 @@ final class FunctionSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Function.Comment',
-            'Usage of non-rightmost NULL type hint is not allowed.'
+            'Usage of non-rightmost null type hint is not allowed.'
         );
 
         self::assertNotSuccess(
@@ -64,7 +65,7 @@ final class FunctionSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Function.Comment',
-            'Usage of non-rightmost NULL type hint is not allowed.'
+            'Usage of non-rightmost null type hint is not allowed.'
         );
     }
 

@@ -17,16 +17,16 @@ final class ConcatenationSniff implements Sniff
     private const __DIR__ = '__DIR__';
 
     /**
-     * @var array
+     * @var mixed[]
      */
-    public $start = [
+    public array $start = [
         self::__DIR__,
     ];
 
     /**
-     * @var array
+     * @var mixed[]
      */
-    public $close = [
+    public array $close = [
         self::__DIR__,
     ];
 
@@ -42,9 +42,9 @@ final class ConcatenationSniff implements Sniff
      * @param File  $file
      * @param mixed $position
      *
-     * @return int|void
+     * @return int
      */
-    public function process(File $file, $position)
+    public function process(File $file, $position): int
     {
         $start = $file->getTokens()[$position + 2][self::CONTENT];
         $close = $file->getTokens()[$position - 2][self::CONTENT];
@@ -52,6 +52,8 @@ final class ConcatenationSniff implements Sniff
         if (!in_array($close, $this->start, TRUE) && !in_array($start, $this->close, TRUE)) {
             $file->addError('Usage of string concatenation operator is not allowed.', $position, 'Concatenation');
         }
+
+        return 0;
     }
 
 }

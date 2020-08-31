@@ -25,14 +25,13 @@ final class TestSniff extends AbstractSniff
      * @param File  $file
      * @param mixed $position
      *
-     * @return int|void
+     * @return int
      */
-    public function process(File $file, $position)
+    public function process(File $file, $position): int
     {
-        $tokens        = $file->getTokens();
-        $coverages     = [];
-        $annotations   = [];
-        $startPosition = (int) $position;
+        $tokens      = $file->getTokens();
+        $coverages   = [];
+        $annotations = [];
 
         if (substr($tokens[$position + 2][self::CONTENT], -4) === 'Test') {
             $position = $file->findNext(T_FUNCTION, $position + 1);
@@ -50,9 +49,11 @@ final class TestSniff extends AbstractSniff
 
                             foreach ($this->getDocumentComment($file, $innerPosition) as $comment) {
                                 if (strpos($comment, '@covers') !== FALSE) {
-                                    $hasCoverage = TRUE;
+                                    $hasCoverage         = TRUE;
+                                    $hasNotNamespace     = strpos($comment, '\\') === FALSE;
+                                    $hasNotCoversNothing = strpos($comment, '@coversNothing') === FALSE;
 
-                                    if (strpos($comment, '\\') !== FALSE) {
+                                    if ($hasNotNamespace && $hasNotCoversNothing) {
                                         $annotations[] = $innerPosition;
                                     }
                                 }
@@ -69,10 +70,6 @@ final class TestSniff extends AbstractSniff
             }
 
             if ($hasTests) {
-                if (!is_int($file->findPrevious(T_FINAL, $startPosition))) {
-                    $file->addError('Usage of abstract or normal test class is not allowed.', $startPosition, 'Final');
-                }
-
                 foreach ($coverages as $coverage) {
                     $file->addError(
                         'Usage of test method without @covers annotation is not allowed.',
@@ -83,13 +80,15 @@ final class TestSniff extends AbstractSniff
 
                 foreach ($annotations as $annotation) {
                     $file->addError(
-                        'Usage of @covers annotation with namespace is not allowed.',
+                        'Usage of @covers annotation without namespace is not allowed.',
                         $annotation,
                         'Covers'
                     );
                 }
             }
         }
+
+        return 0;
     }
 
 }

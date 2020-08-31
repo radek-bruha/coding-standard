@@ -7,7 +7,7 @@ namespace Tests\Integration\CustomRules\Sniffs\Functions\Data;
  *
  * @package Tests\Integration\CustomRules\Sniffs\Functions\Data
  */
-class TestSniffMissingTest
+final class TestSniffMissingTest
 {
 
     /**
@@ -19,7 +19,7 @@ class TestSniffMissingTest
     }
 
     /**
-     * @covers \Tests\Integration\CustomRules\Sniffs\Functions\Data\TestSniffMissingTest::prepareData
+     * @covers TestSniffMissingTest::prepareData
      */
     public function testInt(): void
     {
@@ -27,7 +27,7 @@ class TestSniffMissingTest
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     private function prepareData(): array
     {

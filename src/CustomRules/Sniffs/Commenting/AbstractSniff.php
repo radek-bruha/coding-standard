@@ -29,9 +29,9 @@ abstract class AbstractSniff implements Sniff
     ];
 
     /**
-     * @var array
+     * @var mixed[]
      */
-    public $comments = [
+    public array $comments = [
         '{TYPE} {NAME}',
         '@package {NAMESPACE}',
     ];
@@ -71,7 +71,7 @@ abstract class AbstractSniff implements Sniff
      * @param File $file
      * @param int  $position
      *
-     * @return array
+     * @return mixed[]
      */
     protected function getDocumentComment(File $file, int $position): array
     {
@@ -99,23 +99,18 @@ abstract class AbstractSniff implements Sniff
             }
         }
 
-        return array_filter(
-            array_map('trim', $result),
-            static function (string $item): bool {
-                return strlen($item) > 0;
-            }
-        );
+        return array_filter(array_map('trim', $result), static fn (string $item): bool => strlen($item) > 0);
     }
 
     /**
      * @param File        $file
      * @param int         $position
      * @param string      $type
-     * @param string|NULL $customName
+     * @param string|null $customName
      *
-     * @return int|void
+     * @return int
      */
-    protected function processCommenting(File $file, int $position, string $type, ?string $customName = NULL)
+    protected function processCommenting(File $file, int $position, string $type, ?string $customName = NULL): int
     {
         $position = $file->findNext(T_STRING, $position);
 
@@ -134,6 +129,8 @@ abstract class AbstractSniff implements Sniff
                 }
             }
         }
+
+        return 0;
     }
 
     /**
@@ -141,7 +138,7 @@ abstract class AbstractSniff implements Sniff
      * @param int         $position
      * @param string      $type
      * @param string      $string
-     * @param string|NULL $customName
+     * @param string|null $customName
      *
      * @return string
      */
@@ -156,7 +153,7 @@ abstract class AbstractSniff implements Sniff
             self::REPLACE,
             [
                 $this->getNamespaceName($file, $position),
-                $customName ?: $file->getTokens()[$position][self::CONTENT],
+                is_string($customName) ? $customName : $file->getTokens()[$position][self::CONTENT],
                 $type,
             ],
             $string

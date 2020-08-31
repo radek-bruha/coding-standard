@@ -13,9 +13,9 @@ final class FunctionSniff extends AbstractSniff
 {
 
     /**
-     * @var array
+     * @var mixed[]
      */
-    public $rules = ['#(\|null|null\||NULL\|)#' => 'Usage of non-rightmost NULL type hint is not allowed.'];
+    public array $rules = ['#(?:\|NULL|null\||NULL\|)#' => 'Usage of non-rightmost null type hint is not allowed.'];
 
     /**
      * @return int[]
@@ -29,15 +29,17 @@ final class FunctionSniff extends AbstractSniff
      * @param File  $file
      * @param mixed $position
      *
-     * @return int|void
+     * @return int
      */
-    public function process(File $file, $position)
+    public function process(File $file, $position): int
     {
         foreach ($this->rules as $pattern => $message) {
             if (preg_match($pattern, $file->getTokens()[$position][self::CONTENT]) === 1) {
                 $file->addError($message, $position, 'Comment');
             }
         }
+
+        return 0;
     }
 
 }

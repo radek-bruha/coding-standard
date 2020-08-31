@@ -24,11 +24,13 @@ final class TraitSniff extends AbstractSniff
      * @param File  $file
      * @param mixed $position
      *
-     * @return int|void
+     * @return int
      */
-    public function process(File $file, $position)
+    public function process(File $file, $position): int
     {
         $this->processCommenting($file, $position, self::TYPE_TRAIT);
+
+        return 0;
     }
 
 }

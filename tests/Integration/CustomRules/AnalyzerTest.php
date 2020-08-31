@@ -9,12 +9,14 @@ use Tests\AbstractTestCase;
  * Class AnalyzerTest
  *
  * @package Tests\Integration\CustomRules
+ *
+ * @covers \Bruha\CodingStandard\CustomRules\Analyzer
  */
 final class AnalyzerTest extends AbstractTestCase
 {
 
     /**
-     * @covers Analyzer::phpCodeSniffer
+     * @covers \Bruha\CodingStandard\CustomRules\Analyzer::phpCodeSniffer
      */
     public function testPhpCodeSniffer(): void
     {
@@ -23,20 +25,15 @@ final class AnalyzerTest extends AbstractTestCase
         $output = explode(PHP_EOL, (string) ob_get_contents());
         ob_end_clean();
 
-        self::assertGreaterThan(0, count($output));
-        self::assertEquals('', array_pop($output));
-        self::assertRegExp(
+        self::assertMatchesRegularExpression(
             '/\d+\.\d+s \(100\.000%\): Analyzed \d+ \d+ rows of logs in \d+\.\d+s with \d+\.\d+MB RAM usage/',
-            (string) array_shift($output)
+            $output[0]
         );
-        self::assertRegExp(
-            '/\d+\.\d+s \(\d+\.\d+%\): .+Sniff/',
-            (string) array_shift($output)
-        );
+        self::assertMatchesRegularExpression('/\d+\.\d+s \(\d+\.\d+%\): .+Sniff/', $output[1]);
     }
 
     /**
-     * @covers Analyzer::phpUnit
+     * @covers \Bruha\CodingStandard\CustomRules\Analyzer::phpUnit
      */
     public function testPhpUnit(): void
     {
@@ -45,16 +42,31 @@ final class AnalyzerTest extends AbstractTestCase
         $output = explode(PHP_EOL, (string) ob_get_contents());
         ob_end_clean();
 
-        self::assertGreaterThan(0, count($output));
-        self::assertEquals('', array_pop($output));
-        self::assertRegExp(
+        self::assertMatchesRegularExpression(
             '/\d+\.\d+s \(100\.000%\): Analyzed \d+ rows of logs in \d+\.\d+s with \d+\.\d+MB RAM usage/',
-            (string) array_shift($output)
+            $output[0]
         );
-        self::assertRegExp(
-            '/\d+\.\d+s \(\d+\.\d+%\): .+::.+/',
-            (string) array_shift($output)
-        );
+        self::assertMatchesRegularExpression('/\d+\.\d+s \(\d+\.\d+%\): .+::.+/', $output[1]);
+    }
+
+    /**
+     * @covers \Bruha\CodingStandard\CustomRules\Analyzer::phpUnitCoverage
+     */
+    public function testPhpUnitCoverage(): void
+    {
+        ob_start();
+        Analyzer::phpUnitCoverage(50, __DIR__ . '/coverage.xml');
+        $output = explode(PHP_EOL, (string) ob_get_contents());
+        ob_end_clean();
+
+        self::assertEquals('', $output[0]);
+
+        ob_start();
+        Analyzer::phpUnitCoverage(100, __DIR__ . '/coverage.xml');
+        $output = explode(PHP_EOL, (string) ob_get_contents());
+        ob_end_clean();
+
+        self::assertEquals('Minimum required code coverage is 100%, but actual is 50%!', $output[1]);
     }
 
 }

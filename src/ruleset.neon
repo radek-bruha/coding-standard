@@ -7,3 +7,7 @@ includes:
     - ./../../../phpstan/phpstan-doctrine/rules.neon
     - ./../../../phpstan/phpstan-strict-rules/rules.neon
     - ./../../../phpstan/phpstan-deprecation-rules/rules.neon
+
+services:
+    errorFormatter.custom:
+        factory: Bruha\CodingStandard\CustomReports\PhpStanReport
