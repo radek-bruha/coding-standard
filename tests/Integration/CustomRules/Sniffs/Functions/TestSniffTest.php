@@ -9,6 +9,9 @@ use Tests\AbstractTestCase;
  * Class TestSniffTest
  *
  * @package Tests\Integration\CustomRules\Sniffs\Functions
+ *
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Functions\TestSniff
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class TestSniffTest extends AbstractTestCase
 {
@@ -16,12 +19,10 @@ final class TestSniffTest extends AbstractTestCase
     /**
      * @var string
      */
-    private $sniff = TestSniff::class;
+    private string $sniff = TestSniff::class;
 
     /**
-     * @covers TestSniff::register
-     * @covers TestSniff::process
-     * @covers TestSniff::getDocumentComment
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Functions\TestSniff::process
      */
     public function testSuccess(): void
     {
@@ -31,23 +32,11 @@ final class TestSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers TestSniff::register
-     * @covers TestSniff::process
-     * @covers TestSniff::getDocumentComment
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Functions\TestSniff::process
      */
     public function testMissing(): void
     {
         $result = $this->processFile(__DIR__ . '/Data/TestSniffMissingTest.php', $this->sniff);
-
-        self::assertNotSuccess(
-            $result,
-            10,
-            1,
-            0,
-            $this->sniff,
-            'CustomRules.Functions.Test.Final',
-            'Usage of abstract or normal test class is not allowed.'
-        );
 
         self::assertNotSuccess(
             $result,
@@ -56,7 +45,7 @@ final class TestSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Functions.Test.Covers',
-            'Usage of test method without @covers annotation is not allowed.'
+            'Usage of test method without @covers annotation is not allowed.',
         );
 
         self::assertNotSuccess(
@@ -66,7 +55,7 @@ final class TestSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Functions.Test.Covers',
-            'Usage of @covers annotation with namespace is not allowed.'
+            'Usage of @covers annotation without namespace is not allowed.',
         );
     }
 

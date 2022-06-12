@@ -1,0 +1,28 @@
+name: Workflow
+
+on:
+    push:
+        branches:
+            - master
+    schedule:
+        -   cron: '0 0 * * *'
+
+jobs:
+    job:
+        name: Job
+        runs-on: ubuntu-20.04
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: shivammathur/setup-php@v2
+            -   name: Step
+                env:
+                    COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                run: |
+                    composer install --ignore-platform-reqs --no-ansi
+                    vendor/bin/phpcs bin src tests -p --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml
+                    vendor/bin/phpcs bin src tests -pvvv --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml | bin/phpcs-analyzer
+                    vendor/bin/phpstan analyse bin src tests -c ruleset.neon -l 8
+                    vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml --log-junit=/tmp/log.xml && cat /tmp/log.xml | bin/phpunit-analyzer
+                    vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml --log-junit=/tmp/log.xml && cat /tmp/log.xml | bin/phpunit-coverage-analyzer 100
+                    export INFECTION=INFECTION && vendor/bin/infection -j8 --only-covered --no-ansi && export INFECTION
+                    vendor/bin/php-coveralls

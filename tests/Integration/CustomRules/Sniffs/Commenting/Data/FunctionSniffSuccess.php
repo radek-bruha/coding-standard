@@ -11,11 +11,11 @@ final class FunctionSniffSuccess
 {
 
     /**
-     * @param string|NULL $stringOne
-     * @param string|NULL $stringTwo
-     * @param string|NULL $stringThree
+     * @param string|null $stringOne
+     * @param string|null $stringTwo
+     * @param string|null $stringThree
      *
-     * @return string|NULL
+     * @return string|null
      */
     public function successNull(
         ?string $stringOne = NULL,

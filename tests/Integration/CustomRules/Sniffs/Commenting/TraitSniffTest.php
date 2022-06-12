@@ -9,6 +9,9 @@ use Tests\AbstractTestCase;
  * Class TraitSniffTest
  *
  * @package Tests\Integration\CustomRules\Sniffs\Commenting
+ *
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\TraitSniff
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class TraitSniffTest extends AbstractTestCase
 {
@@ -16,13 +19,10 @@ final class TraitSniffTest extends AbstractTestCase
     /**
      * @var string
      */
-    private $sniff = TraitSniff::class;
+    private string $sniff = TraitSniff::class;
 
     /**
-     * @covers TraitSniff::register
-     * @covers TraitSniff::process
-     * @covers TraitSniff::processCommenting
-     * @covers TraitSniff::replacePlaceholders
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\TraitSniff::process
      */
     public function testSuccess(): void
     {
@@ -32,10 +32,7 @@ final class TraitSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers TraitSniff::register
-     * @covers TraitSniff::process
-     * @covers TraitSniff::processCommenting
-     * @covers TraitSniff::replacePlaceholders
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\TraitSniff::process
      */
     public function testMissing(): void
     {
@@ -48,7 +45,7 @@ final class TraitSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Trait.Comment',
-            "Usage of trait comment without 'Trait TraitSniffMissing' is not allowed."
+            "Usage of trait comment without 'Trait TraitSniffMissing' is not allowed.",
         );
 
         self::assertNotSuccess(
@@ -58,7 +55,7 @@ final class TraitSniffTest extends AbstractTestCase
             1,
             $this->sniff,
             'CustomRules.Commenting.Trait.Comment',
-            "Usage of trait comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed."
+            "Usage of trait comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed.",
         );
     }
 

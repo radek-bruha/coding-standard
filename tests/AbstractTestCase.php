@@ -3,8 +3,10 @@
 namespace Tests;
 
 use PHP_CodeSniffer\Config;
+use PHP_CodeSniffer\Exceptions\DeepExitException;
 use PHP_CodeSniffer\Files\LocalFile;
 use PHP_CodeSniffer\Runner;
+use PHP_CodeSniffer\Sniffs\Sniff;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,14 +22,16 @@ abstract class AbstractTestCase extends TestCase
     /**
      * @var Runner
      */
-    private $runner;
+    private Runner $runner;
 
     /**
      * AbstractTestCase constructor
      *
-     * @param string|NULL $name
-     * @param array       $data
+     * @param string|null $name
+     * @param mixed[]     $data
      * @param string      $dataName
+     *
+     * @throws DeepExitException
      */
     public function __construct(?string $name = NULL, array $data = [], string $dataName = '')
     {
@@ -49,7 +53,10 @@ abstract class AbstractTestCase extends TestCase
      */
     protected function processFile(string $file, string $sniff): LocalFile
     {
-        $this->runner->ruleset->sniffs = [$sniff => new $sniff()];
+        /** @var Sniff $sniffInstance */
+        $sniffInstance = new $sniff();
+
+        $this->runner->ruleset->sniffs = [$sniff => $sniffInstance];
         $this->runner->ruleset->populateTokenListeners();
 
         $file = new LocalFile($file, $this->runner->ruleset, $this->runner->config);
@@ -79,7 +86,7 @@ abstract class AbstractTestCase extends TestCase
             }
         }
 
-        self::assertTrue(TRUE);
+        self::assertEquals(1, TRUE);
     }
 
     /**
@@ -99,6 +106,7 @@ abstract class AbstractTestCase extends TestCase
      * @param string    $class
      * @param string    $name
      * @param string    $message
+     * @param int       $columnTwo
      */
     protected function assertNotSuccess(
         LocalFile $file,
@@ -107,9 +115,10 @@ abstract class AbstractTestCase extends TestCase
         int $rank,
         string $class,
         string $name,
-        string $message
+        string $message,
+        int $columnTwo = 0,
     ): void {
-        $error = $file->getErrors()[$row][$column][$rank];
+        $error = $file->getErrors()[$row][$column][$rank] ?? $file->getErrors()[$row][$columnTwo][$rank];
 
         self::assertEquals($class, $error['listener']);
         self::assertEquals($name, $error['source']);

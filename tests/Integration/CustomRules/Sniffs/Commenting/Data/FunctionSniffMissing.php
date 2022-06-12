@@ -12,10 +12,10 @@ final class FunctionSniffMissing
 
     /**
      * @param null|string $stringOne
-     * @param string|null $stringTwo
+     * @param string|NULL $stringTwo
      * @param NULL|string $stringThree
      *
-     * @return string|NULL
+     * @return string|null
      */
     public function missingNull(
         ?string $stringOne = NULL,

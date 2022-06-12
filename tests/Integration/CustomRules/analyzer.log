@@ -1287,7 +1287,7 @@ Registered DoctrineAnnotationCodingStandard\Sniffs\Commenting\VarTagSniff
 	*** END PHP TOKENIZING ***
 Creating file list... DONE (1 files in queue)
 Changing into directory /var/www/project/src/CustomRules
-Processing Analyzer.php 
+Processing Analyzer.php
 	*** START PHP TOKENIZING ***
 	Process token [0]: T_OPEN_TAG => <?php[30;1m·[0m
 	Process token [1]: T_DECLARE => declare
@@ -3182,7 +3182,7 @@ Processing Analyzer.php
 	* token 108 on line 21 changed from T_OPEN_SQUARE_BRACKET to T_OPEN_SHORT_ARRAY
 	* token 109 on line 21 changed from T_CLOSE_SQUARE_BRACKET to T_CLOSE_SHORT_ARRAY
 	*** END ADDITIONAL PHP PROCESSING ***
-[PHP => 581 tokens in 90 lines]... 
+[PHP => 581 tokens in 90 lines]...
 	*** START TOKEN PROCESSING ***
 		Process token 0: T_OPEN_TAG => <?php[30;1m·[0m
 			Processing PHP_CodeSniffer\Standards\Generic\Sniffs\Classes\DuplicateClassNameSniff... DONE in 0.0008 seconds

@@ -9,6 +9,9 @@ use Tests\AbstractTestCase;
  * Class ConcatenationSniffTest
  *
  * @package Tests\Integration\CustomRules\Sniffs\Strings
+ *
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Strings\ConcatenationSniff
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class ConcatenationSniffTest extends AbstractTestCase
 {
@@ -16,11 +19,10 @@ final class ConcatenationSniffTest extends AbstractTestCase
     /**
      * @var string
      */
-    private $sniff = ConcatenationSniff::class;
+    private string $sniff = ConcatenationSniff::class;
 
     /**
-     * @covers ConcatenationSniff::register
-     * @covers ConcatenationSniff::process
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Strings\ConcatenationSniff::process
      */
     public function testSuccess(): void
     {
@@ -30,8 +32,7 @@ final class ConcatenationSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers ConcatenationSniff::register
-     * @covers ConcatenationSniff::process
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Strings\ConcatenationSniff::process
      */
     public function testMissing(): void
     {
@@ -44,7 +45,7 @@ final class ConcatenationSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Strings.Concatenation.Concatenation',
-            'Usage of string concatenation operator is not allowed.'
+            'Usage of string concatenation operator is not allowed.',
         );
 
         self::assertNotSuccess(
@@ -54,7 +55,7 @@ final class ConcatenationSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Strings.Concatenation.Concatenation',
-            'Usage of string concatenation operator is not allowed.'
+            'Usage of string concatenation operator is not allowed.',
         );
     }
 

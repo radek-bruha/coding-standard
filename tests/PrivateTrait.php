@@ -21,7 +21,7 @@ trait PrivateTrait
      *
      * @throws LogicException
      */
-    protected function getProperty(object $object, string $name)
+    protected function getProperty(object $object, string $name): mixed
     {
         $reflection = new ReflectionObject($object);
 
@@ -46,7 +46,7 @@ trait PrivateTrait
      *
      * @throws LogicException
      */
-    protected function setProperty(object $object, string $name, $value): void
+    protected function setProperty(object $object, string $name, mixed $value): void
     {
         $reflection = new ReflectionObject($object);
 
@@ -66,15 +66,15 @@ trait PrivateTrait
     }
 
     /**
-     * @param object $object
-     * @param string $name
-     * @param array  $parameters
+     * @param object  $object
+     * @param string  $name
+     * @param mixed[] $parameters
      *
      * @return mixed
      *
      * @throws LogicException
      */
-    protected function invokeMethod(object $object, string $name, array $parameters = [])
+    protected function invokeMethod(object $object, string $name, array $parameters = []): mixed
     {
         $reflection = new ReflectionObject($object);
 

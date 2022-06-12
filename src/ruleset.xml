@@ -1,5 +1,9 @@
 <?xml version='1.0'?>
 <ruleset xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='./../vendor/squizlabs/php_codesniffer/phpcs.xsd' name='Bruha Coding Standard'>
+    <arg value="p"/>
+    <arg name="extensions" value="php"/>
+    <arg name="report" value="Bruha\CodingStandard\CustomReports\PhpCodeSnifferReport"/>
+
     <rule ref='Generic'>
         <exclude name='Generic.Arrays.DisallowShortArraySyntax.Found'/>
         <exclude name='Generic.Classes.OpeningBraceSameLine.BraceOnNewLine'/>
@@ -9,7 +13,8 @@
         <exclude name='Generic.Commenting.DocComment.MissingShort'/>
         <exclude name='Generic.Commenting.DocComment.ParamNotFirst'/>
         <exclude name='Generic.Commenting.DocComment.TagValueIndent'/>
-        <exclude name='Generic.Files.EndFileNewline.NotFound'/>
+        <exclude name='Generic.Files.EndFileNoNewline.Found'/>
+        <exclude name='Generic.Files.ExecutableFile.Executable'/>
         <exclude name='Generic.Files.LineEndings.InvalidEOLChar'/>
         <exclude name='Generic.Files.LineLength.TooLong'/>
         <exclude name='Generic.Files.LowercasedFilename.NotFound'/>
@@ -77,40 +82,57 @@
     <rule ref='./vendor/radek-bruha/coding-standard/src/CustomRules/ruleset.xml'/>
 
     <rule ref='./vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml'>
+        <exclude name='SlevomatCodingStandard.Classes.DisallowConstructorPropertyPromotion.DisallowedConstructorPropertyPromotion'/>
+        <exclude name='SlevomatCodingStandard.Classes.ForbiddenPublicProperty.ForbiddenPublicProperty'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Commenting.EmptyComment.EmptyComment'/>
+        <exclude name='SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment'/>
         <exclude name='SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment.MultiLinePropertyComment'/>
+        <exclude name='SlevomatCodingStandard.Commenting.UselessFunctionDocComment.UselessDocComment'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.NewWithoutParentheses.UselessParentheses'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator.MultiLineTernaryOperatorNotUsed'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison'/>
+        <exclude name='SlevomatCodingStandard.Exceptions.DisallowNonCapturingCatch'/>
+        <exclude name='SlevomatCodingStandard.Files.FunctionLength.FunctionLength'/>
+        <exclude name='SlevomatCodingStandard.Files.LineLength'/>
+        <exclude name='SlevomatCodingStandard.Functions.DisallowArrowFunction'/>
+        <exclude name='SlevomatCodingStandard.Functions.DisallowNamedArguments.DisallowedNamedArgument'/>
+        <exclude name='SlevomatCodingStandard.Functions.DisallowTrailingCommaInCall.DisallowedTrailingComma'/>
+        <exclude name='SlevomatCodingStandard.Functions.DisallowTrailingCommaInClosureUse.DisallowedTrailingComma'/>
+        <exclude name='SlevomatCodingStandard.Functions.DisallowTrailingCommaInDeclaration.DisallowedTrailingComma'/>
+        <exclude name='SlevomatCodingStandard.Functions.FunctionLength.FunctionLength'/>
         <exclude name='SlevomatCodingStandard.Functions.TrailingCommaInCall.MissingTrailingComma'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions.NonFullyQualifiedException'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants.NonFullyQualified'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions.NonFullyQualified'/>
         <exclude name='SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified'/>
-        <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator'/>
+        <exclude name='SlevomatCodingStandard.Numbers.DisallowNumericLiteralSeparator'/>
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostDecrementOperator'/>
+        <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator'/>
+        <exclude name='SlevomatCodingStandard.PHP.DisallowReference'/>
+        <exclude name='SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion'/>
         <exclude name='SlevomatCodingStandard.TypeHints.DisallowArrayTypeHintSyntax.DisallowedArrayTypeHintSyntax'/>
         <exclude name='SlevomatCodingStandard.TypeHints.DisallowArrayTypeHintSyntax.DisallowedArrayTypeHintSyntax'/>
         <exclude name='SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.ParameterTypeHint.UselessAnnotation'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.PropertyTypeHint.UselessAnnotation'/>
+        <exclude name='SlevomatCodingStandard.TypeHints.ReturnTypeHint.UselessAnnotation'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification'/>
         <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment'/>
     </rule>
 
-    <rule ref='./vendor/stesie/phpcs-doctrine-annotation-rules/src/DoctrineAnnotationCodingStandard/ruleset.xml'/>
-
     <rule ref='Generic.Metrics.CyclomaticComplexity'>
         <properties>
             <property name='complexity' value='15'/>
-            <property name='absoluteComplexity ' value='15'/>
+            <property name='absoluteComplexity' value='15'/>
         </properties>
     </rule>
 
@@ -150,24 +172,6 @@
         </properties>
     </rule>
 
-    <rule ref='SlevomatCodingStandard.ControlStructures.ControlStructureSpacing'>
-        <properties>
-            <property name='tokensToCheck' type='array'>
-                <element value='T_DO'/>
-                <element value='T_FOR'/>
-                <element value='T_FOREACH'/>
-                <element value='T_GOTO'/>
-                <element value='T_IF'/>
-                <element value='T_SWITCH'/>
-                <element value='T_THROW'/>
-                <element value='T_TRY'/>
-                <element value='T_WHILE'/>
-                <element value='T_YIELD'/>
-                <element value='T_YIELD_FROM'/>
-            </property>
-        </properties>
-    </rule>
-
     <rule ref='SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly'>
         <properties>
             <property name='searchAnnotations' value='true'/>
@@ -182,8 +186,26 @@
 
     <rule ref='SlevomatCodingStandard.TypeHints.DeclareStrictTypes'>
         <properties>
-            <property name='newlinesCountBetweenOpenTagAndDeclare' value='0'/>
+            <property name='declareOnFirstLine' value='true'/>
             <property name='spacesCountAroundEqualsSign' value='0'/>
+        </properties>
+    </rule>
+
+    <rule ref='SlevomatCodingStandard.Whitespaces.DuplicateSpaces'>
+        <properties>
+            <property name='ignoreSpacesBeforeAssignment' value='true'/>
+            <property name='ignoreSpacesInAnnotation' value='true'/>
+            <property name='ignoreSpacesInComment' value='true'/>
+            <property name='ignoreSpacesInParameters' value='true'/>
+        </properties>
+    </rule>
+
+    <rule ref='SlevomatCodingStandard.Files.TypeNameMatchesFileName'>
+        <properties>
+            <property name='rootNamespaces' type='array'>
+                <element key='src' value='Bruha\CodingStandard'/>
+                <element key='tests' value='Tests'/>
+            </property>
         </properties>
     </rule>
 </ruleset>

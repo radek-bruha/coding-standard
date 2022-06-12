@@ -9,6 +9,9 @@ use Tests\AbstractTestCase;
  * Class ClassSniffTest
  *
  * @package Tests\Integration\CustomRules\Sniffs\Commenting
+ *
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\ClassSniff
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class ClassSniffTest extends AbstractTestCase
 {
@@ -16,13 +19,10 @@ final class ClassSniffTest extends AbstractTestCase
     /**
      * @var string
      */
-    private $sniff = ClassSniff::class;
+    private string $sniff = ClassSniff::class;
 
     /**
-     * @covers ClassSniff::register
-     * @covers ClassSniff::process
-     * @covers ClassSniff::processCommenting
-     * @covers ClassSniff::replacePlaceholders
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\ClassSniff::process
      */
     public function testSuccess(): void
     {
@@ -32,10 +32,7 @@ final class ClassSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers ClassSniff::register
-     * @covers ClassSniff::process
-     * @covers ClassSniff::processCommenting
-     * @covers ClassSniff::replacePlaceholders
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\ClassSniff::process
      */
     public function testMissing(): void
     {
@@ -48,7 +45,8 @@ final class ClassSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Class.Comment',
-            "Usage of class comment without 'Class ClassSniffMissing' is not allowed."
+            "Usage of class comment without 'Class ClassSniffMissing' is not allowed.",
+            13,
         );
 
         self::assertNotSuccess(
@@ -58,7 +56,8 @@ final class ClassSniffTest extends AbstractTestCase
             1,
             $this->sniff,
             'CustomRules.Commenting.Class.Comment',
-            "Usage of class comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed."
+            "Usage of class comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed.",
+            13,
         );
     }
 

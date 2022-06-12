@@ -3,7 +3,6 @@
 namespace Tests\Integration\CustomHooks;
 
 use Bruha\CodingStandard\CustomHooks\PhpUnitHook;
-use DG\BypassFinals;
 use Tests\AbstractTestCase;
 use Tests\PrivateTrait;
 
@@ -11,6 +10,8 @@ use Tests\PrivateTrait;
  * Class PhpUnitHookTest
  *
  * @package Tests\Integration\CustomHooks
+ *
+ * @covers \Bruha\CodingStandard\CustomHooks\PhpUnitHook
  */
 final class PhpUnitHookTest extends AbstractTestCase
 {
@@ -20,30 +21,20 @@ final class PhpUnitHookTest extends AbstractTestCase
     /**
      * @var PhpUnitHook
      */
-    private $hook;
+    private PhpUnitHook $hook;
 
     /**
-     *
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->hook = new PhpUnitHook();
-    }
-
-    /**
-     * @covers PhpUnitHook::executeBeforeTest
+     * @covers \Bruha\CodingStandard\CustomHooks\PhpUnitHook::executeBeforeTest
      */
     public function testExecuteBeforeTest(): void
     {
         $this->hook->executeBeforeTest('Test');
 
-        self::assertTrue(in_array(BypassFinals::PROTOCOL, stream_get_wrappers(), TRUE));
+        self::assertTrue(in_array('file', stream_get_wrappers(), TRUE));
     }
 
     /**
-     * @covers PhpUnitHook::executeAfterTest
+     * @covers \Bruha\CodingStandard\CustomHooks\PhpUnitHook::executeAfterTest
      */
     public function testExecuteAfterTest(): void
     {
@@ -55,7 +46,7 @@ final class PhpUnitHookTest extends AbstractTestCase
     }
 
     /**
-     * @covers PhpUnitHook::executeAfterLastTest
+     * @covers \Bruha\CodingStandard\CustomHooks\PhpUnitHook::executeAfterLastTest
      */
     public function testExecuteAfterLastTest(): void
     {
@@ -69,14 +60,24 @@ final class PhpUnitHookTest extends AbstractTestCase
         self::assertEquals('', array_pop($output));
         self::assertEquals('', array_shift($output));
         self::assertEquals('', array_shift($output));
-        self::assertRegExp(
+        self::assertMatchesRegularExpression(
             '/\d+\.\d+s \(100\.000%\): Time analysis of \d+ tests:/',
-            (string) array_shift($output)
+            (string) array_shift($output),
         );
-        self::assertRegExp(
+        self::assertMatchesRegularExpression(
             '/\d+\.\d+s \(\d+\.\d+%\): \w+::\w+/',
-            (string) array_shift($output)
+            (string) array_shift($output),
         );
+    }
+
+    /**
+     *
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->hook = new PhpUnitHook();
     }
 
 }

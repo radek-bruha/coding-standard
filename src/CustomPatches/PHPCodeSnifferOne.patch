@@ -1,35 +1,37 @@
 --- project/vendor/squizlabs/php_codesniffer/src/Runner.php	(date 1286705410000)
 +++ project/vendor/squizlabs/php_codesniffer/src/Runner.php	(date 1286705410000)
-@@ -123,9 +123,8 @@
-             // print the timer info.
-             if ($this->config->interactive === false
+@@ -125,7 +125,6 @@
                  && ($toScreen === false
--                || (($this->reporter->totalErrors + $this->reporter->totalWarnings) === 0 && $this->config->showProgress === true))
-+                    || (($this->reporter->totalErrors + $this->reporter->totalWarnings) === 0 && $this->config->showProgress === true))
+                 || (($this->reporter->totalErrors + $this->reporter->totalWarnings) === 0 && $this->config->showProgress === true))
              ) {
 -                Util\Timing::printRunTime();
              }
          } catch (DeepExitException $e) {
              echo $e->getMessage();
-@@ -193,8 +192,6 @@
+@@ -199,9 +198,6 @@
+
              $this->run();
              $this->reporter->printReports();
-
+-
 -            echo PHP_EOL;
 -            Util\Timing::printRunTime();
          } catch (DeepExitException $e) {
              echo $e->getMessage();
              return $e->getCode();
-@@ -508,7 +505,7 @@
+@@ -552,7 +548,11 @@
              && $this->config->interactive === false
              && $this->config->showProgress === true
          ) {
 -            echo PHP_EOL.PHP_EOL;
-+            echo PHP_EOL;
++            if ($this->reporter->totalErrors + $this->reporter->totalWarnings) {
++                echo PHP_EOL.PHP_EOL;
++            } else {
++                echo PHP_EOL;
++            }
          }
 
          if ($this->config->cache === true) {
-@@ -810,18 +807,18 @@
+@@ -868,21 +868,18 @@
              }//end if
          }//end if
 
@@ -41,7 +43,10 @@
 
 -        $percent = round(($numProcessed / $numFiles) * 100);
 -        $padding = (strlen($numFiles) - strlen($numProcessed));
--        if ($numProcessed === $numFiles && $numFiles > $numPerLine) {
+-        if ($numProcessed === $numFiles
+-            && $numFiles > $numPerLine
+-            && ($numProcessed % $numPerLine) !== 0
+-        ) {
 +        $percent = str_pad(round($numProcessed / $numFiles * 100), 3, ' ', STR_PAD_LEFT);
 +        $padding = strlen($numFiles) - strlen($numProcessed);
 +        if ($numProcessed === $numFiles) {

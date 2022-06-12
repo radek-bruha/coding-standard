@@ -2,7 +2,6 @@
 
 namespace Bruha\CodingStandard\CustomHooks;
 
-use DG\BypassFinals;
 use PHPUnit\Runner\AfterLastTestHook;
 use PHPUnit\Runner\AfterTestHook;
 use PHPUnit\Runner\BeforeTestHook;
@@ -16,19 +15,19 @@ final class PhpUnitHook implements BeforeTestHook, AfterTestHook, AfterLastTestH
 {
 
     /**
-     * @var array
+     * @var mixed[]
      */
-    private $tests = [];
+    private array $tests = [];
 
     /**
      * @var float
      */
-    private $time = 0.0;
+    private float $time = 0.0;
 
     /**
      * @var int
      */
-    private $count = 0;
+    private int $count = 0;
 
     /**
      * @param string $test
@@ -36,8 +35,6 @@ final class PhpUnitHook implements BeforeTestHook, AfterTestHook, AfterLastTestH
     public function executeBeforeTest(string $test): void
     {
         $test;
-
-        BypassFinals::enable();
     }
 
     /**
@@ -64,7 +61,7 @@ final class PhpUnitHook implements BeforeTestHook, AfterTestHook, AfterLastTestH
             PHP_EOL,
             $this->time,
             $this->count,
-            PHP_EOL
+            PHP_EOL,
         );
 
         foreach ($this->tests as $time => $name) {

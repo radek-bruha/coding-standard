@@ -21,7 +21,7 @@ final class TestSniffSuccessTest
     }
 
     /**
-     *
+     * @covers \Tests\Integration\CustomRules\Sniffs\Functions\Data\TestSniffSuccessTest::prepareData
      */
     public function testString(): void
     {
@@ -29,7 +29,7 @@ final class TestSniffSuccessTest
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     private function prepareData(): array
     {

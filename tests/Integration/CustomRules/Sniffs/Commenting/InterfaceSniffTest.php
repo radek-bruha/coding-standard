@@ -9,6 +9,9 @@ use Tests\AbstractTestCase;
  * Class InterfaceSniffTest
  *
  * @package Tests\Integration\CustomRules\Sniffs\Commenting
+ *
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\InterfaceSniff
+ * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class InterfaceSniffTest extends AbstractTestCase
 {
@@ -16,13 +19,10 @@ final class InterfaceSniffTest extends AbstractTestCase
     /**
      * @var string
      */
-    private $sniff = InterfaceSniff::class;
+    private string $sniff = InterfaceSniff::class;
 
     /**
-     * @covers InterfaceSniff::register
-     * @covers InterfaceSniff::process
-     * @covers InterfaceSniff::processCommenting
-     * @covers InterfaceSniff::replacePlaceholders
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\InterfaceSniff::process
      */
     public function testSuccess(): void
     {
@@ -32,10 +32,7 @@ final class InterfaceSniffTest extends AbstractTestCase
     }
 
     /**
-     * @covers InterfaceSniff::register
-     * @covers InterfaceSniff::process
-     * @covers InterfaceSniff::processCommenting
-     * @covers InterfaceSniff::replacePlaceholders
+     * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\InterfaceSniff::process
      */
     public function testMissing(): void
     {
@@ -48,7 +45,7 @@ final class InterfaceSniffTest extends AbstractTestCase
             0,
             $this->sniff,
             'CustomRules.Commenting.Interface.Comment',
-            "Usage of interface comment without 'Interface InterfaceSniffMissing' is not allowed."
+            "Usage of interface comment without 'Interface InterfaceSniffMissing' is not allowed.",
         );
 
         self::assertNotSuccess(
@@ -58,7 +55,7 @@ final class InterfaceSniffTest extends AbstractTestCase
             1,
             $this->sniff,
             'CustomRules.Commenting.Interface.Comment',
-            "Usage of interface comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed."
+            "Usage of interface comment without '@package Tests\Integration\CustomRules\Sniffs\Commenting\Data' is not allowed.",
         );
     }
 

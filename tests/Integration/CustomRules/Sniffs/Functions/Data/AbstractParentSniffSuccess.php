@@ -13,7 +13,7 @@ abstract class AbstractParentSniffSuccess
     /**
      * @var string
      */
-    protected $stringOne;
+    protected string $stringOne;
 
     /**
      * AbstractParentSniffSuccess constructor

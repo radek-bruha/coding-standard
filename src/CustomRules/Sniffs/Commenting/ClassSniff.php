@@ -24,11 +24,13 @@ final class ClassSniff extends AbstractSniff
      * @param File  $file
      * @param mixed $position
      *
-     * @return int|void
+     * @return int
      */
-    public function process(File $file, $position)
+    public function process(File $file, mixed $position): int
     {
         $this->processCommenting($file, $position, self::TYPE_CLASS);
+
+        return 0;
     }
 
 }
