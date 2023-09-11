@@ -107,8 +107,10 @@
     </rule>
 
     <rule ref='./vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml'>
+        <exclude name='SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys.IncorrectKeyOrder'/>
         <exclude name='SlevomatCodingStandard.Classes.DisallowConstructorPropertyPromotion.DisallowedConstructorPropertyPromotion'/>
         <exclude name='SlevomatCodingStandard.Classes.ForbiddenPublicProperty.ForbiddenPublicProperty'/>
+        <exclude name='SlevomatCodingStandard.Classes.RequireSelfReference.RequiredSelfReference'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix'/>
@@ -186,6 +188,12 @@
                 <element value='@return'/>
                 <element value='@throws'/>
             </property>
+        </properties>
+    </rule>
+
+    <rule ref='SlevomatCodingStandard.Functions.ArrowFunctionDeclaration'>
+        <properties>
+            <property name='spacesCountAfterKeyword' value='0'/>
         </properties>
     </rule>
 
