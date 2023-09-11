@@ -1,19 +1,33 @@
-<phpunit xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='./vendor/phpunit/phpunit/phpunit.xsd' cacheResult='false'>
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd" cacheResult="false">
     <testsuites>
-        <testsuite name='Tests'>
+        <testsuite name="Tests">
             <directory>tests</directory>
+            <exclude>tests/Integration/CustomRules/Sniffs/Functions/Data/TestSniffMissingTest.php</exclude>
+            <exclude>tests/Integration/CustomRules/Sniffs/Functions/Data/TestSniffSuccessTest.php</exclude>
+            <exclude>tests/Integration/CustomRules/Sniffs/Strings/Data/ConcatenationSniffMissingTest.php</exclude>
+            <exclude>tests/Integration/CustomRules/Sniffs/Strings/Data/ConcatenationSniffSuccessTest.php</exclude>
         </testsuite>
     </testsuites>
     <coverage>
         <report>
-            <html outputDirectory='var/coverage/coverage-html'/>
-            <xml outputDirectory='var/coverage/coverage-xml'/>
+            <html outputDirectory="var/coverage/coverage-html"/>
+            <xml outputDirectory="var/coverage/coverage-xml"/>
+            <clover outputFile="build/logs/clover.xml"/>
         </report>
+    </coverage>
+    <logging>
+        <junit outputFile="/tmp/log.xml"/>
+    </logging>
+    <source>
         <include>
             <directory>src</directory>
         </include>
-    </coverage>
-    <logging>
-        <junit outputFile='var/coverage/junit.xml'/>
-    </logging>
+        <exclude>
+            <directory>src/CustomSubscribers</directory>
+        </exclude>
+    </source>
+    <extensions>
+        <bootstrap class="Bruha\CodingStandard\CustomSubscribers\PhpUnitExtension"/>
+    </extensions>
 </phpunit>

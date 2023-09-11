@@ -5,11 +5,6 @@ namespace Bruha\CodingStandard\CustomRules\Sniffs\Strings;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-/**
- * Class ConcatenationSniff
- *
- * @package Bruha\CodingStandard\CustomRules\Sniffs\Strings
- */
 final class ConcatenationSniff implements Sniff
 {
 
@@ -17,14 +12,14 @@ final class ConcatenationSniff implements Sniff
     private const __DIR__ = '__DIR__';
 
     /**
-     * @var mixed[]
+     * @var string[]
      */
     public array $start = [
         self::__DIR__,
     ];
 
     /**
-     * @var mixed[]
+     * @var string[]
      */
     public array $close = [
         self::__DIR__,
@@ -38,12 +33,6 @@ final class ConcatenationSniff implements Sniff
         return [T_STRING_CONCAT];
     }
 
-    /**
-     * @param File  $file
-     * @param mixed $position
-     *
-     * @return int
-     */
     public function process(File $file, mixed $position): int
     {
         $start = $file->getTokens()[$position + 2][self::CONTENT];

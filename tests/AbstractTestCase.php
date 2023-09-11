@@ -3,39 +3,21 @@
 namespace Tests;
 
 use PHP_CodeSniffer\Config;
-use PHP_CodeSniffer\Exceptions\DeepExitException;
 use PHP_CodeSniffer\Files\LocalFile;
 use PHP_CodeSniffer\Runner;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class AbstractTestCase
- *
- * @package Tests
- */
 abstract class AbstractTestCase extends TestCase
 {
 
     protected const COMMAND = 'patch %s/../vendor/%s %s/../src/CustomPatches/%s%s';
 
-    /**
-     * @var Runner
-     */
     private Runner $runner;
 
-    /**
-     * AbstractTestCase constructor
-     *
-     * @param string|null $name
-     * @param mixed[]     $data
-     * @param string      $dataName
-     *
-     * @throws DeepExitException
-     */
-    public function __construct(?string $name = NULL, array $data = [], string $dataName = '')
+    public function __construct(string $name)
     {
-        parent::__construct($name, $data, $dataName);
+        parent::__construct($name);
 
         include_once __DIR__ . '/../vendor/autoload.php';
         include_once __DIR__ . '/../vendor/squizlabs/php_codesniffer/autoload.php';
@@ -45,16 +27,13 @@ abstract class AbstractTestCase extends TestCase
         $this->runner->init();
     }
 
-    /**
-     * @param string $file
-     * @param string $sniff
-     *
-     * @return LocalFile
-     */
     protected function processFile(string $file, string $sniff): LocalFile
     {
-        /** @var Sniff $sniffInstance */
         $sniffInstance = new $sniff();
+
+        if (!$sniffInstance instanceof Sniff) {
+            self::fail();
+        }
 
         $this->runner->ruleset->sniffs = [$sniff => $sniffInstance];
         $this->runner->ruleset->populateTokenListeners();
@@ -65,11 +44,6 @@ abstract class AbstractTestCase extends TestCase
         return $file;
     }
 
-    /**
-     * @param string $file
-     * @param string $patch
-     * @param bool   $reverse
-     */
     protected function processPatch(string $file, string $patch, bool $reverse = FALSE): void
     {
         $lines = [];
@@ -89,25 +63,12 @@ abstract class AbstractTestCase extends TestCase
         self::assertEquals(1, TRUE);
     }
 
-    /**
-     * @param LocalFile $file
-     */
     protected function assertSuccess(LocalFile $file): void
     {
         self::assertEquals(0, $file->getErrorCount());
         self::assertEquals(0, $file->getWarningCount());
     }
 
-    /**
-     * @param LocalFile $file
-     * @param int       $row
-     * @param int       $column
-     * @param int       $rank
-     * @param string    $class
-     * @param string    $name
-     * @param string    $message
-     * @param int       $columnTwo
-     */
     protected function assertNotSuccess(
         LocalFile $file,
         int $row,

@@ -4,19 +4,9 @@ namespace Bruha\CodingStandard\CustomRules;
 
 use SimpleXMLElement;
 
-/**
- * Class Analyzer
- *
- * @package Bruha\CodingStandard\CustomRules
- */
 final class Analyzer
 {
 
-    /**
-     * @param string $data
-     *
-     * @return int
-     */
     public static function phpCodeSniffer(string $data): int
     {
         $timestamp = microtime(TRUE);
@@ -41,12 +31,11 @@ final class Analyzer
             if ($record) {
                 if (preg_match('/(.+): (.+) sec/', $log, $matches) === 1) {
                     [
-                        $g,
+                        ,
                         $name,
                         $time,
                     ] = $matches;
 
-                    $g;
                     $time   = (float) $time;
                     $total += $time;
 
@@ -81,11 +70,6 @@ final class Analyzer
         return 0;
     }
 
-    /**
-     * @param string $data
-     *
-     * @return int
-     */
     public static function phpUnit(string $data): int
     {
         $timestamp = microtime(TRUE);
@@ -93,12 +77,15 @@ final class Analyzer
         $total     = 0;
         $logs      = (new SimpleXMLElement($data))->xpath('//testcase');
 
-        /** @var SimpleXMLElement $log */
         foreach ($logs as $log) {
-            /** @var SimpleXMLElement $attributes */
             $attributes = $log->attributes();
-            $time       = (float) $attributes['time'];
-            $total     += $time;
+
+            if ($attributes === NULL) {
+                continue;
+            }
+
+            $time   = (float) $attributes['time'];
+            $total += $time;
 
             $results[] = [
                 sprintf('%s::%s', $attributes['class'], $attributes['name']),
@@ -129,16 +116,14 @@ final class Analyzer
         return 0;
     }
 
-    /**
-     * @param int    $minimum
-     * @param string $path
-     *
-     * @return int
-     */
     public static function phpUnitCoverage(int $minimum, string $path): int
     {
-        /** @var SimpleXMLElement $coverage */
         $coverage = simplexml_load_file($path);
+
+        if ($coverage === FALSE) {
+            return 1;
+        }
+
         $coverage->registerXPathNamespace('php', 'https://schema.phpunit.de/coverage/1.0');
         $coverage = $coverage->xpath('//php:project/php:directory/php:totals/php:lines');
         $coverage = is_array($coverage) ? (float) $coverage[0]['percent'] : 0;

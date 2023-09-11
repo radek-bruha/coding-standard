@@ -5,25 +5,16 @@ namespace Tests\Integration\CustomReports;
 use Bruha\CodingStandard\CustomReports\PhpStanReport;
 use PHPStan\Analyser\Error;
 use PHPStan\Command\AnalysisResult;
-use PHPStan\Command\Output;
 use PHPStan\Command\OutputStyle;
 use PHPStan\Command\Symfony\SymfonyOutput;
-use PHPUnit\Framework\MockObject\MockObject;
 use Tests\AbstractTestCase;
 
 /**
- * Class PhpStanReportTest
- *
- * @package Tests\Integration\CustomReports
- *
  * @covers \Bruha\CodingStandard\CustomReports\PhpStanReport
  */
 final class PhpStanReportTest extends AbstractTestCase
 {
 
-    /**
-     * @var PhpStanReport
-     */
     private PhpStanReport $report;
 
     /**
@@ -31,7 +22,6 @@ final class PhpStanReportTest extends AbstractTestCase
      */
     public function testFormatErrors(): void
     {
-        /** @var OutputStyle|MockObject $style */
         $style = self::createMock(OutputStyle::class);
         $style->method('newLine')->willReturnCallback(
             static function (): void {
@@ -39,7 +29,6 @@ final class PhpStanReportTest extends AbstractTestCase
             },
         );
 
-        /** @var Output|MockObject $output */
         $output = self::createMock(SymfonyOutput::class);
         $output->method('getStyle')->willReturn($style);
 
@@ -52,9 +41,11 @@ final class PhpStanReportTest extends AbstractTestCase
                     ['Message'],
                     [],
                     [],
+                    [],
                     FALSE,
                     NULL,
                     FALSE,
+                    0,
                 ),
                 $output,
             ),
@@ -67,9 +58,6 @@ final class PhpStanReportTest extends AbstractTestCase
         self::assertEquals('Errors: 2', $output[3]);
     }
 
-    /**
-     *
-     */
     protected function setUp(): void
     {
         parent::setUp();

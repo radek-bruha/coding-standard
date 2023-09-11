@@ -1,6 +1,6 @@
 # [PHP](https://php.net) Coding Standard
 [![Downloads](https://img.shields.io/packagist/dt/radek-bruha/coding-standard.svg?style=flat-square)](https://packagist.org/packages/radek-bruha/coding-standard)
-[![Build Status](https://img.shields.io/github/workflow/status/radek-bruha/coding-standard/Workflow?style=flat-square)](https://github.com/radek-bruha/coding-standard/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/radek-bruha/coding-standard/workflow.yaml)](https://github.com/radek-bruha/coding-standard/actions)
 [![Coverage Status](https://img.shields.io/coveralls/github/radek-bruha/coding-standard.svg?style=flat-square)](https://coveralls.io/github/radek-bruha/coding-standard)
 [![Latest Stable Version](https://img.shields.io/github/release/radek-bruha/coding-standard.svg?style=flat-square)](https://github.com/radek-bruha/coding-standard/releases)
 

@@ -4,11 +4,6 @@ namespace Bruha\CodingStandard\CustomRules\Sniffs\Commenting;
 
 use PHP_CodeSniffer\Files\File;
 
-/**
- * Class InterfaceSniff
- *
- * @package Bruha\CodingStandard\CustomRules\Sniffs\Commenting
- */
 final class InterfaceSniff extends AbstractSniff
 {
 
@@ -20,12 +15,6 @@ final class InterfaceSniff extends AbstractSniff
         return [T_INTERFACE];
     }
 
-    /**
-     * @param File  $file
-     * @param mixed $position
-     *
-     * @return int
-     */
     public function process(File $file, mixed $position): int
     {
         $this->processCommenting($file, $position, self::TYPE_INTERFACE);

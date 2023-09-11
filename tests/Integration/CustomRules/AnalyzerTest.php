@@ -6,10 +6,6 @@ use Bruha\CodingStandard\CustomRules\Analyzer;
 use Tests\AbstractTestCase;
 
 /**
- * Class AnalyzerTest
- *
- * @package Tests\Integration\CustomRules
- *
  * @covers \Bruha\CodingStandard\CustomRules\Analyzer
  */
 final class AnalyzerTest extends AbstractTestCase

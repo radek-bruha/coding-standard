@@ -5,11 +5,6 @@ namespace Bruha\CodingStandard\CustomRules\Sniffs\Functions;
 use Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff;
 use PHP_CodeSniffer\Files\File;
 
-/**
- * Class TestSniff
- *
- * @package Bruha\CodingStandard\CustomRules\Sniffs\Functions
- */
 final class TestSniff extends AbstractSniff
 {
 
@@ -21,12 +16,6 @@ final class TestSniff extends AbstractSniff
         return [T_CLASS];
     }
 
-    /**
-     * @param File  $file
-     * @param mixed $position
-     *
-     * @return int
-     */
     public function process(File $file, mixed $position): int
     {
         $tokens      = $file->getTokens();

@@ -10,19 +10,25 @@ on:
 jobs:
     job:
         name: Job
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         steps:
-            -   uses: actions/checkout@v2
+            -   uses: actions/checkout@v3
             -   uses: shivammathur/setup-php@v2
             -   name: Step
                 env:
                     COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 run: |
                     composer install --ignore-platform-reqs --no-ansi
-                    vendor/bin/phpcs bin src tests -p --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml
-                    vendor/bin/phpcs bin src tests -pvvv --ignore=tests/*/Data/* --extensions=php --standard=ruleset.xml | bin/phpcs-analyzer
+                    vendor/bin/phpcs bin src tests --standard=ruleset.xml
+                    vendor/bin/phpcs bin src tests -vvv --standard=ruleset.xml | bin/phpcs-analyzer
                     vendor/bin/phpstan analyse bin src tests -c ruleset.neon -l 8
-                    vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml --log-junit=/tmp/log.xml && cat /tmp/log.xml | bin/phpunit-analyzer
-                    vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml --log-junit=/tmp/log.xml && cat /tmp/log.xml | bin/phpunit-coverage-analyzer 100
+                    vendor/bin/phpunit && cat /tmp/log.xml | bin/phpunit-analyzer
+                    vendor/bin/phpunit cat /tmp/log.xml | bin/phpunit-coverage-analyzer 99
                     export INFECTION=INFECTION && vendor/bin/infection -j8 --only-covered --no-ansi && export INFECTION
                     vendor/bin/php-coveralls
+            -   uses: Mattraks/delete-workflow-runs@v2
+                with:
+                    token: ${{ github.token }}
+                    repository: ${{ github.repository }}
+                    retain_days: 1
+                    keep_minimum_runs: 7

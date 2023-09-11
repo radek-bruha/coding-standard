@@ -6,19 +6,12 @@ use Bruha\CodingStandard\CustomRules\Sniffs\Commenting\ClassSniff;
 use Tests\AbstractTestCase;
 
 /**
- * Class ClassSniffTest
- *
- * @package Tests\Integration\CustomRules\Sniffs\Commenting
- *
  * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\ClassSniff
  * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class ClassSniffTest extends AbstractTestCase
 {
 
-    /**
-     * @var string
-     */
     private string $sniff = ClassSniff::class;
 
     /**

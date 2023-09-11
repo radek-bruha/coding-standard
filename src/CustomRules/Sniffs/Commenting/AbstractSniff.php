@@ -5,11 +5,6 @@ namespace Bruha\CodingStandard\CustomRules\Sniffs\Commenting;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-/**
- * Class AbstractSniff
- *
- * @package Bruha\CodingStandard\CustomRules\Sniffs\Commenting
- */
 abstract class AbstractSniff implements Sniff
 {
 
@@ -29,19 +24,13 @@ abstract class AbstractSniff implements Sniff
     ];
 
     /**
-     * @var mixed[]
+     * @var string[]
      */
     public array $comments = [
         '{TYPE} {NAME}',
         '@package {NAMESPACE}',
     ];
 
-    /**
-     * @param File $file
-     * @param int  $position
-     *
-     * @return string
-     */
     protected function getNamespaceName(File $file, int $position): string
     {
         $result     = 'Unknown';
@@ -68,10 +57,7 @@ abstract class AbstractSniff implements Sniff
     }
 
     /**
-     * @param File $file
-     * @param int  $position
-     *
-     * @return mixed[]
+     * @return string[]
      */
     protected function getDocumentComment(File $file, int $position): array
     {
@@ -102,14 +88,6 @@ abstract class AbstractSniff implements Sniff
         return array_filter(array_map('trim', $result), static fn (string $item): bool => strlen($item) > 0);
     }
 
-    /**
-     * @param File        $file
-     * @param int         $position
-     * @param string      $type
-     * @param string|null $customName
-     *
-     * @return int
-     */
     protected function processCommenting(File $file, int $position, string $type, ?string $customName = NULL): int
     {
         $position = $file->findNext(T_STRING, $position);
@@ -133,15 +111,6 @@ abstract class AbstractSniff implements Sniff
         return 0;
     }
 
-    /**
-     * @param File        $file
-     * @param int         $position
-     * @param string      $type
-     * @param string      $string
-     * @param string|null $customName
-     *
-     * @return string
-     */
     protected function replacePlaceholders(
         File $file,
         int $position,

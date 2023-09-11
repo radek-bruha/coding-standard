@@ -4,22 +4,14 @@ namespace Bruha\CodingStandard\CustomRules\Sniffs\Commenting;
 
 use PHP_CodeSniffer\Files\File;
 
-/**
- * Class ConstructorSniff
- *
- * @package Bruha\CodingStandard\CustomRules\Sniffs\Commenting
- */
 final class ConstructorSniff extends AbstractSniff
 {
 
     /**
-     * @var mixed[]
+     * @var string[]
      */
     public array $comments = ['{NAME} constructor'];
 
-    /**
-     * @var string
-     */
     public string $anonymousName = 'Anonymous';
 
     /**
@@ -30,12 +22,6 @@ final class ConstructorSniff extends AbstractSniff
         return [T_FUNCTION];
     }
 
-    /**
-     * @param File  $file
-     * @param mixed $position
-     *
-     * @return int
-     */
     public function process(File $file, mixed $position): int
     {
         $tokens = $file->getTokens();

@@ -4,14 +4,9 @@ namespace Tests\Integration\CustomReports;
 
 use Bruha\CodingStandard\CustomReports\PhpCodeSnifferReport;
 use PHP_CodeSniffer\Files\File;
-use PHPUnit\Framework\MockObject\MockObject;
 use Tests\AbstractTestCase;
 
 /**
- * Class PhpCodeSnifferReportTest
- *
- * @package Tests\Integration\CustomReports
- *
  * @covers  \Bruha\CodingStandard\CustomReports\PhpCodeSnifferReport
  */
 final class PhpCodeSnifferReportTest extends AbstractTestCase
@@ -28,9 +23,6 @@ final class PhpCodeSnifferReportTest extends AbstractTestCase
         ],
     ];
 
-    /**
-     * @var PhpCodeSnifferReport
-     */
     private PhpCodeSnifferReport $report;
 
     /**
@@ -38,7 +30,6 @@ final class PhpCodeSnifferReportTest extends AbstractTestCase
      */
     public function testGenerateFileReport(): void
     {
-        /** @var File|MockObject $file */
         $file = self::createMock(File::class);
 
         ob_start();
@@ -63,9 +54,6 @@ final class PhpCodeSnifferReportTest extends AbstractTestCase
         self::assertEquals('Errors: 1', $output[1]);
     }
 
-    /**
-     *
-     */
     protected function setUp(): void
     {
         parent::setUp();

@@ -4,11 +4,6 @@ namespace Bruha\CodingStandard\CustomRules\Sniffs\Commenting;
 
 use PHP_CodeSniffer\Files\File;
 
-/**
- * Class TraitSniff
- *
- * @package Bruha\CodingStandard\CustomRules\Sniffs\Commenting
- */
 final class TraitSniff extends AbstractSniff
 {
 
@@ -20,12 +15,6 @@ final class TraitSniff extends AbstractSniff
         return [T_TRAIT];
     }
 
-    /**
-     * @param File  $file
-     * @param mixed $position
-     *
-     * @return int
-     */
     public function process(File $file, mixed $position): int
     {
         $this->processCommenting($file, $position, self::TYPE_TRAIT);

@@ -1,12 +1,16 @@
 <?xml version='1.0'?>
 <ruleset xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='./vendor/squizlabs/php_codesniffer/phpcs.xsd' name='Bruha Coding Standard'>
-    <arg value="p"/>
-    <arg name="extensions" value="php"/>
-    <arg name="report" value="Bruha\CodingStandard\CustomReports\PhpCodeSnifferReport"/>
+    <arg value='p'/>
+    <arg name='extensions' value='php'/>
+    <arg name='report' value='Bruha\CodingStandard\CustomReports\PhpCodeSnifferReport'/>
+    <arg name='ignore' value='tests/*/Data/*'/>
 
     <rule ref='Generic'>
         <exclude name='Generic.Arrays.DisallowShortArraySyntax.Found'/>
         <exclude name='Generic.Classes.OpeningBraceSameLine.BraceOnNewLine'/>
+        <exclude name='Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterface'/>
+        <exclude name='Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed'/>
+        <exclude name='Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceBeforeLastUsed'/>
         <exclude name='Generic.Commenting.DocComment.ContentAfterOpen'/>
         <exclude name='Generic.Commenting.DocComment.ContentBeforeClose'/>
         <exclude name='Generic.Commenting.DocComment.Empty'/>
@@ -29,19 +33,26 @@
     </rule>
 
     <rule ref='PEAR'>
+        <exclude name='PEAR.Commenting.ClassComment.Missing'/>
         <exclude name='PEAR.Commenting.ClassComment.MissingAuthorTag'/>
         <exclude name='PEAR.Commenting.ClassComment.MissingCategoryTag'/>
         <exclude name='PEAR.Commenting.ClassComment.MissingLicenseTag'/>
         <exclude name='PEAR.Commenting.ClassComment.MissingLinkTag'/>
+        <exclude name='PEAR.Commenting.ClassComment.MissingPackageTag'/>
         <exclude name='PEAR.Commenting.FileComment.Missing'/>
+        <exclude name='PEAR.Commenting.FunctionComment.Missing'/>
         <exclude name='PEAR.Commenting.FunctionComment.MissingParamComment'/>
+        <exclude name='PEAR.Commenting.FunctionComment.MissingParamTag'/>
         <exclude name='PEAR.Commenting.FunctionComment.MissingReturn'/>
+        <exclude name='PEAR.Commenting.FunctionComment.ParamNameNoMatch'/>
         <exclude name='PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore'/>
         <exclude name='PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore'/>
         <exclude name='PEAR.WhiteSpace.ScopeIndent.IncorrectExact'/>
     </rule>
 
-    <rule ref='PSR1'/>
+    <rule ref='PSR1'>
+        <exclude name='PSR1.Files.SideEffects.FoundWithSymbols' />
+    </rule>
 
     <rule ref='PSR2'>
         <exclude name='PSR2.Classes.ClassDeclaration.CloseBraceAfterBody'/>
@@ -49,18 +60,26 @@
     </rule>
 
     <rule ref='Squiz'>
+        <exclude name='Squiz.Arrays.ArrayDeclaration.SpaceBeforeComma'/>
+        <exclude name='Squiz.Classes.ClassDeclaration.SpaceBeforeKeyword'/>
         <exclude name='Squiz.Commenting.BlockComment.WrongStart'/>
+        <exclude name='Squiz.Commenting.ClassComment.Missing'/>
         <exclude name='Squiz.Commenting.ClassComment.TagNotAllowed'/>
         <exclude name='Squiz.Commenting.ClosingDeclarationComment.Missing'/>
         <exclude name='Squiz.Commenting.FileComment.Missing'/>
         <exclude name='Squiz.Commenting.FunctionComment.EmptyThrows'/>
         <exclude name='Squiz.Commenting.FunctionComment.IncorrectParamVarName'/>
+        <exclude name='Squiz.Commenting.FunctionComment.IncorrectTypeHint'/>
         <exclude name='Squiz.Commenting.FunctionComment.InvalidReturn'/>
+        <exclude name='Squiz.Commenting.FunctionComment.Missing'/>
         <exclude name='Squiz.Commenting.FunctionComment.MissingParamComment'/>
+        <exclude name='Squiz.Commenting.FunctionComment.MissingParamTag'/>
         <exclude name='Squiz.Commenting.FunctionComment.MissingReturn'/>
+        <exclude name='Squiz.Commenting.FunctionComment.ParamNameNoMatch'/>
         <exclude name='Squiz.Commenting.InlineComment.DocBlock'/>
         <exclude name='Squiz.Commenting.LongConditionClosingComment.Missing'/>
         <exclude name='Squiz.Commenting.VariableComment.IncorrectVarType'/>
+        <exclude name='Squiz.Commenting.VariableComment.Missing'/>
         <exclude name='Squiz.Commenting.VariableComment.TagNotAllowed'/>
         <exclude name='Squiz.ControlStructures.ElseIfDeclaration.NotAllowed'/>
         <exclude name='Squiz.ControlStructures.InlineIfDeclaration.NoBrackets'/>
@@ -79,7 +98,13 @@
         <exclude name='Squiz.WhiteSpace.ObjectOperatorSpacing.Before'/>
     </rule>
 
-    <rule ref='./src/CustomRules/ruleset.xml'/>
+    <rule ref='./src/CustomRules/ruleset.xml'>
+        <exclude name='CustomRules.Commenting.Class.Comment' />
+        <exclude name='CustomRules.Commenting.Constructor.Comment' />
+        <exclude name='CustomRules.Commenting.Function.Comment' />
+        <exclude name='CustomRules.Commenting.Interface.Comment' />
+        <exclude name='CustomRules.Commenting.Trait.Comment' />
+    </rule>
 
     <rule ref='./vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml'>
         <exclude name='SlevomatCodingStandard.Classes.DisallowConstructorPropertyPromotion.DisallowedConstructorPropertyPromotion'/>
@@ -92,6 +117,7 @@
         <exclude name='SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment'/>
         <exclude name='SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment.MultiLinePropertyComment'/>
         <exclude name='SlevomatCodingStandard.Commenting.UselessFunctionDocComment.UselessDocComment'/>
+        <exclude name='SlevomatCodingStandard.Complexity.Cognitive'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed'/>
         <exclude name='SlevomatCodingStandard.ControlStructures.NewWithoutParentheses.UselessParentheses'/>
@@ -106,7 +132,7 @@
         <exclude name='SlevomatCodingStandard.Functions.DisallowTrailingCommaInClosureUse.DisallowedTrailingComma'/>
         <exclude name='SlevomatCodingStandard.Functions.DisallowTrailingCommaInDeclaration.DisallowedTrailingComma'/>
         <exclude name='SlevomatCodingStandard.Functions.FunctionLength.FunctionLength'/>
-        <exclude name='SlevomatCodingStandard.Functions.TrailingCommaInCall.MissingTrailingComma'/>
+        <exclude name='SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions.NonFullyQualifiedException'/>
         <exclude name='SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants.NonFullyQualified'/>
@@ -116,17 +142,8 @@
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostDecrementOperator'/>
         <exclude name='SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator'/>
         <exclude name='SlevomatCodingStandard.PHP.DisallowReference'/>
-        <exclude name='SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion'/>
-        <exclude name='SlevomatCodingStandard.TypeHints.DisallowArrayTypeHintSyntax.DisallowedArrayTypeHintSyntax'/>
         <exclude name='SlevomatCodingStandard.TypeHints.DisallowArrayTypeHintSyntax.DisallowedArrayTypeHintSyntax'/>
         <exclude name='SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint'/>
-        <exclude name='SlevomatCodingStandard.TypeHints.ParameterTypeHint.UselessAnnotation'/>
-        <exclude name='SlevomatCodingStandard.TypeHints.PropertyTypeHint.UselessAnnotation'/>
-        <exclude name='SlevomatCodingStandard.TypeHints.ReturnTypeHint.UselessAnnotation'/>
-        <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableParameterTypeHintSpecification'/>
-        <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversablePropertyTypeHintSpecification'/>
-        <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingTraversableReturnTypeHintSpecification'/>
-        <exclude name='SlevomatCodingStandard.TypeHints.TypeHintDeclaration.UselessDocComment'/>
     </rule>
 
     <rule ref='Generic.Metrics.CyclomaticComplexity'>

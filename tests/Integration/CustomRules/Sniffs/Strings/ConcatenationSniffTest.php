@@ -6,19 +6,12 @@ use Bruha\CodingStandard\CustomRules\Sniffs\Strings\ConcatenationSniff;
 use Tests\AbstractTestCase;
 
 /**
- * Class ConcatenationSniffTest
- *
- * @package Tests\Integration\CustomRules\Sniffs\Strings
- *
  * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Strings\ConcatenationSniff
  * @covers \Bruha\CodingStandard\CustomRules\Sniffs\Commenting\AbstractSniff
  */
 final class ConcatenationSniffTest extends AbstractTestCase
 {
 
-    /**
-     * @var string
-     */
     private string $sniff = ConcatenationSniff::class;
 
     /**

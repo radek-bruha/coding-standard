@@ -5,22 +5,9 @@ namespace Tests;
 use LogicException;
 use ReflectionObject;
 
-/**
- * Trait PrivateTrait
- *
- * @package Tests
- */
 trait PrivateTrait
 {
 
-    /**
-     * @param object $object
-     * @param string $name
-     *
-     * @return mixed
-     *
-     * @throws LogicException
-     */
     protected function getProperty(object $object, string $name): mixed
     {
         $reflection = new ReflectionObject($object);
@@ -39,13 +26,6 @@ trait PrivateTrait
         throw new LogicException(sprintf("Property '%s' Not Found", $name));
     }
 
-    /**
-     * @param object $object
-     * @param string $name
-     * @param mixed  $value
-     *
-     * @throws LogicException
-     */
     protected function setProperty(object $object, string $name, mixed $value): void
     {
         $reflection = new ReflectionObject($object);
@@ -66,11 +46,7 @@ trait PrivateTrait
     }
 
     /**
-     * @param object  $object
-     * @param string  $name
      * @param mixed[] $parameters
-     *
-     * @return mixed
      *
      * @throws LogicException
      */

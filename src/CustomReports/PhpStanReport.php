@@ -7,33 +7,16 @@ use PHPStan\Command\AnalysisResult;
 use PHPStan\Command\ErrorFormatter\ErrorFormatter;
 use PHPStan\Command\Output;
 
-/**
- * Class PhpStanReport
- *
- * @package Bruha\CodingStandard\CustomReports
- */
 final class PhpStanReport implements ErrorFormatter
 {
 
-    /**
-     * @var string
-     */
     private string $root;
 
-    /**
-     * PhpStanReport constructor
-     */
     public function __construct()
     {
         $this->root = sprintf('%s/', getcwd());
     }
 
-    /**
-     * @param AnalysisResult $analysisResult
-     * @param Output         $style
-     *
-     * @return int
-     */
     public function formatErrors(AnalysisResult $analysisResult, Output $style): int
     {
         $style = $style->getStyle();
