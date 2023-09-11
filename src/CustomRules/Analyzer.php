@@ -13,7 +13,7 @@ final class Analyzer
         $results   = [];
         $record    = FALSE;
         $total     = 0;
-        $logs      = array_map(static fn (string $row): string => trim($row), explode(PHP_EOL, $data));
+        $logs      = array_map(static fn(string $row): string => trim($row), explode(PHP_EOL, $data));
 
         foreach ($logs as $log) {
             if ($log === '*** START SNIFF PROCESSING REPORT ***') {
@@ -47,7 +47,7 @@ final class Analyzer
             }
         }
 
-        usort($results, static fn (array $one, array $two): int => $two[1] <=> $one[1]);
+        usort($results, static fn(array $one, array $two): int => $two[1] <=> $one[1]);
 
         echo sprintf(
             '%07.3fs (100.000%%): Analyzed %s rows of logs in %07.3fs with %07.3fMB RAM usage%s',
@@ -93,7 +93,7 @@ final class Analyzer
             ];
         }
 
-        usort($results, static fn (array $one, array $two): int => $two[1] <=> $one[1]);
+        usort($results, static fn(array $one, array $two): int => $two[1] <=> $one[1]);
 
         echo sprintf(
             '%07.3fs (100.000%%): Analyzed %s rows of logs in %07.3fs with %07.3fMB RAM usage%s',

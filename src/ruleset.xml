@@ -115,7 +115,6 @@
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix'/>
         <exclude name='SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix'/>
-        <exclude name='SlevomatCodingStandard.Commenting.EmptyComment.EmptyComment'/>
         <exclude name='SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment'/>
         <exclude name='SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment.MultiLinePropertyComment'/>
         <exclude name='SlevomatCodingStandard.Commenting.UselessFunctionDocComment.UselessDocComment'/>
